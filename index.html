@@ -61,31 +61,75 @@
         </div>
     </div>
     
-    <!-- HEADER - Con botón de inicio de sesión más pequeño en móvil -->
+    <!-- HEADER - Con botón de inicio de sesión más pequeño y menú hamburguesa -->
     <header class="bg-white border-b border-arena sticky top-0 z-50 shadow-sm">
-        <div class="max-w-6xl mx-auto px-3 md:px-4 py-2 md:py-4 flex justify-between items-center">
+        <div class="max-w-6xl mx-auto px-3 md:px-4 py-2 md:py-3 flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-4">
-                <!-- Logo con fondo blanco (para mejor visibilidad en PWA) -->
-                <div class="w-20 h-20 md:w-20 md:h-20 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
-                    <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-1">
+                <!-- Logo -->
+                <div class="w-9 h-9 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
+                    <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-0.5 md:p-1">
                 </div>
                 <div>
-                    <h1 class="text-base md:text-xl font-bold text-marron tracking-wide">COTOLAR</h1>
-                    <p class="text-marronClaro text-[10px] md:text-xs italic tracking-wide">Terapia Ocupacional · La Rioja</p>
+                    <h1 class="text-sm md:text-xl font-bold text-marron tracking-wide">COTOLAR</h1>
+                    <p class="text-marronClaro text-[8px] md:text-xs italic tracking-wide hidden xs:block">Terapia Ocupacional · La Rioja</p>
                 </div>
             </div>
-            <!-- Botón Iniciar Sesión más pequeño en móvil -->
-            <a href="admin.html" class="bg-terracota text-white px-3 py-1.5 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg-terracota/80 transition-all duration-300 shadow-md flex items-center gap-1">
-                <span class="material-icons text-sm md:text-base">login</span>
-                <span class="hidden xs:inline">Iniciar Sesión</span>
-            </a>
+            <div class="flex items-center gap-2">
+                <!-- Botón Iniciar Sesión más pequeño y elegante -->
+                <a href="admin.html" class="bg-terracota text-white px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-terracota/80 transition-all duration-300 shadow-sm flex items-center gap-1">
+                    <span class="material-icons text-sm">login</span>
+                    <span class="hidden sm:inline">Ingresar</span>
+                </a>
+                <!-- Botón Hamburguesa (solo en móvil) -->
+                <button id="menuBtn" class="md:hidden bg-terracota/10 p-1.5 rounded-full text-terracota">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
         </div>
     </header>
+    
+    <!-- MENÚ LATERAL (Hamburguesa) - Solo visible en móvil -->
+    <div id="mobileMenu" class="fixed inset-0 z-[150] bg-black/50 backdrop-blur-sm hidden transition-all duration-300">
+        <div class="bg-white w-64 h-full shadow-2xl p-4 animate-slideInLeft">
+            <div class="flex justify-between items-center mb-6 pb-3 border-b border-arena">
+                <span class="font-bold text-marron">Menú</span>
+                <button id="closeMenuBtn" class="text-terracota">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-2">
+                <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="inicio">
+                    <span class="material-icons text-terracota">home</span>
+                    <span class="text-marron font-medium">Inicio</span>
+                </button>
+                <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="tramites">
+                    <span class="material-icons text-terracota">description</span>
+                    <span class="text-marron font-medium">Trámites</span>
+                </button>
+                <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="capacitaciones">
+                    <span class="material-icons text-terracota">school</span>
+                    <span class="text-marron font-medium">Capacitaciones</span>
+                </button>
+                <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="profesionales">
+                    <span class="material-icons text-terracota">group</span>
+                    <span class="text-marron font-medium">Profesionales</span>
+                </button>
+                <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="descargar">
+                    <span class="material-icons text-terracota">download</span>
+                    <span class="text-marron font-medium">Descargar App</span>
+                </button>
+                <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="contacto">
+                    <span class="material-icons text-terracota">contact_mail</span>
+                    <span class="text-marron font-medium">Contacto</span>
+                </button>
+            </nav>
+        </div>
+    </div>
     
     <!-- HERO SECTION -->
     <section class="py-8 md:py-16 px-4 bg-gradient-to-br from-terracota/5 to-oliva/5 border-b border-arena animate-fadeIn">
         <div class="max-w-6xl mx-auto text-center">
-            <div class="w-24 h-24 md:w-40 md:h-40 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg animate-pulse-slow overflow-hidden bg-white p-2 md:p-4">
+            <div class="w-20 h-20 md:w-40 md:h-40 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg animate-pulse-slow overflow-hidden bg-white p-2 md:p-4">
                 <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain">
             </div>
             <p class="text-terracota font-semibold mb-2 uppercase tracking-wider text-xs md:text-sm">Órgano oficial de regulación profesional</p>
@@ -106,34 +150,16 @@
         </div>
     </section>
     
-    <!-- NAVEGACIÓN - Más compacta en móvil -->
-    <nav class="bg-white border-b border-arena sticky top-[57px] md:top-[73px] z-40 shadow-sm">
-        <div class="max-w-6xl mx-auto px-2 md:px-4">
-            <div class="flex justify-between md:justify-start gap-0.5 md:gap-4 overflow-x-auto py-1.5 md:py-3">
-                <button class="nav-btn flex flex-col items-center md:flex-row text-marron font-semibold border-b-2 border-terracota whitespace-nowrap px-2 py-1 md:px-3 md:py-2" data-section="inicio">
-                    <span class="material-icons text-lg md:text-base">home</span>
-                    <span class="text-[10px] md:text-sm md:ml-1">Inicio</span>
-                </button>
-                <button class="nav-btn flex flex-col items-center md:flex-row text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap px-2 py-1 md:px-3 md:py-2" data-section="tramites">
-                    <span class="material-icons text-lg md:text-base">description</span>
-                    <span class="text-[10px] md:text-sm md:ml-1">Trámites</span>
-                </button>
-                <button class="nav-btn flex flex-col items-center md:flex-row text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap px-2 py-1 md:px-3 md:py-2" data-section="capacitaciones">
-                    <span class="material-icons text-lg md:text-base">school</span>
-                    <span class="text-[10px] md:text-sm md:ml-1">Cursos</span>
-                </button>
-                <button class="nav-btn flex flex-col items-center md:flex-row text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap px-2 py-1 md:px-3 md:py-2" data-section="profesionales">
-                    <span class="material-icons text-lg md:text-base">group</span>
-                    <span class="text-[10px] md:text-sm md:ml-1">Profesionales</span>
-                </button>
-                <button class="nav-btn flex flex-col items-center md:flex-row text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap px-2 py-1 md:px-3 md:py-2" data-section="descargar">
-                    <span class="material-icons text-lg md:text-base">download</span>
-                    <span class="text-[10px] md:text-sm md:ml-1">App</span>
-                </button>
-                <button class="nav-btn flex flex-col items-center md:flex-row text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap px-2 py-1 md:px-3 md:py-2" data-section="contacto">
-                    <span class="material-icons text-lg md:text-base">contact_mail</span>
-                    <span class="text-[10px] md:text-sm md:ml-1">Contacto</span>
-                </button>
+    <!-- NAVEGACIÓN ESCRITORIO (visible solo en md+) -->
+    <nav class="hidden md:block bg-white border-b border-arena sticky top-[73px] z-40 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-start gap-6 py-3">
+                <button class="nav-btn-desktop text-marron font-semibold border-b-2 border-terracota pb-2" data-section="inicio">Inicio</button>
+                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="tramites">Trámites</button>
+                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="capacitaciones">Capacitaciones</button>
+                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="profesionales">Profesionales</button>
+                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="descargar">Descargar App</button>
+                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="contacto">Contacto</button>
             </div>
         </div>
     </nav>
@@ -266,6 +292,27 @@
         document.getElementById('closeDemoModal')?.addEventListener('click', function() {
             document.getElementById('demoModal').style.display = 'none';
             if (window.playSound) window.playSound('click');
+        });
+        
+        // MENÚ HAMBURGUESA
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        
+        function openMenu() { mobileMenu.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenu.classList.add('hidden'); document.body.style.overflow = ''; }
+        
+        menuBtn?.addEventListener('click', openMenu);
+        closeMenuBtn?.addEventListener('click', closeMenu);
+        mobileMenu?.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMenu(); });
+        
+        // Navegación móvil
+        document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const section = btn.getAttribute('data-section');
+                if (section && window.cambiarSeccion) window.cambiarSeccion(section);
+                closeMenu();
+            });
         });
     </script>
     <script src="data.js"></script>
