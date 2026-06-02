@@ -7,8 +7,8 @@
     <title>COTOLAR | Colegio de Terapia Ocupacional de La Rioja</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome versión estable -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     
@@ -36,7 +36,7 @@
     <header class="bg-white border-b border-arena sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
+                <div class="w-20 h-20 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
                     <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain">
                 </div>
                 <div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <a href="admin.html" class="bg-terracota text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-terracota/80 transition-all duration-300 shadow-md">
-                <i class="fas fa-sign-in-alt mr-1"></i> Iniciar Sesión
+                <span class="material-icons text-base mr-1">login</span> Iniciar Sesión
             </a>
         </div>
     </header>
@@ -64,32 +64,21 @@
         </div>
     </section>
     
-    <!-- NUEVA SECCIÓN: Profesionales Activos -->
-    <section class="py-12 px-4 bg-gradient-to-r from-terracota to-oliva text-white">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8">📊 Profesionales Activos en La Rioja</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                    <div class="text-4xl font-bold mb-2">+350</div>
-                    <p class="text-white/80">Matriculados Activos</p>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                    <div class="text-4xl font-bold mb-2">+120</div>
-                    <p class="text-white/80">Nuevos en 2024</p>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                    <div class="text-4xl font-bold mb-2">18</div>
-                    <p class="text-white/80">Departamentos con cobertura</p>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                    <div class="text-4xl font-bold mb-2">92%</div>
-                    <p class="text-white/80">Tasa de renovación</p>
-                </div>
+    <!-- SECCIÓN: Profesionales Activos -->
+    <section class="py-12 px-4 border-b border-arena bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8">
+                <span class="material-icons text-terracota text-5xl">group</span>
+                <h2 class="text-2xl font-bold text-marron mt-2">Profesionales Activos</h2>
+                <p class="text-marronClaro">Colegiados matriculados en COTOLAR</p>
+            </div>
+            <div id="profesionalesContainer" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Los nombres se cargan desde data.js -->
             </div>
         </div>
     </section>
     
-    <!-- Stats originales -->
+    <!-- Stats -->
     <section class="py-12 px-4 border-b border-arena bg-white">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div class="animate-scaleIn">
@@ -116,16 +105,16 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex gap-4 md:gap-8 overflow-x-auto py-3">
                 <button class="nav-btn px-3 py-2 text-marron font-semibold border-b-2 border-terracota whitespace-nowrap transition-all duration-300" data-section="inicio">
-                    <i class="fas fa-home mr-2"></i> Inicio
+                    <span class="material-icons text-base mr-1 align-middle">home</span> Inicio
                 </button>
                 <button class="nav-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota transition-all duration-300 whitespace-nowrap" data-section="tramites">
-                    <i class="fas fa-file-alt mr-2"></i> Trámites
+                    <span class="material-icons text-base mr-1 align-middle">description</span> Trámites
                 </button>
                 <button class="nav-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota transition-all duration-300 whitespace-nowrap" data-section="capacitaciones">
-                    <i class="fas fa-graduation-cap mr-2"></i> Capacitaciones
+                    <span class="material-icons text-base mr-1 align-middle">school</span> Capacitaciones
                 </button>
                 <button class="nav-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota transition-all duration-300 whitespace-nowrap" data-section="contacto">
-                    <i class="fas fa-envelope mr-2"></i> Contacto
+                    <span class="material-icons text-base mr-1 align-middle">contact_mail</span> Contacto
                 </button>
             </div>
         </div>
@@ -137,23 +126,17 @@
         <div id="seccion-inicio" class="seccion-publica animate-fadeIn">
             <div class="grid md:grid-cols-3 gap-6 mb-16">
                 <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
-                    <div class="w-12 h-12 bg-terracota/10 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-id-card text-terracota text-2xl"></i>
-                    </div>
+                    <span class="material-icons text-terracota text-4xl mb-4">badge</span>
                     <h3 class="font-bold text-marron text-lg mb-2">Matrícula Habilitante</h3>
                     <p class="text-marronClaro text-sm">Verificá la habilitación legal de cualquier profesional.</p>
                 </div>
                 <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
-                    <div class="w-12 h-12 bg-oliva/10 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-clipboard-list text-oliva text-2xl"></i>
-                    </div>
+                    <span class="material-icons text-oliva text-4xl mb-4">assignment</span>
                     <h3 class="font-bold text-marron text-lg mb-2">Trámites y Requisitos</h3>
                     <p class="text-marronClaro text-sm">Información para iniciar o renovar tu matrícula.</p>
                 </div>
                 <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
-                    <div class="w-12 h-12 bg-mostaza/10 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-headset text-mostaza text-2xl"></i>
-                    </div>
+                    <span class="material-icons text-mostaza text-4xl mb-4">support_agent</span>
                     <h3 class="font-bold text-marron text-lg mb-2">Atención al Colegiado</h3>
                     <p class="text-marronClaro text-sm">Consultas, trámites presenciales y administrativos.</p>
                 </div>
@@ -199,27 +182,21 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-white rounded-2xl p-6 shadow-md border border-arena">
                     <div class="flex items-start gap-4 mb-4">
-                        <div class="w-10 h-10 bg-terracota/10 rounded-full flex items-center justify-center">
-                            <i class="fas fa-map-marker-alt text-terracota text-xl"></i>
-                        </div>
+                        <span class="material-icons text-terracota">location_on</span>
                         <div>
                             <p class="font-semibold text-marron">Dirección</p>
                             <p class="text-marronClaro">Av. Ramírez de Velazco 123, La Rioja Capital</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4 mb-4">
-                        <div class="w-10 h-10 bg-oliva/10 rounded-full flex items-center justify-center">
-                            <i class="fas fa-phone text-oliva text-xl"></i>
-                        </div>
+                        <span class="material-icons text-oliva">phone</span>
                         <div>
                             <p class="font-semibold text-marron">Teléfono</p>
                             <p class="text-marronClaro">+54 380 412-3456</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 bg-mostaza/10 rounded-full flex items-center justify-center">
-                            <i class="fas fa-envelope text-mostaza text-xl"></i>
-                        </div>
+                        <span class="material-icons text-mostaza">email</span>
                         <div>
                             <p class="font-semibold text-marron">Email</p>
                             <p class="text-marronClaro">info@cotolar.org</p>
@@ -245,30 +222,22 @@
         </div>
     </footer>
     
-    <!-- Robotito Asistente MEJORADO con preguntas predeterminadas -->
+    <!-- Robotito Asistente -->
     <div class="chat-widget">
         <div class="chat-bubble" id="chatBubble">
-            <i class="fas fa-robot text-white text-2xl"></i>
+            <span class="material-icons text-white text-3xl">smart_toy</span>
         </div>
         <div class="chat-panel" id="chatPanel">
             <div class="chat-header">
-                <span><i class="fas fa-robot mr-2"></i> Asistente COTOLAR</span>
-                <i class="fas fa-times" id="closeChat"></i>
+                <span><span class="material-icons text-base mr-2">smart_toy</span> Asistente COTOLAR</span>
+                <span class="material-icons cursor-pointer" id="closeChat">close</span>
             </div>
             <div class="chat-messages" id="chatMessages">
-                <div class="message bot">👋 ¡Hola! Soy el asistente virtual del COTOLAR. ¿En qué puedo ayudarte?</div>
-                <div class="message bot">💡 Preguntas rápidas:</div>
-                <div class="suggestions-container" id="suggestionsContainer">
-                    <button class="suggestion-btn" data-question="¿Cómo me matrículo?">📝 ¿Cómo me matrículo?</button>
-                    <button class="suggestion-btn" data-question="¿Cuáles son los aranceles?">💰 ¿Cuáles son los aranceles?</button>
-                    <button class="suggestion-btn" data-question="¿Próximas capacitaciones?">🎓 ¿Próximas capacitaciones?</button>
-                    <button class="suggestion-btn" data-question="¿Dónde están ubicados?">📍 ¿Dónde están ubicados?</button>
-                    <button class="suggestion-btn" data-question="¿Qué requisitos necesito?">📋 ¿Qué requisitos necesito?</button>
-                </div>
+                <div class="message bot">¡Hola! Preguntame sobre matriculación, requisitos o aranceles.</div>
             </div>
             <div class="chat-input-area">
                 <input type="text" id="chatInput" placeholder="Escribí tu consulta...">
-                <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+                <button id="sendChatBtn"><span class="material-icons">send</span></button>
             </div>
         </div>
     </div>

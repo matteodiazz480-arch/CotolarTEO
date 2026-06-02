@@ -66,6 +66,22 @@ window.DATOS_LOCALES = {
     ]
 };
 
+// Lista de profesionales activos
+window.PROFESIONALES_ACTIVOS = [
+    { id: 1, nombre: "Lic. María Eugenia Pérez", especialidad: "Neurorehabilitación", localidad: "Capital" },
+    { id: 2, nombre: "Lic. Carlos Rodríguez", especialidad: "Pediatría", localidad: "Capital" },
+    { id: 3, nombre: "Dra. Laura Gómez", especialidad: "Salud Mental", localidad: "Chilecito" },
+    { id: 4, nombre: "Lic. Ana Martínez", especialidad: "Geriatría", localidad: "Capital" },
+    { id: 5, nombre: "Lic. Roberto Sánchez", especialidad: "Discapacidad", localidad: "Aimogasta" },
+    { id: 6, nombre: "Lic. Silvia López", especialidad: "Laboral", localidad: "Capital" },
+    { id: 7, nombre: "Lic. Fernando Díaz", especialidad: "Neurodesarrollo", localidad: "Castro Barros" },
+    { id: 8, nombre: "Lic. Marcela Romero", especialidad: "Comunitaria", localidad: "Chamical" },
+    { id: 9, nombre: "Lic. Pablo González", especialidad: "Educación", localidad: "Capital" },
+    { id: 10, nombre: "Lic. Verónica Fernández", especialidad: "Clínica", localidad: "Chepes" },
+    { id: 11, nombre: "Lic. Daniel Morales", especialidad: "Rehabilitación", localidad: "Villa Unión" },
+    { id: 12, nombre: "Lic. Carolina Flores", especialidad: "Infantil", localidad: "Capital" }
+];
+
 window.USUARIOS_VALIDOS = [
     { email: "admin@cotolar.org", password: "admin123", nombre: "Administrador COTOLAR" }
 ];
