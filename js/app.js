@@ -7,15 +7,17 @@ function cargarNoticias() {
     const noticias = window.DATOS_LOCALES.noticias;
     
     container.innerHTML = noticias.map(noticia => `
-        <div class="bg-white rounded-2xl p-5 border border-arena shadow-md hover:shadow-lg transition-all duration-300">
+        <div class="bg-white rounded-2xl p-5 border border-arena shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="abrirModalNoticia(${JSON.stringify(noticia).replace(/"/g, '&quot;')})">
             <div class="flex justify-between items-start mb-3">
                 <span class="bg-terracota/10 text-terracota text-xs px-2 py-1 rounded-full">${noticia.categoria || 'Noticia'}</span>
                 ${noticia.destacada ? '<span class="bg-mostaza/10 text-mostaza text-xs px-2 py-1 rounded-full">⭐ Destacada</span>' : ''}
             </div>
             <h3 class="text-lg font-bold text-marron mb-2">${noticia.titulo}</h3>
             <p class="text-marronClaro text-sm mb-3">📅 ${new Date(noticia.fecha).toLocaleDateString('es-AR')}</p>
-            <p class="text-marron/70">${noticia.contenido.substring(0, 120)}${noticia.contenido.length > 120 ? '...' : ''}</p>
-            <button class="text-terracota text-sm font-semibold mt-3 hover:underline" onclick="alert('Comunicate al correo info@cotolar.org')">Leer más →</button>
+            <p class="text-marron/70 line-clamp-3">${noticia.contenido.substring(0, 150)}${noticia.contenido.length > 150 ? '...' : ''}</p>
+            <div class="text-terracota text-sm font-semibold mt-3 inline-flex items-center gap-1 hover:underline">
+                Leer más <span class="material-icons text-sm">arrow_forward</span>
+            </div>
         </div>
     `).join('');
 }
@@ -54,6 +56,9 @@ function cargarCapacitaciones() {
     
     container.innerHTML = cursos.map(c => `
         <div class="bg-white rounded-2xl p-5 border border-arena shadow-md hover:shadow-lg transition-all duration-300">
+            <div class="h-40 rounded-xl overflow-hidden mb-4 bg-beige">
+                ${c.imagen ? `<img src="${c.imagen}" alt="${c.nombre_curso}" class="w-full h-full object-cover">` : '<div class="w-full h-full flex items-center justify-center"><span class="material-icons text-marronClaro text-5xl">school</span></div>'}
+            </div>
             <h3 class="text-lg font-bold text-marron">${c.nombre_curso}</h3>
             <div class="flex gap-2 mt-2 flex-wrap">
                 <span class="bg-terracota/10 text-terracota text-xs px-2 py-1 rounded-full">${c.modalidad}</span>
@@ -63,6 +68,7 @@ function cargarCapacitaciones() {
             <p class="text-terracota font-bold mt-3">$${c.arancel_curso.toLocaleString()}</p>
             <p class="text-marronClaro text-sm mt-2">👨‍🏫 ${c.instructor}</p>
             <p class="text-marronClaro text-xs mt-1">📍 ${c.lugar}</p>
+            ${c.contenido ? `<p class="text-marron/70 text-sm mt-3 line-clamp-2">${c.contenido.substring(0, 100)}${c.contenido.length > 100 ? '...' : ''}</p>` : ''}
         </div>
     `).join('');
 }
@@ -74,16 +80,14 @@ function cargarProfesionales() {
     const profesionales = window.PROFESIONALES_ACTIVOS || [];
     
     container.innerHTML = profesionales.map(prof => `
-        <div class="bg-white rounded-xl p-4 border border-arena shadow-sm hover:shadow-md transition-all duration-300">
-            <div class="flex items-start gap-3">
-                <span class="material-icons text-terracota text-3xl">account_circle</span>
-                <div>
-                    <p class="font-semibold text-marron text-sm">${prof.nombre}</p>
-                    <p class="text-marronClaro text-xs">${prof.especialidad}</p>
-                    <p class="text-marronClaro text-xs mt-1 flex items-center gap-1">
-                        <span class="material-icons text-xs">location_on</span> ${prof.localidad}
-                    </p>
-                </div>
+        <div class="bg-white rounded-xl p-4 border border-arena shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full overflow-hidden bg-beige flex-shrink-0">
+                ${prof.foto ? `<img src="${prof.foto}" alt="${prof.nombre}" class="w-full h-full object-cover">` : '<div class="w-full h-full flex items-center justify-center"><span class="material-icons text-terracota text-2xl">account_circle</span></div>'}
+            </div>
+            <div>
+                <p class="font-semibold text-marron text-sm">${prof.nombre}</p>
+                <p class="text-marronClaro text-xs">${prof.especialidad}</p>
+                <p class="text-marronClaro text-xs flex items-center gap-1"><span class="material-icons text-xs">location_on</span> ${prof.localidad}</p>
             </div>
         </div>
     `).join('');
@@ -92,7 +96,6 @@ function cargarProfesionales() {
     if (totalSpan) totalSpan.textContent = profesionales.length;
 }
 
-// NUEVA FUNCIÓN: Cargar autoridades
 function cargarAutoridades() {
     const container = document.getElementById('autoridadesContainer');
     if (!container) return;
@@ -103,7 +106,7 @@ function cargarAutoridades() {
     container.innerHTML = autoridades.map(auth => `
         <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-arena flex items-center gap-4">
             <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-beige border-2 border-terracota flex-shrink-0">
-                <img src="${auth.foto}" alt="${auth.nombre}" class="w-full h-full object-cover" onerror="this.src='https://randomuser.me/api/portraits/lego/1.jpg'">
+                ${auth.foto ? `<img src="${auth.foto}" alt="${auth.nombre}" class="w-full h-full object-cover">` : '<div class="w-full h-full flex items-center justify-center"><span class="material-icons text-terracota text-4xl">person</span></div>'}
             </div>
             <div>
                 <div class="inline-block bg-terracota/10 text-terracota text-xs px-2 py-1 rounded-full mb-1">${auth.cargo}</div>
@@ -114,7 +117,6 @@ function cargarAutoridades() {
     `).join('');
 }
 
-// NUEVA FUNCIÓN: Cargar normativa
 function cargarNormativa() {
     const container = document.getElementById('normativaContainer');
     if (!container) return;
@@ -142,16 +144,6 @@ function cambiarSeccion(seccion) {
     const seccionElement = document.getElementById(`seccion-${seccion}`);
     if (seccionElement) seccionElement.classList.remove('hidden');
     
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('border-terracota', 'text-marron');
-        btn.classList.add('text-marronClaro');
-        if(btn.getAttribute('data-section') === seccion) {
-            btn.classList.add('border-terracota', 'text-marron');
-            btn.classList.remove('text-marronClaro');
-        }
-    });
-    
-    currentSection = seccion;
     if (window.playSound) window.playSound('click');
     
     if (seccion === 'profesionales') cargarProfesionales();
@@ -159,12 +151,9 @@ function cambiarSeccion(seccion) {
     if (seccion === 'normativa') cargarNormativa();
 }
 
-document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const section = btn.getAttribute('data-section');
-        cambiarSeccion(section);
-    });
-});
+// Exponer funciones globales
+window.cambiarSeccion = cambiarSeccion;
+window.abrirModalNoticia = abrirModalNoticia;
 
 document.addEventListener('DOMContentLoaded', () => {
     if (window.DATOS_LOCALES) {
@@ -176,4 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     cargarProfesionales();
     cargarAutoridades();
+    
+    // Configurar navegación
+    document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const section = btn.getAttribute('data-section');
+            if (section) cambiarSeccion(section);
+        });
+    });
 });

@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components/modal.css">
     <link rel="manifest" href="manifest.json">
     
     <script>
@@ -94,7 +95,7 @@
                     <span class="material-icons">close</span>
                 </button>
             </div>
-            <nav class="flex flex-col gap-3">
+            <nav class="flex flex-col gap-2">
                 <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="inicio">
                     <span class="material-icons text-terracota text-2xl">home</span>
                     <span class="text-marron font-medium text-base">Inicio</span>
@@ -131,187 +132,177 @@
         </div>
     </div>
     
-    <!-- HERO SECTION -->
-    <section class="py-8 md:py-16 px-4 bg-gradient-to-br from-terracota/5 to-oliva/5 border-b border-arena animate-fadeIn">
+    <!-- HERO SECTION (espaciado reducido) -->
+    <section class="py-6 md:py-10 px-4 bg-gradient-to-br from-terracota/5 to-oliva/5 border-b border-arena animate-fadeIn">
         <div class="max-w-6xl mx-auto text-center">
-            <div class="w-20 h-20 md:w-40 md:h-40 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg animate-pulse-slow overflow-hidden bg-white p-2 md:p-4">
+            <div class="w-20 h-20 md:w-32 md:h-32 rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg animate-pulse-slow overflow-hidden bg-white p-2">
                 <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain">
             </div>
-            <p class="text-terracota font-semibold mb-2 uppercase tracking-wider text-xs md:text-sm">Órgano oficial de regulación profesional</p>
-            <h1 class="text-xl md:text-5xl font-bold text-marron mb-3 md:mb-4 animate-slideUp">Colegio de Terapia Ocupacional de La Rioja</h1>
-            <p class="text-marronClaro text-sm md:text-lg max-w-3xl mx-auto animate-slideUp delay-100 px-2">
+            <p class="text-terracota font-semibold mb-1 uppercase tracking-wider text-xs md:text-sm">Órgano oficial de regulación profesional</p>
+            <h1 class="text-xl md:text-4xl font-bold text-marron mb-2 md:mb-3 animate-slideUp">Colegio de Terapia Ocupacional de La Rioja</h1>
+            <p class="text-marronClaro text-sm md:text-base max-w-3xl mx-auto animate-slideUp delay-100 px-2">
                 Organismo encargado de habilitar, regular y fiscalizar el ejercicio ético y legal de la Terapia Ocupacional en toda la provincia.
             </p>
         </div>
     </section>
     
-    <!-- STATS -->
-    <section class="py-6 md:py-12 px-4 border-b border-arena bg-white">
-        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
-            <div class="animate-scaleIn"><div class="text-2xl md:text-3xl font-bold text-terracota">+350</div><p class="text-marron/60 text-xs md:text-sm mt-1">Profesionales Matriculados</p></div>
-            <div class="animate-scaleIn delay-100"><div class="text-2xl md:text-3xl font-bold text-terracota">20+</div><p class="text-marron/60 text-xs md:text-sm mt-1">Años de Trayectoria</p></div>
-            <div class="animate-scaleIn delay-200"><div class="text-2xl md:text-3xl font-bold text-terracota">18</div><p class="text-marron/60 text-xs md:text-sm mt-1">Localidades con Cobertura</p></div>
-            <div class="animate-scaleIn delay-300"><div class="text-2xl md:text-3xl font-bold text-terracota">12</div><p class="text-marron/60 text-xs md:text-sm mt-1">Convenios Vigentes</p></div>
+    <!-- STATS (espaciado reducido) -->
+    <section class="py-4 md:py-6 px-4 border-b border-arena bg-white">
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 text-center">
+            <div class="animate-scaleIn"><div class="text-2xl md:text-3xl font-bold text-terracota">+350</div><p class="text-marron/60 text-xs md:text-sm mt-0.5">Profesionales Matriculados</p></div>
+            <div class="animate-scaleIn delay-100"><div class="text-2xl md:text-3xl font-bold text-terracota">20+</div><p class="text-marron/60 text-xs md:text-sm mt-0.5">Años de Trayectoria</p></div>
+            <div class="animate-scaleIn delay-200"><div class="text-2xl md:text-3xl font-bold text-terracota">18</div><p class="text-marron/60 text-xs md:text-sm mt-0.5">Localidades con Cobertura</p></div>
+            <div class="animate-scaleIn delay-300"><div class="text-2xl md:text-3xl font-bold text-terracota">12</div><p class="text-marron/60 text-xs md:text-sm mt-0.5">Convenios Vigentes</p></div>
         </div>
     </section>
     
     <!-- NAVEGACIÓN ESCRITORIO -->
     <nav class="hidden md:block bg-white border-b border-arena sticky top-[73px] z-40 shadow-sm">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-start gap-6 py-3 overflow-x-auto">
-                <button class="nav-btn-desktop flex items-center gap-2 text-marron font-semibold border-b-2 border-terracota pb-2" data-section="inicio">
-                    <span class="material-icons text-base">home</span> Inicio
+            <div class="flex justify-start gap-4 py-2 overflow-x-auto">
+                <button class="nav-btn-desktop flex items-center gap-1 text-marron font-semibold border-b-2 border-terracota pb-2" data-section="inicio">
+                    <span class="material-icons text-sm">home</span> <span class="text-sm">Inicio</span>
                 </button>
-                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="tramites">
-                    <span class="material-icons text-base">description</span> Trámites
+                <button class="nav-btn-desktop flex items-center gap-1 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="tramites">
+                    <span class="material-icons text-sm">description</span> <span class="text-sm">Trámites</span>
                 </button>
-                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="capacitaciones">
-                    <span class="material-icons text-base">school</span> Capacitaciones
+                <button class="nav-btn-desktop flex items-center gap-1 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="capacitaciones">
+                    <span class="material-icons text-sm">school</span> <span class="text-sm">Capacitaciones</span>
                 </button>
-                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="profesionales">
-                    <span class="material-icons text-base">group</span> Profesionales
+                <button class="nav-btn-desktop flex items-center gap-1 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="profesionales">
+                    <span class="material-icons text-sm">group</span> <span class="text-sm">Profesionales</span>
                 </button>
-                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="autoridades">
-                    <span class="material-icons text-base">groups</span> Autoridades
+                <button class="nav-btn-desktop flex items-center gap-1 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="autoridades">
+                    <span class="material-icons text-sm">groups</span> <span class="text-sm">Autoridades</span>
                 </button>
-                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="normativa">
-                    <span class="material-icons text-base">gavel</span> Normativa
+                <button class="nav-btn-desktop flex items-center gap-1 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="normativa">
+                    <span class="material-icons text-sm">gavel</span> <span class="text-sm">Normativa</span>
                 </button>
-                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="descargar">
-                    <span class="material-icons text-base">download</span> Descargar App
+                <button class="nav-btn-desktop flex items-center gap-1 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="descargar">
+                    <span class="material-icons text-sm">download</span> <span class="text-sm">App</span>
                 </button>
-                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="contacto">
-                    <span class="material-icons text-base">contact_mail</span> Contacto
+                <button class="nav-btn-desktop flex items-center gap-1 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="contacto">
+                    <span class="material-icons text-sm">contact_mail</span> <span class="text-sm">Contacto</span>
                 </button>
             </div>
         </div>
     </nav>
     
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="max-w-6xl mx-auto px-3 md:px-4 py-6 md:py-12 pb-24 md:pb-32">
+    <!-- CONTENIDO PRINCIPAL (espaciado reducido entre secciones) -->
+    <main class="max-w-6xl mx-auto px-3 md:px-4 py-4 md:py-6 pb-20 md:pb-28">
+        
         <!-- Sección Inicio -->
         <div id="seccion-inicio" class="seccion-publica animate-fadeIn">
-            <div class="grid md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-16">
-                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
-                    <span class="material-icons text-terracota text-3xl md:text-4xl mb-2 md:mb-4">badge</span>
-                    <h3 class="font-bold text-marron text-base md:text-lg mb-1 md:mb-2">Matrícula Habilitante</h3>
-                    <p class="text-marronClaro text-xs md:text-sm">Verificá la habilitación legal de cualquier profesional.</p>
+            <div class="grid md:grid-cols-3 gap-3 md:gap-5 mb-6 md:mb-8">
+                <div class="bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
+                    <span class="material-icons text-terracota text-3xl mb-2">badge</span>
+                    <h3 class="font-bold text-marron text-base">Matrícula Habilitante</h3>
+                    <p class="text-marronClaro text-xs">Verificá la habilitación legal de cualquier profesional.</p>
                 </div>
-                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
-                    <span class="material-icons text-oliva text-3xl md:text-4xl mb-2 md:mb-4">assignment</span>
-                    <h3 class="font-bold text-marron text-base md:text-lg mb-1 md:mb-2">Trámites y Requisitos</h3>
-                    <p class="text-marronClaro text-xs md:text-sm">Información para iniciar o renovar tu matrícula.</p>
+                <div class="bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
+                    <span class="material-icons text-oliva text-3xl mb-2">assignment</span>
+                    <h3 class="font-bold text-marron text-base">Trámites y Requisitos</h3>
+                    <p class="text-marronClaro text-xs">Información para iniciar o renovar tu matrícula.</p>
                 </div>
-                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
-                    <span class="material-icons text-mostaza text-3xl md:text-4xl mb-2 md:mb-4">support_agent</span>
-                    <h3 class="font-bold text-marron text-base md:text-lg mb-1 md:mb-2">Atención al Colegiado</h3>
-                    <p class="text-marronClaro text-xs md:text-sm">Consultas, trámites presenciales y administrativos.</p>
+                <div class="bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-arena">
+                    <span class="material-icons text-mostaza text-3xl mb-2">support_agent</span>
+                    <h3 class="font-bold text-marron text-base">Atención al Colegiado</h3>
+                    <p class="text-marronClaro text-xs">Consultas, trámites presenciales y administrativos.</p>
                 </div>
             </div>
-            <h2 class="text-xl md:text-2xl font-bold text-marron mb-2">Noticias Institucionales</h2>
-            <p class="text-marronClaro text-sm md:text-base mb-4 md:mb-8">Mantente informado sobre novedades del colegio.</p>
-            <div id="noticiasContainer" class="grid md:grid-cols-2 gap-4 md:gap-6"></div>
+            <h2 class="text-xl font-bold text-marron mb-1">Noticias Institucionales</h2>
+            <p class="text-marronClaro text-sm mb-4">Mantente informado sobre novedades del colegio.</p>
+            <div id="noticiasContainer" class="grid md:grid-cols-2 gap-4"></div>
         </div>
         
         <!-- Sección Trámites -->
         <div id="seccion-tramites" class="seccion-publica hidden animate-fadeIn">
-            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">Trámites y Requisitos</h1>
-            <div class="mb-6 md:mb-10"><h2 class="text-lg md:text-xl font-semibold text-terracota mb-3 md:mb-4">Aranceles Vigentes</h2><div id="arancelesContainer" class="grid md:grid-cols-2 gap-3 md:gap-4"></div></div>
-            <div><h2 class="text-lg md:text-xl font-semibold text-terracota mb-3 md:mb-4">Requisitos para Matriculación</h2><div id="requisitosContainer" class="space-y-2 md:space-y-3"></div></div>
+            <h1 class="text-xl font-bold text-marron mb-3">Trámites y Requisitos</h1>
+            <div class="mb-5"><h2 class="text-lg font-semibold text-terracota mb-2">Aranceles Vigentes</h2><div id="arancelesContainer" class="grid md:grid-cols-2 gap-3"></div></div>
+            <div><h2 class="text-lg font-semibold text-terracota mb-2">Requisitos para Matriculación</h2><div id="requisitosContainer" class="space-y-2"></div></div>
         </div>
         
         <!-- Sección Capacitaciones -->
         <div id="seccion-capacitaciones" class="seccion-publica hidden animate-fadeIn">
-            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">Capacitaciones</h1>
-            <div id="capacitacionesContainer" class="grid md:grid-cols-2 gap-4 md:gap-6"></div>
-            <div class="mt-6 md:mt-10 bg-gradient-to-r from-terracota to-oliva rounded-xl md:rounded-2xl p-4 md:p-6 text-white shadow-lg"><h3 class="font-bold text-lg md:text-xl mb-2">¿Sos profesional de Terapia Ocupacional?</h3><p class="text-white/90 text-sm md:text-base mb-3 md:mb-4">Matriculate y ejercé legalmente en toda la provincia de La Rioja.</p><button class="bg-white text-terracota px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-semibold hover:shadow-lg transition-all duration-300" onclick="alert('Comunicate al correo info@cotolar.org')">Consultar Matrícula</button></div>
+            <h1 class="text-xl font-bold text-marron mb-3">Capacitaciones</h1>
+            <div id="capacitacionesContainer" class="grid md:grid-cols-2 gap-4"></div>
+            <div class="mt-6 bg-gradient-to-r from-terracota to-oliva rounded-xl p-4 text-white shadow-lg"><h3 class="font-bold text-lg mb-1">¿Sos profesional de Terapia Ocupacional?</h3><p class="text-white/90 text-sm mb-2">Matriculate y ejercé legalmente en toda la provincia de La Rioja.</p><button class="bg-white text-terracota px-4 py-1.5 rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300" onclick="alert('Comunicate al correo info@cotolar.org')">Consultar Matrícula</button></div>
         </div>
         
         <!-- Sección Profesionales -->
         <div id="seccion-profesionales" class="seccion-publica hidden animate-fadeIn">
-            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">Profesionales Activos</h1>
-            <p class="text-marronClaro text-sm md:text-base mb-4 md:mb-8">Colegiados matriculados en COTOLAR</p>
-            <div id="profesionalesContainer" class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4"></div>
-            <div class="mt-6 md:mt-8 text-center"><span class="text-marronClaro text-xs md:text-sm">Total de profesionales: <span id="totalProfesionales" class="font-bold text-terracota">0</span></span></div>
+            <h1 class="text-xl font-bold text-marron mb-2">Profesionales Activos</h1>
+            <p class="text-marronClaro text-sm mb-4">Colegiados matriculados en COTOLAR</p>
+            <div id="profesionalesContainer" class="grid grid-cols-2 md:grid-cols-3 gap-2"></div>
+            <div class="mt-4 text-center"><span class="text-marronClaro text-xs">Total: <span id="totalProfesionales" class="font-bold text-terracota">0</span></span></div>
         </div>
         
         <!-- Sección Autoridades -->
         <div id="seccion-autoridades" class="seccion-publica hidden animate-fadeIn">
-            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">Autoridades del Colegio</h1>
-            <p class="text-marronClaro text-sm md:text-base mb-6 md:mb-8">Comisión directiva COTOLAR período 2024-2028</p>
-            <div id="autoridadesContainer" class="grid md:grid-cols-2 gap-4 md:gap-6"></div>
+            <h1 class="text-xl font-bold text-marron mb-2">Autoridades del Colegio</h1>
+            <p class="text-marronClaro text-sm mb-4">Comisión directiva COTOLAR período 2024-2028</p>
+            <div id="autoridadesContainer" class="grid md:grid-cols-2 gap-3"></div>
         </div>
         
-        <!-- Sección Normativa Vigente -->
+        <!-- Sección Normativa -->
         <div id="seccion-normativa" class="seccion-publica hidden animate-fadeIn">
-            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">Normativa Vigente</h1>
-            <p class="text-marronClaro text-sm md:text-base mb-6 md:mb-8">Marco legal y ético de la Terapia Ocupacional en Argentina</p>
+            <h1 class="text-xl font-bold text-marron mb-2">Normativa Vigente</h1>
+            <p class="text-marronClaro text-sm mb-4">Marco legal y ético de la Terapia Ocupacional en Argentina</p>
             <div id="normativaContainer"></div>
         </div>
         
         <!-- Sección Descargar App -->
         <div id="seccion-descargar" class="seccion-publica hidden animate-fadeIn">
-            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">📱 Descargar la App</h1>
-            <p class="text-marronClaro text-sm md:text-base mb-6 md:mb-8">Instalá COTOLAR en tu celular como una aplicación nativa</p>
-            
-            <div class="text-center mb-8">
-                <button id="downloadAppBtn" class="bg-terracota text-white px-8 py-4 rounded-2xl text-lg font-bold shadow-lg hover:bg-terracota/80 transition-all duration-300 flex items-center gap-3 mx-auto">
-                    <span class="material-icons text-2xl">download</span>
-                    Descargar App
-                    <span class="material-icons text-2xl">install_mobile</span>
+            <h1 class="text-xl font-bold text-marron mb-2">📱 Descargar la App</h1>
+            <p class="text-marronClaro text-sm mb-4">Instalá COTOLAR en tu celular como una aplicación nativa</p>
+            <div class="text-center mb-5">
+                <button id="downloadAppBtn" class="bg-terracota text-white px-6 py-3 rounded-xl text-base font-bold shadow-lg hover:bg-terracota/80 transition-all duration-300 flex items-center gap-2 mx-auto">
+                    <span class="material-icons">download</span> Descargar App <span class="material-icons">install_mobile</span>
                 </button>
-                <p class="text-marronClaro text-xs mt-3">Compatible con Android e iOS (PWA)</p>
+                <p class="text-marronClaro text-xs mt-2">Compatible con Android e iOS (PWA)</p>
             </div>
-            
-            <div class="grid md:grid-cols-2 gap-4 md:gap-8 mt-6">
-                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena text-center">
-                    <span class="material-icons text-terracota text-5xl mb-3">android</span>
-                    <h2 class="text-lg md:text-xl font-bold text-marron mb-2">Android</h2>
-                    <p class="text-marronClaro text-sm mb-3">Instalación directa</p>
-                    <button id="androidInstallBtn" class="w-full bg-oliva text-white py-3 rounded-xl font-semibold hover:bg-oliva/80 transition-all duration-300 flex items-center justify-center gap-2">
-                        <span class="material-icons">get_app</span> Instalar ahora
-                    </button>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-xl p-4 shadow-md border border-arena text-center">
+                    <span class="material-icons text-terracota text-4xl mb-2">android</span>
+                    <h2 class="text-base font-bold text-marron">Android</h2>
+                    <button id="androidInstallBtn" class="mt-2 w-full bg-oliva text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-1"><span class="material-icons text-sm">get_app</span> Instalar</button>
                 </div>
-                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena text-center">
-                    <span class="material-icons text-terracota text-5xl mb-3">apple</span>
-                    <h2 class="text-lg md:text-xl font-bold text-marron mb-2">iPhone / iPad</h2>
-                    <p class="text-marronClaro text-sm mb-3">Instalación desde Safari</p>
-                    <button id="iosInstallBtn" class="w-full bg-marron text-white py-3 rounded-xl font-semibold hover:bg-marron/80 transition-all duration-300 flex items-center justify-center gap-2">
-                        <span class="material-icons">ios_share</span> Instalar ahora
-                    </button>
+                <div class="bg-white rounded-xl p-4 shadow-md border border-arena text-center">
+                    <span class="material-icons text-terracota text-4xl mb-2">apple</span>
+                    <h2 class="text-base font-bold text-marron">iPhone / iPad</h2>
+                    <button id="iosInstallBtn" class="mt-2 w-full bg-marron text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-1"><span class="material-icons text-sm">ios_share</span> Instalar</button>
                 </div>
             </div>
-            
-            <div class="mt-8 bg-gradient-to-r from-terracota/10 to-oliva/10 rounded-xl md:rounded-2xl p-4 md:p-6 border border-arena">
-                <h3 class="font-bold text-marron text-base md:text-lg mb-3 md:mb-4 flex items-center gap-2 justify-center"><span class="material-icons text-terracota">stars</span> Beneficios de la app</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                    <div class="text-center"><span class="material-icons text-terracota text-2xl md:text-3xl">offline_bolt</span><p class="text-marronClaro text-xs md:text-sm mt-1">Funciona offline</p></div>
-                    <div class="text-center"><span class="material-icons text-terracota text-2xl md:text-3xl">notifications</span><p class="text-marronClaro text-xs md:text-sm mt-1">Notificaciones</p></div>
-                    <div class="text-center"><span class="material-icons text-terracota text-2xl md:text-3xl">speed</span><p class="text-marronClaro text-xs md:text-sm mt-1">Más rápida</p></div>
-                    <div class="text-center"><span class="material-icons text-terracota text-2xl md:text-3xl">home</span><p class="text-marronClaro text-xs md:text-sm mt-1">Icono en pantalla</p></div>
+            <div class="mt-5 bg-gradient-to-r from-terracota/10 to-oliva/10 rounded-xl p-4 border border-arena">
+                <h3 class="font-bold text-marron text-base mb-2 flex items-center gap-2 justify-center"><span class="material-icons text-terracota">stars</span> Beneficios</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    <div class="text-center"><span class="material-icons text-terracota text-xl">offline_bolt</span><p class="text-marronClaro text-xs">Offline</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-xl">notifications</span><p class="text-marronClaro text-xs">Notificaciones</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-xl">speed</span><p class="text-marronClaro text-xs">Más rápida</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-xl">home</span><p class="text-marronClaro text-xs">Icono en pantalla</p></div>
                 </div>
             </div>
         </div>
         
         <!-- Sección Contacto -->
         <div id="seccion-contacto" class="seccion-publica hidden animate-fadeIn">
-            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">Contacto</h1>
-            <div class="grid md:grid-cols-2 gap-4 md:gap-8">
-                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena">
-                    <div class="flex items-start gap-3 md:gap-4 mb-3 md:mb-4"><span class="material-icons text-terracota">location_on</span><div><p class="font-semibold text-marron text-sm md:text-base">Dirección</p><p class="text-marronClaro text-xs md:text-sm">Av. Ramírez de Velazco 123, La Rioja Capital</p></div></div>
-                    <div class="flex items-start gap-3 md:gap-4 mb-3 md:mb-4"><span class="material-icons text-oliva">phone</span><div><p class="font-semibold text-marron text-sm md:text-base">Teléfono</p><p class="text-marronClaro text-xs md:text-sm">+54 380 412-3456</p></div></div>
-                    <div class="flex items-start gap-3 md:gap-4"><span class="material-icons text-mostaza">email</span><div><p class="font-semibold text-marron text-sm md:text-base">Email</p><p class="text-marronClaro text-xs md:text-sm">info@cotolar.org</p></div></div>
+            <h1 class="text-xl font-bold text-marron mb-3">Contacto</h1>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-xl p-4 shadow-md border border-arena">
+                    <div class="flex items-start gap-3 mb-3"><span class="material-icons text-terracota">location_on</span><div><p class="font-semibold text-marron text-sm">Dirección</p><p class="text-marronClaro text-xs">Av. Ramírez de Velazco 123, La Rioja Capital</p></div></div>
+                    <div class="flex items-start gap-3 mb-3"><span class="material-icons text-oliva">phone</span><div><p class="font-semibold text-marron text-sm">Teléfono</p><p class="text-marronClaro text-xs">+54 380 412-3456</p></div></div>
+                    <div class="flex items-start gap-3"><span class="material-icons text-mostaza">email</span><div><p class="font-semibold text-marron text-sm">Email</p><p class="text-marronClaro text-xs">info@cotolar.org</p></div></div>
                 </div>
-                <div class="bg-gradient-to-br from-marron to-marron/80 rounded-xl md:rounded-2xl p-4 md:p-6 text-white shadow-lg"><h3 class="font-bold text-lg md:text-xl mb-3 md:mb-4">Horarios de atención</h3><p class="text-white/80 text-sm md:text-base">Lunes a Viernes: 8:00 a 14:00</p><p class="text-white/80 text-sm md:text-base mt-2">Consultas: info@cotolar.org</p><div class="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-white/20"><p class="text-white/60 text-xs md:text-sm">Órgano oficial de regulación profesional</p></div></div>
+                <div class="bg-gradient-to-br from-marron to-marron/80 rounded-xl p-4 text-white shadow-lg"><h3 class="font-bold text-lg mb-2">Horarios de atención</h3><p class="text-white/80 text-sm">Lunes a Viernes: 8:00 a 14:00</p><p class="text-white/80 text-sm mt-1">Consultas: info@cotolar.org</p><div class="mt-3 pt-2 border-t border-white/20"><p class="text-white/60 text-xs">Órgano oficial de regulación profesional</p></div></div>
             </div>
         </div>
     </main>
     
-    <footer class="bg-marron text-white py-4 md:py-8 px-4"><div class="max-w-6xl mx-auto text-center"><p class="text-sm md:text-base">© 2025 COTOLAR - Colegio de Terapia Ocupacional de La Rioja</p><p class="text-white/50 text-xs md:text-sm mt-1 md:mt-2">Órgano oficial de regulación profesional · Provincia de La Rioja</p></div></footer>
+    <footer class="bg-marron text-white py-4 px-4"><div class="max-w-6xl mx-auto text-center"><p class="text-sm">© 2025 COTOLAR - Colegio de Terapia Ocupacional de La Rioja</p><p class="text-white/50 text-xs mt-1">Órgano oficial de regulación profesional · Provincia de La Rioja</p></div></footer>
     
     <!-- Robotito Asistente -->
     <div class="chat-widget">
-        <div class="chat-bubble" id="chatBubble"><span class="material-icons text-white text-2xl md:text-3xl">smart_toy</span></div>
+        <div class="chat-bubble" id="chatBubble"><span class="material-icons text-white text-2xl">smart_toy</span></div>
         <div class="chat-panel" id="chatPanel">
             <div class="chat-header"><span><span class="material-icons text-base mr-2">smart_toy</span> Asistente COTOLAR</span><span class="material-icons cursor-pointer" id="closeChat">close</span></div>
             <div class="chat-messages" id="chatMessages">
@@ -352,60 +343,20 @@
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            console.log('✅ PWA lista para instalar');
         });
         
         function instalarPWA() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        if (window.playSound) window.playSound('success');
-                    }
-                    deferredPrompt = null;
-                });
+                deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
             } else {
-                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                const isAndroid = /android/i.test(userAgent);
-                if (isAndroid) {
-                    alert("📱 Para instalar COTOLAR:\n\n1. Abrí Chrome\n2. Tocá los 3 puntos (⋮)\n3. Seleccioná 'Instalar aplicación'");
-                } else {
-                    alert("📱 Para instalar COTOLAR en iPhone:\n\n1. Abrí Safari\n2. Tocá Compartir\n3. Seleccioná 'Agregar a pantalla de inicio'");
-                }
+                alert("📱 Para instalar COTOLAR:\n\nAndroid: Chrome → ⋮ → 'Instalar aplicación'\niPhone: Safari → Compartir → 'Agregar a pantalla de inicio'");
             }
         }
         
         document.getElementById('downloadAppBtn')?.addEventListener('click', instalarPWA);
         document.getElementById('androidInstallBtn')?.addEventListener('click', instalarPWA);
         document.getElementById('iosInstallBtn')?.addEventListener('click', instalarPWA);
-        
-        // Función global de navegación
-        window.cambiarSeccion = function(seccion) {
-            document.querySelectorAll('.seccion-publica').forEach(sec => sec.classList.add('hidden'));
-            const seccionElement = document.getElementById(`seccion-${seccion}`);
-            if (seccionElement) seccionElement.classList.remove('hidden');
-            
-            document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
-                btn.classList.remove('border-terracota', 'text-marron');
-                btn.classList.add('text-marronClaro');
-                if (btn.getAttribute('data-section') === seccion) {
-                    btn.classList.add('border-terracota', 'text-marron');
-                    btn.classList.remove('text-marronClaro');
-                }
-            });
-            
-            if (window.playSound) window.playSound('click');
-            if (seccion === 'profesionales' && typeof cargarProfesionales === 'function') cargarProfesionales();
-            if (seccion === 'autoridades' && typeof cargarAutoridades === 'function') cargarAutoridades();
-            if (seccion === 'normativa' && typeof cargarNormativa === 'function') cargarNormativa();
-        };
-        
-        document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const section = btn.getAttribute('data-section');
-                if (section) window.cambiarSeccion(section);
-            });
-        });
         
         // Menú hamburguesa
         const menuBtn = document.getElementById('menuBtn');
@@ -422,14 +373,18 @@
         document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const section = btn.getAttribute('data-section');
-                if (section) window.cambiarSeccion(section);
+                if (section && window.cambiarSeccion) window.cambiarSeccion(section);
                 closeMenu();
             });
         });
     </script>
-    <script src="data.js"></script>
-    <script src="app.js"></script>
-    <script src="chat.js"></script>
+    
+    <!-- Carga de scripts modulares -->
+    <script src="js/imageHandler.js"></script>
+    <script src="components/modal.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/app.js"></script>
     
     <script>
         if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').then(reg => console.log('✅ Service Worker registrado')).catch(err => console.log('❌ Error SW:', err)); }
