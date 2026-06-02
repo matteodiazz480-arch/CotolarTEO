@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <meta name="theme-color" content="#D46A4A">
+    <meta name="theme-color" content="#000000">
     <title>COTOLAR | Colegio de Terapia Ocupacional de La Rioja</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -85,7 +85,7 @@
         </div>
     </header>
     
-    <!-- MENÚ LATERAL (Hamburguesa) con botones más grandes -->
+    <!-- MENÚ LATERAL (Hamburguesa) -->
     <div id="mobileMenu" class="fixed inset-0 z-[150] bg-black/50 backdrop-blur-sm hidden transition-all duration-300">
         <div class="bg-white w-72 h-full shadow-2xl p-5 animate-slideInLeft">
             <div class="flex justify-between items-center mb-6 pb-3 border-b border-arena">
@@ -221,7 +221,7 @@
             <div class="mt-6 md:mt-8 text-center"><span class="text-marronClaro text-xs md:text-sm">Total de profesionales: <span id="totalProfesionales" class="font-bold text-terracota">0</span></span></div>
         </div>
         
-        <!-- Sección Descargar App - CON BOTÓN DE DESCARGA REAL -->
+        <!-- Sección Descargar App - CON DESCARGA REAL PWA -->
         <div id="seccion-descargar" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">📱 Descargar la App</h1>
             <p class="text-marronClaro text-sm md:text-base mb-6 md:mb-8">Instalá COTOLAR en tu celular como una aplicación nativa</p>
@@ -241,7 +241,7 @@
                     <span class="material-icons text-terracota text-5xl mb-3">android</span>
                     <h2 class="text-lg md:text-xl font-bold text-marron mb-2">Android</h2>
                     <p class="text-marronClaro text-sm mb-3">Instalación directa</p>
-                    <button class="download-android-btn w-full bg-oliva text-white py-2 rounded-xl font-semibold hover:bg-oliva/80 transition-all duration-300 flex items-center justify-center gap-2">
+                    <button id="androidInstallBtn" class="w-full bg-oliva text-white py-3 rounded-xl font-semibold hover:bg-oliva/80 transition-all duration-300 flex items-center justify-center gap-2">
                         <span class="material-icons">get_app</span> Instalar ahora
                     </button>
                 </div>
@@ -249,8 +249,8 @@
                     <span class="material-icons text-terracota text-5xl mb-3">apple</span>
                     <h2 class="text-lg md:text-xl font-bold text-marron mb-2">iPhone / iPad</h2>
                     <p class="text-marronClaro text-sm mb-3">Instalación desde Safari</p>
-                    <button class="download-ios-btn w-full bg-marron text-white py-2 rounded-xl font-semibold hover:bg-marron/80 transition-all duration-300 flex items-center justify-center gap-2">
-                        <span class="material-icons">ios_share</span> Guía de instalación
+                    <button id="iosInstallBtn" class="w-full bg-marron text-white py-3 rounded-xl font-semibold hover:bg-marron/80 transition-all duration-300 flex items-center justify-center gap-2">
+                        <span class="material-icons">ios_share</span> Instalar ahora
                     </button>
                 </div>
             </div>
@@ -315,33 +315,62 @@
         window.playSound = function(soundName) {
             try { const audio = document.getElementById(`sound-${soundName}`); if (audio) { audio.currentTime = 0; audio.play().catch(e => console.log('Audio error:', e)); } } catch(e) { console.log(e); }
         };
+        
         document.getElementById('closeDemoModal')?.addEventListener('click', function() {
             document.getElementById('demoModal').style.display = 'none';
             if (window.playSound) window.playSound('click');
         });
         
-        // ========== FUNCIÓN DE DESCARGA ==========
-        function mostrarGuiaInstalacion() {
-            alert("📱 CÓMO INSTALAR LA APP:\n\nAndroid:\n1. Abrí Chrome\n2. Tocá los 3 puntos (⋮)\n3. Seleccioná 'Instalar aplicación'\n\niPhone:\n1. Abrí Safari\n2. Tocá Compartir\n3. Seleccioná 'Agregar a pantalla de inicio'");
+        // ========== DESCARGA E INSTALACIÓN REAL DE PWA ==========
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('✅ PWA lista para instalar');
+        });
+        
+        function instalarPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Usuario aceptó instalar la app');
+                        if (window.playSound) window.playSound('success');
+                    } else {
+                        console.log('Usuario canceló la instalación');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Si no hay prompt, mostrar instrucciones
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                const isAndroid = /android/i.test(userAgent);
+                const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+                
+                if (isAndroid) {
+                    alert("📱 Para instalar COTOLAR en Android:\n\n1. Abrí Chrome\n2. Tocá los 3 puntos (⋮)\n3. Seleccioná 'Instalar aplicación'\n4. Confirmá la instalación\n\n✅ La app quedará en tu pantalla de inicio");
+                } else if (isIOS) {
+                    alert("📱 Para instalar COTOLAR en iPhone:\n\n1. Abrí Safari\n2. Tocá Compartir (cuadrado con flecha)\n3. Seleccioná 'Agregar a pantalla de inicio'\n4. Tocá 'Agregar'\n\n✅ La app funcionará como una nativa");
+                } else {
+                    alert("📱 Escaneá este código QR desde tu celular o escribí la URL:\n\nhttps://cotolar.vercel.app");
+                }
+            }
         }
         
         document.getElementById('downloadAppBtn')?.addEventListener('click', () => {
             if (window.playSound) window.playSound('click');
-            mostrarGuiaInstalacion();
+            instalarPWA();
         });
         
-        document.querySelectorAll('.download-android-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (window.playSound) window.playSound('click');
-                alert("📱 Para instalar en Android:\n\n1. Abrí Chrome\n2. Tocá los 3 puntos (⋮)\n3. Seleccioná 'Instalar aplicación'\n4. Confirmá la instalación");
-            });
+        document.getElementById('androidInstallBtn')?.addEventListener('click', () => {
+            if (window.playSound) window.playSound('click');
+            instalarPWA();
         });
         
-        document.querySelectorAll('.download-ios-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (window.playSound) window.playSound('click');
-                alert("📱 Para instalar en iPhone:\n\n1. Abrí Safari\n2. Tocá el botón Compartir\n3. Seleccioná 'Agregar a pantalla de inicio'\n4. Tocá 'Agregar'");
-            });
+        document.getElementById('iosInstallBtn')?.addEventListener('click', () => {
+            if (window.playSound) window.playSound('click');
+            instalarPWA();
         });
         
         // ========== FUNCIÓN GLOBAL DE NAVEGACIÓN ==========
