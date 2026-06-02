@@ -1,4 +1,4 @@
-// admin.js - Panel con CRUD completo incluyendo Profesionales
+// admin.js - Panel con CRUD completo incluyendo Autoridades
 
 let currentTab = 'noticias';
 let editingId = null;
@@ -54,14 +54,27 @@ function renderForm() {
         formContainer.innerHTML = `<input type="text" id="nombre_curso" placeholder="Nombre del curso" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><input type="date" id="fecha_inicio" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><select id="modalidad" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><option value="Presencial">Presencial</option><option value="Virtual">Virtual</option><option value="Híbrido">Híbrido</option></select><input type="text" id="lugar" placeholder="Lugar" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><input type="number" id="arancel_curso" placeholder="Arancel" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><input type="text" id="instructor" placeholder="Instructor" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><input type="number" id="vacantes" placeholder="Vacantes" class="w-full px-4 py-2 border border-arena rounded-lg mb-3">`;
     } else if (currentTab === 'profesionales') {
         formTitle.textContent = editingId ? '✏️ Editar Profesional' : '➕ Agregar Profesional';
-        formContainer.innerHTML = `<input type="text" id="nombre" placeholder="Nombre completo (Ej: Lic. María Pérez)" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><input type="text" id="especialidad" placeholder="Especialidad (Ej: Neurorehabilitación)" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><input type="text" id="localidad" placeholder="Localidad (Ej: Capital, Chilecito)" class="w-full px-4 py-2 border border-arena rounded-lg mb-3">`;
+        formContainer.innerHTML = `<input type="text" id="nombre" placeholder="Nombre completo" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><input type="text" id="especialidad" placeholder="Especialidad" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"><input type="text" id="localidad" placeholder="Localidad" class="w-full px-4 py-2 border border-arena rounded-lg mb-3">`;
+    } else if (currentTab === 'autoridades') {
+        formTitle.textContent = editingId ? '✏️ Editar Autoridad' : '➕ Agregar Autoridad';
+        formContainer.innerHTML = `
+            <input type="text" id="nombre" placeholder="Nombre completo" class="w-full px-4 py-2 border border-arena rounded-lg mb-3">
+            <input type="text" id="cargo" placeholder="Cargo (Ej: Presidente)" class="w-full px-4 py-2 border border-arena rounded-lg mb-3">
+            <input type="number" id="orden" placeholder="Orden jerárquico (1, 2, 3...)" class="w-full px-4 py-2 border border-arena rounded-lg mb-3">
+            <input type="url" id="foto" placeholder="URL de la foto" class="w-full px-4 py-2 border border-arena rounded-lg mb-3">
+            <textarea id="descripcion" placeholder="Descripción" rows="2" class="w-full px-4 py-2 border border-arena rounded-lg mb-3"></textarea>
+        `;
     }
     
     if (editingId) cargarDatosParaEditar();
 }
 
 function cargarDatosParaEditar() {
-    const datos = currentTab === 'profesionales' ? window.PROFESIONALES_ACTIVOS : window.DATOS_LOCALES[currentTab];
+    let datos;
+    if (currentTab === 'profesionales') datos = window.PROFESIONALES_ACTIVOS;
+    else if (currentTab === 'autoridades') datos = window.AUTORIDADES;
+    else datos = window.DATOS_LOCALES[currentTab];
+    
     const item = datos.find(d => d.id === editingId);
     if (item) {
         for (let key in item) {
@@ -96,6 +109,32 @@ function guardarItem() {
         return;
     }
     
+    if (currentTab === 'autoridades') {
+        const autoridades = window.AUTORIDADES;
+        const newData = {
+            nombre: document.getElementById('nombre').value,
+            cargo: document.getElementById('cargo').value,
+            orden: parseInt(document.getElementById('orden').value),
+            foto: document.getElementById('foto').value,
+            descripcion: document.getElementById('descripcion').value
+        };
+        
+        if (editingId) {
+            const index = autoridades.findIndex(a => a.id === editingId);
+            if (index !== -1) autoridades[index] = { ...autoridades[index], ...newData };
+        } else {
+            const newId = Math.max(...autoridades.map(a => a.id), 0) + 1;
+            autoridades.push({ id: newId, ...newData });
+        }
+        
+        if (window.playSound) window.playSound('success');
+        editingId = null;
+        renderForm();
+        cargarAdminList();
+        alert('Autoridad guardada correctamente');
+        return;
+    }
+    
     const datos = window.DATOS_LOCALES[currentTab];
     const newData = {};
     const inputs = document.querySelectorAll('#formFields input, #formFields textarea, #formFields select');
@@ -124,13 +163,11 @@ function guardarItem() {
 
 function cargarAdminList() {
     const container = document.getElementById('adminList');
-    const listTitle = document.getElementById('listTitle');
     
     if (currentTab === 'profesionales') {
-        listTitle.textContent = '👥 Profesionales Matriculados';
         const profesionales = window.PROFESIONALES_ACTIVOS || [];
         if (profesionales.length === 0) {
-            container.innerHTML = '<p class="text-marronClaro text-center py-4">No hay profesionales cargados. Creá uno nuevo.</p>';
+            container.innerHTML = '<p class="text-marronClaro text-center py-4">No hay profesionales cargados.</p>';
             return;
         }
         container.innerHTML = `<div class="space-y-3">${profesionales.map(p => `
@@ -141,7 +178,21 @@ function cargarAdminList() {
         return;
     }
     
-    listTitle.textContent = '📋 Listado';
+    if (currentTab === 'autoridades') {
+        const autoridades = window.AUTORIDADES || [];
+        autoridades.sort((a, b) => a.orden - b.orden);
+        if (autoridades.length === 0) {
+            container.innerHTML = '<p class="text-marronClaro text-center py-4">No hay autoridades cargadas.</p>';
+            return;
+        }
+        container.innerHTML = `<div class="space-y-3">${autoridades.map(a => `
+            <div class="flex justify-between items-center p-3 bg-lightGray rounded-lg border border-arena">
+                <div><p class="font-semibold text-marron">${a.nombre}</p><p class="text-marronClaro text-sm">${a.cargo} • Orden: ${a.orden}</p><small class="text-marronClaro">ID: ${a.id}</small></div>
+                <div><button onclick="window.editarItem(${a.id})" class="text-oliva mr-3 hover:text-oliva/70"><span class="material-icons text-sm">edit</span></button><button onclick="window.eliminarItem(${a.id})" class="text-terracota hover:text-terracota/70"><span class="material-icons text-sm">delete</span></button></div>
+            </div>`).join('')}</div>`;
+        return;
+    }
+    
     const datos = window.DATOS_LOCALES[currentTab];
     if (!datos || datos.length === 0) {
         container.innerHTML = '<p class="text-marronClaro text-center py-4">No hay elementos. Creá uno nuevo.</p>';
@@ -166,6 +217,10 @@ window.eliminarItem = (id) => {
             const profesionales = window.PROFESIONALES_ACTIVOS;
             const index = profesionales.findIndex(p => p.id === id);
             if (index !== -1) profesionales.splice(index, 1);
+        } else if (currentTab === 'autoridades') {
+            const autoridades = window.AUTORIDADES;
+            const index = autoridades.findIndex(a => a.id === id);
+            if (index !== -1) autoridades.splice(index, 1);
         } else {
             const datos = window.DATOS_LOCALES[currentTab];
             const index = datos.findIndex(d => d.id === id);

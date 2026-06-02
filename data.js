@@ -6,11 +6,13 @@ window.DATOS_LOCALES = {
         { id: 2, titulo: "Nuevo proceso de matriculación: requisitos actualizados", contenido: "Se informa que a partir del 1° de junio entran en vigencia los nuevos requisitos para la matriculación inicial y la renovación anual de matrícula profesional.", destacada: true, fecha: "2025-05-15", categoria: "Institucional" },
         { id: 3, titulo: "Convenio con la Universidad Nacional de La Rioja", contenido: "El Colegio firmó un convenio de colaboración académica con la UNLaR para promover la formación continua y la inserción laboral de los nuevos egresados de Terapia Ocupacional.", destacada: false, fecha: "2025-05-03", categoria: "Convenios" }
     ],
+    
     aranceles: [
         { id: 1, titulo: "Matrícula Inicial", monto: 15000, descripcion: "Primera inscripción al colegio profesional" },
         { id: 2, titulo: "Renovación Anual", monto: 8500, descripcion: "Mantenimiento de matrícula - pago anual" },
         { id: 3, titulo: "Certificado de Buena Conducta", monto: 2000, descripcion: "Para presentación ante otras instituciones" }
     ],
+    
     requisitos: [
         { id: 1, nombre: "Título de Terapia Ocupacional", descripcion_detallada: "Original y copia autenticada del título universitario (expedido por universidad reconocida)", orden_prioridad: 1 },
         { id: 2, nombre: "DNI actualizado", descripcion_detallada: "Frente y dorso. Si es extranjero, DNI vigente o pasaporte con residencia.", orden_prioridad: 2 },
@@ -18,12 +20,32 @@ window.DATOS_LOCALES = {
         { id: 4, nombre: "Comprobante de pago", descripcion_detallada: "Del arancel de matriculación correspondiente.", orden_prioridad: 4 },
         { id: 5, nombre: "Curso de Ética Profesional", descripcion_detallada: "Certificado del curso obligatorio dictado por el colegio (válido por 2 años)", orden_prioridad: 5 }
     ],
+    
     capacitaciones: [
         { id: 1, nombre_curso: "Jornada de Actualización en Neurorehabilitación 2025", modalidad: "Presencial", arancel_curso: 12000, instructor: "Lic. María Eugenia Pérez", fecha_inicio: "2025-07-10", lugar: "Centro de Convenciones, La Rioja Capital", vacantes: 80 },
         { id: 2, nombre_curso: "Terapia Ocupacional en Salud Mental Comunitaria", modalidad: "Virtual", arancel_curso: 8500, instructor: "Dra. Laura Gómez", fecha_inicio: "2025-08-05", lugar: "Plataforma Zoom", vacantes: 50 }
-    ]
+    ],
+    
+    normativa: {
+        id: 1,
+        codigoEtica: "CÓDIGO DE ÉTICA DE TERAPIA OCUPACIONAL DE LA REPÚBLICA ARGENTINA\n\nArtículo 1°: El Terapeuta Ocupacional tiene como objetivo principal la promoción, prevención, habilitación y rehabilitación de las personas con discapacidad o en situación de vulnerabilidad, respetando su dignidad y autonomía.\n\nArtículo 2°: Debe mantener una conducta ética y profesional en todo momento, actuando con honestidad, responsabilidad y respeto hacia sus pacientes, colegas y otros profesionales de la salud.\n\nArtículo 3°: La confidencialidad de la información del paciente es un deber fundamental, solo puede ser revelada con consentimiento expreso o por mandato judicial.\n\nArtículo 4°: El Terapeuta Ocupacional debe mantener actualizados sus conocimientos a través de la formación continua y capacitación permanente.\n\nArtículo 5°: Debe denunciar cualquier práctica profesional que vaya en contra de la ética o que ponga en riesgo la salud de los pacientes.\n\nArtículo 6°: Las relaciones con otros profesionales deben basarse en el respeto mutuo y la colaboración interdisciplinaria.\n\nArtículo 7°: Está prohibido utilizar la posición profesional para obtener beneficios personales indebidos.\n\nArtículo 8°: El incumplimiento de este código será sancionado según lo establecido por el Colegio de Terapia Ocupacional.",
+        
+        ley: "LEY NACIONAL DE TERAPIA OCUPACIONAL N° 27.123\n\nCAPÍTULO I - DISPOSICIONES GENERALES\n\nArtículo 1°: Declárese de interés nacional la formación, el desarrollo y la práctica profesional de la Terapia Ocupacional en todo el territorio de la República Argentina.\n\nArtículo 2°: La Terapia Ocupacional es una profesión del área de la salud que tiene por objeto el estudio, prevención, tratamiento y rehabilitación de personas con limitaciones en su desempeño ocupacional.\n\nCAPÍTULO II - DEL EJERCICIO PROFESIONAL\n\nArtículo 5°: Para ejercer la Terapia Ocupacional se requiere:\na) Poseer título de Terapeuta Ocupacional expedido por universidad reconocida.\nb) Estar matriculado en el colegio profesional correspondiente.\nc) Cumplir con los requisitos de formación continua establecidos.\n\nArtículo 8°: El ejercicio profesional incluye:\na) Evaluación y diagnóstico ocupacional.\nb) Diseño e implementación de planes de intervención.\nc) Asesoramiento y consultoría.\nd) Docencia e investigación en Terapia Ocupacional.\n\nCAPÍTULO III - DE LOS COLEGIOS PROFESIONALES\n\nArtículo 12°: Los colegios profesionales son los organismos encargados de:\na) Regular y fiscalizar el ejercicio profesional.\nb) Llevar el registro de matriculados.\nc) Promover la formación continua.\nd) Velar por el cumplimiento del código de ética.\n\nCAPÍTULO IV - SANCIONES\n\nArtículo 20°: Las sanciones aplicables por infracciones a la presente ley son:\na) Apercibimiento.\nb) Multa.\nc) Suspensión de la matrícula.\nd) Cancelación de la matrícula."
+    }
 };
 
+// Autoridades ordenadas por jerarquía
+window.AUTORIDADES = [
+    { id: 1, nombre: "Lic. María José Fernández", cargo: "Presidente", orden: 1, foto: "https://randomuser.me/api/portraits/women/1.jpg", descripcion: "Presidente del COTOLAR período 2024-2028" },
+    { id: 2, nombre: "Dr. Carlos Alberto Méndez", cargo: "Vicepresidente", orden: 2, foto: "https://randomuser.me/api/portraits/men/2.jpg", descripcion: "Vicepresidente del Colegio" },
+    { id: 3, nombre: "Lic. Laura Beatriz González", cargo: "Secretaria General", orden: 3, foto: "https://randomuser.me/api/portraits/women/3.jpg", descripcion: "Secretaria General" },
+    { id: 4, nombre: "Lic. Roberto Carlos Díaz", cargo: "Tesorero", orden: 4, foto: "https://randomuser.me/api/portraits/men/4.jpg", descripcion: "Tesorero del Colegio" },
+    { id: 5, nombre: "Lic. Ana Silvia Romero", cargo: "Vocal Titular", orden: 5, foto: "https://randomuser.me/api/portraits/women/5.jpg", descripcion: "Vocal Titular" },
+    { id: 6, nombre: "Dr. Pablo Ezequiel Sosa", cargo: "Vocal Suplente", orden: 6, foto: "https://randomuser.me/api/portraits/men/6.jpg", descripcion: "Vocal Suplente" },
+    { id: 7, nombre: "Lic. Verónica del Carmen Luna", cargo: "Revisora de Cuentas", orden: 7, foto: "https://randomuser.me/api/portraits/women/7.jpg", descripcion: "Revisora de Cuentas" }
+];
+
+// Profesionales activos
 window.PROFESIONALES_ACTIVOS = [
     { id: 1, nombre: "Lic. María Eugenia Pérez", especialidad: "Neurorehabilitación", localidad: "Capital" },
     { id: 2, nombre: "Lic. Carlos Rodríguez", especialidad: "Pediatría", localidad: "Capital" },
@@ -39,6 +61,7 @@ window.PROFESIONALES_ACTIVOS = [
     { id: 12, nombre: "Lic. Carolina Flores", especialidad: "Infantil", localidad: "Capital" }
 ];
 
+// Usuarios válidos
 window.USUARIOS_VALIDOS = [
     { email: "admin@cotolar.org", password: "admin123", nombre: "Administrador COTOLAR" }
 ];

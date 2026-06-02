@@ -65,7 +65,7 @@
     <header class="bg-white border-b border-arena sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-3 md:px-4 py-2 md:py-3 flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-4">
-                <div class="w-20 h-20 md:w-20 md:h-20 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
+                <div class="w-9 h-9 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
                     <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-0.5 md:p-1">
                 </div>
                 <div>
@@ -111,6 +111,14 @@
                     <span class="material-icons text-terracota text-2xl">group</span>
                     <span class="text-marron font-medium text-base">Profesionales</span>
                 </button>
+                <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="autoridades">
+                    <span class="material-icons text-terracota text-2xl">groups</span>
+                    <span class="text-marron font-medium text-base">Autoridades</span>
+                </button>
+                <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="normativa">
+                    <span class="material-icons text-terracota text-2xl">gavel</span>
+                    <span class="text-marron font-medium text-base">Normativa</span>
+                </button>
                 <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="descargar">
                     <span class="material-icons text-terracota text-2xl">download</span>
                     <span class="text-marron font-medium text-base">Descargar App</span>
@@ -150,7 +158,7 @@
     <!-- NAVEGACIÓN ESCRITORIO -->
     <nav class="hidden md:block bg-white border-b border-arena sticky top-[73px] z-40 shadow-sm">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-start gap-6 py-3">
+            <div class="flex justify-start gap-6 py-3 overflow-x-auto">
                 <button class="nav-btn-desktop flex items-center gap-2 text-marron font-semibold border-b-2 border-terracota pb-2" data-section="inicio">
                     <span class="material-icons text-base">home</span> Inicio
                 </button>
@@ -162,6 +170,12 @@
                 </button>
                 <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="profesionales">
                     <span class="material-icons text-base">group</span> Profesionales
+                </button>
+                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="autoridades">
+                    <span class="material-icons text-base">groups</span> Autoridades
+                </button>
+                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="normativa">
+                    <span class="material-icons text-base">gavel</span> Normativa
                 </button>
                 <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="descargar">
                     <span class="material-icons text-base">download</span> Descargar App
@@ -221,12 +235,25 @@
             <div class="mt-6 md:mt-8 text-center"><span class="text-marronClaro text-xs md:text-sm">Total de profesionales: <span id="totalProfesionales" class="font-bold text-terracota">0</span></span></div>
         </div>
         
-        <!-- Sección Descargar App - CON DESCARGA REAL PWA -->
+        <!-- Sección Autoridades -->
+        <div id="seccion-autoridades" class="seccion-publica hidden animate-fadeIn">
+            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">Autoridades del Colegio</h1>
+            <p class="text-marronClaro text-sm md:text-base mb-6 md:mb-8">Comisión directiva COTOLAR período 2024-2028</p>
+            <div id="autoridadesContainer" class="grid md:grid-cols-2 gap-4 md:gap-6"></div>
+        </div>
+        
+        <!-- Sección Normativa Vigente -->
+        <div id="seccion-normativa" class="seccion-publica hidden animate-fadeIn">
+            <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">Normativa Vigente</h1>
+            <p class="text-marronClaro text-sm md:text-base mb-6 md:mb-8">Marco legal y ético de la Terapia Ocupacional en Argentina</p>
+            <div id="normativaContainer"></div>
+        </div>
+        
+        <!-- Sección Descargar App -->
         <div id="seccion-descargar" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">📱 Descargar la App</h1>
             <p class="text-marronClaro text-sm md:text-base mb-6 md:mb-8">Instalá COTOLAR en tu celular como una aplicación nativa</p>
             
-            <!-- Botón de descarga principal -->
             <div class="text-center mb-8">
                 <button id="downloadAppBtn" class="bg-terracota text-white px-8 py-4 rounded-2xl text-lg font-bold shadow-lg hover:bg-terracota/80 transition-all duration-300 flex items-center gap-3 mx-auto">
                     <span class="material-icons text-2xl">download</span>
@@ -255,7 +282,6 @@
                 </div>
             </div>
             
-            <!-- Beneficios -->
             <div class="mt-8 bg-gradient-to-r from-terracota/10 to-oliva/10 rounded-xl md:rounded-2xl p-4 md:p-6 border border-arena">
                 <h3 class="font-bold text-marron text-base md:text-lg mb-3 md:mb-4 flex items-center gap-2 justify-center"><span class="material-icons text-terracota">stars</span> Beneficios de la app</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
@@ -321,9 +347,8 @@
             if (window.playSound) window.playSound('click');
         });
         
-        // ========== DESCARGA E INSTALACIÓN REAL DE PWA ==========
+        // Capturar evento de instalación PWA
         let deferredPrompt;
-        
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
@@ -335,53 +360,31 @@
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
-                        console.log('Usuario aceptó instalar la app');
                         if (window.playSound) window.playSound('success');
-                    } else {
-                        console.log('Usuario canceló la instalación');
                     }
                     deferredPrompt = null;
                 });
             } else {
-                // Si no hay prompt, mostrar instrucciones
                 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
                 const isAndroid = /android/i.test(userAgent);
-                const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-                
                 if (isAndroid) {
-                    alert("📱 Para instalar COTOLAR en Android:\n\n1. Abrí Chrome\n2. Tocá los 3 puntos (⋮)\n3. Seleccioná 'Instalar aplicación'\n4. Confirmá la instalación\n\n✅ La app quedará en tu pantalla de inicio");
-                } else if (isIOS) {
-                    alert("📱 Para instalar COTOLAR en iPhone:\n\n1. Abrí Safari\n2. Tocá Compartir (cuadrado con flecha)\n3. Seleccioná 'Agregar a pantalla de inicio'\n4. Tocá 'Agregar'\n\n✅ La app funcionará como una nativa");
+                    alert("📱 Para instalar COTOLAR:\n\n1. Abrí Chrome\n2. Tocá los 3 puntos (⋮)\n3. Seleccioná 'Instalar aplicación'");
                 } else {
-                    alert("📱 Escaneá este código QR desde tu celular o escribí la URL:\n\nhttps://cotolar.vercel.app");
+                    alert("📱 Para instalar COTOLAR en iPhone:\n\n1. Abrí Safari\n2. Tocá Compartir\n3. Seleccioná 'Agregar a pantalla de inicio'");
                 }
             }
         }
         
-        document.getElementById('downloadAppBtn')?.addEventListener('click', () => {
-            if (window.playSound) window.playSound('click');
-            instalarPWA();
-        });
+        document.getElementById('downloadAppBtn')?.addEventListener('click', instalarPWA);
+        document.getElementById('androidInstallBtn')?.addEventListener('click', instalarPWA);
+        document.getElementById('iosInstallBtn')?.addEventListener('click', instalarPWA);
         
-        document.getElementById('androidInstallBtn')?.addEventListener('click', () => {
-            if (window.playSound) window.playSound('click');
-            instalarPWA();
-        });
-        
-        document.getElementById('iosInstallBtn')?.addEventListener('click', () => {
-            if (window.playSound) window.playSound('click');
-            instalarPWA();
-        });
-        
-        // ========== FUNCIÓN GLOBAL DE NAVEGACIÓN ==========
+        // Función global de navegación
         window.cambiarSeccion = function(seccion) {
-            document.querySelectorAll('.seccion-publica').forEach(sec => {
-                sec.classList.add('hidden');
-            });
+            document.querySelectorAll('.seccion-publica').forEach(sec => sec.classList.add('hidden'));
             const seccionElement = document.getElementById(`seccion-${seccion}`);
-            if (seccionElement) {
-                seccionElement.classList.remove('hidden');
-            }
+            if (seccionElement) seccionElement.classList.remove('hidden');
+            
             document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
                 btn.classList.remove('border-terracota', 'text-marron');
                 btn.classList.add('text-marronClaro');
@@ -390,10 +393,11 @@
                     btn.classList.remove('text-marronClaro');
                 }
             });
+            
             if (window.playSound) window.playSound('click');
-            if (seccion === 'profesionales' && typeof cargarProfesionales === 'function') {
-                cargarProfesionales();
-            }
+            if (seccion === 'profesionales' && typeof cargarProfesionales === 'function') cargarProfesionales();
+            if (seccion === 'autoridades' && typeof cargarAutoridades === 'function') cargarAutoridades();
+            if (seccion === 'normativa' && typeof cargarNormativa === 'function') cargarNormativa();
         };
         
         document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
@@ -403,7 +407,7 @@
             });
         });
         
-        // MENÚ HAMBURGUESA
+        // Menú hamburguesa
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const closeMenuBtn = document.getElementById('closeMenuBtn');

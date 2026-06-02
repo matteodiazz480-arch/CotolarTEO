@@ -89,17 +89,58 @@ function cargarProfesionales() {
     `).join('');
     
     const totalSpan = document.getElementById('totalProfesionales');
-    if (totalSpan) {
-        totalSpan.textContent = profesionales.length;
-    }
+    if (totalSpan) totalSpan.textContent = profesionales.length;
+}
+
+// NUEVA FUNCIÓN: Cargar autoridades
+function cargarAutoridades() {
+    const container = document.getElementById('autoridadesContainer');
+    if (!container) return;
+    
+    const autoridades = window.AUTORIDADES || [];
+    autoridades.sort((a, b) => a.orden - b.orden);
+    
+    container.innerHTML = autoridades.map(auth => `
+        <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-arena flex items-center gap-4">
+            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-beige border-2 border-terracota flex-shrink-0">
+                <img src="${auth.foto}" alt="${auth.nombre}" class="w-full h-full object-cover" onerror="this.src='https://randomuser.me/api/portraits/lego/1.jpg'">
+            </div>
+            <div>
+                <div class="inline-block bg-terracota/10 text-terracota text-xs px-2 py-1 rounded-full mb-1">${auth.cargo}</div>
+                <h3 class="font-bold text-marron text-base md:text-lg">${auth.nombre}</h3>
+                <p class="text-marronClaro text-xs md:text-sm mt-1">${auth.descripcion || ''}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+// NUEVA FUNCIÓN: Cargar normativa
+function cargarNormativa() {
+    const container = document.getElementById('normativaContainer');
+    if (!container) return;
+    
+    const normativa = window.DATOS_LOCALES.normativa;
+    
+    container.innerHTML = `
+        <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena mb-6">
+            <h2 class="text-xl font-bold text-marron mb-4 flex items-center gap-2">
+                <span class="material-icons text-terracota">article</span> Código de Ética
+            </h2>
+            <div class="text-marronClaro text-sm whitespace-pre-line leading-relaxed">${normativa.codigoEtica}</div>
+        </div>
+        <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena">
+            <h2 class="text-xl font-bold text-marron mb-4 flex items-center gap-2">
+                <span class="material-icons text-terracota">gavel</span> Ley Nacional N° 27.123
+            </h2>
+            <div class="text-marronClaro text-sm whitespace-pre-line leading-relaxed">${normativa.ley}</div>
+        </div>
+    `;
 }
 
 function cambiarSeccion(seccion) {
     document.querySelectorAll('.seccion-publica').forEach(sec => sec.classList.add('hidden'));
     const seccionElement = document.getElementById(`seccion-${seccion}`);
-    if (seccionElement) {
-        seccionElement.classList.remove('hidden');
-    }
+    if (seccionElement) seccionElement.classList.remove('hidden');
     
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('border-terracota', 'text-marron');
@@ -113,9 +154,9 @@ function cambiarSeccion(seccion) {
     currentSection = seccion;
     if (window.playSound) window.playSound('click');
     
-    if (seccion === 'profesionales') {
-        cargarProfesionales();
-    }
+    if (seccion === 'profesionales') cargarProfesionales();
+    if (seccion === 'autoridades') cargarAutoridades();
+    if (seccion === 'normativa') cargarNormativa();
 }
 
 document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -131,6 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cargarAranceles();
         cargarRequisitos();
         cargarCapacitaciones();
+        cargarNormativa();
     }
     cargarProfesionales();
+    cargarAutoridades();
 });
