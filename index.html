@@ -108,6 +108,7 @@
                 <button class="nav-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-section="tramites"><span class="material-icons text-base mr-1 align-middle">description</span> Trámites</button>
                 <button class="nav-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-section="capacitaciones"><span class="material-icons text-base mr-1 align-middle">school</span> Capacitaciones</button>
                 <button class="nav-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-section="profesionales"><span class="material-icons text-base mr-1 align-middle">group</span> Profesionales</button>
+                <button class="nav-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-section="descargar"><span class="material-icons text-base mr-1 align-middle">download</span> Descargar App</button>
                 <button class="nav-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-section="contacto"><span class="material-icons text-base mr-1 align-middle">contact_mail</span> Contacto</button>
             </div>
         </div>
@@ -142,6 +143,74 @@
             <p class="text-marronClaro mb-8">Colegiados matriculados en COTOLAR</p>
             <div id="profesionalesContainer" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
             <div class="mt-8 text-center"><span class="text-marronClaro text-sm">Total de profesionales: <span id="totalProfesionales" class="font-bold text-terracota">0</span></span></div>
+        </div>
+        
+        <!-- NUEVA SECCIÓN: Descargar App -->
+        <div id="seccion-descargar" class="seccion-publica hidden animate-fadeIn">
+            <h1 class="text-2xl font-bold text-marron mb-6">📱 Descargar la App</h1>
+            <p class="text-marronClaro mb-8">Llevá COTOLAR a tu celular como una aplicación nativa</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Android -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-arena">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-icons text-terracota text-4xl">android</span>
+                        <h2 class="text-xl font-bold text-marron">Android</h2>
+                    </div>
+                    <p class="text-marronClaro mb-4">Seguí estos pasos para instalar la app en tu dispositivo Android:</p>
+                    <ol class="list-decimal list-inside space-y-3 text-marronClaro mb-6">
+                        <li>Abrí <strong>Chrome</strong> en tu celular</li>
+                        <li>Ingresá a <strong>cotolar.vercel.app</strong></li>
+                        <li>Tocá los <strong>3 puntos</strong> (⋮) en la esquina superior</li>
+                        <li>Seleccioná <strong>"Instalar aplicación"</strong></li>
+                        <li>Tocá <strong>"Instalar"</strong> y listo</li>
+                    </ol>
+                    <div class="bg-beige p-3 rounded-xl border border-arena">
+                        <p class="text-marronClaro text-sm flex items-center gap-2"><span class="material-icons text-oliva text-sm">check_circle</span> La app quedará en tu pantalla de inicio</p>
+                    </div>
+                </div>
+                
+                <!-- iPhone -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-arena">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-icons text-terracota text-4xl">apple</span>
+                        <h2 class="text-xl font-bold text-marron">iPhone / iPad</h2>
+                    </div>
+                    <p class="text-marronClaro mb-4">Seguí estos pasos para instalar la app en tu iPhone:</p>
+                    <ol class="list-decimal list-inside space-y-3 text-marronClaro mb-6">
+                        <li>Abrí <strong>Safari</strong> (no funciona en otros navegadores)</li>
+                        <li>Ingresá a <strong>cotolar.vercel.app</strong></li>
+                        <li>Tocá el botón <strong>Compartir</strong> (cuadrado con flecha)</li>
+                        <li>Seleccioná <strong>"Agregar a pantalla de inicio"</strong></li>
+                        <li>Tocá <strong>"Agregar"</strong> y listo</li>
+                    </ol>
+                    <div class="bg-beige p-3 rounded-xl border border-arena">
+                        <p class="text-marronClaro text-sm flex items-center gap-2"><span class="material-icons text-oliva text-sm">check_circle</span> La app funcionará como una nativa</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Beneficios de la app -->
+            <div class="mt-10 bg-gradient-to-r from-terracota/10 to-oliva/10 rounded-2xl p-6 border border-arena">
+                <h3 class="font-bold text-marron text-lg mb-4 flex items-center gap-2"><span class="material-icons text-terracota">stars</span> Beneficios de la app</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center"><span class="material-icons text-terracota text-2xl">offline_bolt</span><p class="text-marronClaro text-xs mt-1">Funciona offline</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-2xl">notifications</span><p class="text-marronClaro text-xs mt-1">Notificaciones</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-2xl">speed</span><p class="text-marronClaro text-xs mt-1">Más rápida</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-2xl">home</span><p class="text-marronClaro text-xs mt-1">Icono en pantalla</p></div>
+                </div>
+            </div>
+            
+            <!-- QR Code simulado -->
+            <div class="mt-8 text-center">
+                <div class="inline-block bg-white p-4 rounded-2xl border border-arena shadow-md">
+                    <div class="w-32 h-32 bg-marron rounded-xl flex items-center justify-center mx-auto">
+                        <span class="material-icons text-white text-5xl">qr_code_scanner</span>
+                    </div>
+                    <p class="text-marronClaro text-xs mt-2">Escaneá para acceder</p>
+                    <p class="text-terracota text-sm font-semibold mt-1">cotolar.vercel.app</p>
+                </div>
+            </div>
         </div>
         
         <div id="seccion-contacto" class="seccion-publica hidden animate-fadeIn">
@@ -193,7 +262,6 @@
             try { const audio = document.getElementById(`sound-${soundName}`); if (audio) { audio.currentTime = 0; audio.play().catch(e => console.log('Audio error:', e)); } } catch(e) { console.log(e); }
         };
         
-        // Cerrar modal de demo
         document.getElementById('closeDemoModal')?.addEventListener('click', function() {
             document.getElementById('demoModal').style.display = 'none';
             if (window.playSound) window.playSound('click');

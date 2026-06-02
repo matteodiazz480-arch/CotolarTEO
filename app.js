@@ -95,16 +95,12 @@ function cargarProfesionales() {
 }
 
 function cambiarSeccion(seccion) {
-    // Ocultar todas las secciones
     document.querySelectorAll('.seccion-publica').forEach(sec => sec.classList.add('hidden'));
-    
-    // Mostrar la sección seleccionada
     const seccionElement = document.getElementById(`seccion-${seccion}`);
     if (seccionElement) {
         seccionElement.classList.remove('hidden');
     }
     
-    // Actualizar estilo de los botones de navegación
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('border-terracota', 'text-marron');
         btn.classList.add('text-marronClaro');
@@ -117,13 +113,11 @@ function cambiarSeccion(seccion) {
     currentSection = seccion;
     if (window.playSound) window.playSound('click');
     
-    // Si es la sección de profesionales, recargar por si hay cambios
     if (seccion === 'profesionales') {
         cargarProfesionales();
     }
 }
 
-// Inicializar navegación
 document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const section = btn.getAttribute('data-section');
@@ -131,7 +125,6 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
     });
 });
 
-// Cargar datos al iniciar
 document.addEventListener('DOMContentLoaded', () => {
     if (window.DATOS_LOCALES) {
         cargarNoticias();
