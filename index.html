@@ -61,11 +61,10 @@
         </div>
     </div>
     
-    <!-- HEADER - Con botón de inicio de sesión más pequeño y menú hamburguesa -->
+    <!-- HEADER -->
     <header class="bg-white border-b border-arena sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-3 md:px-4 py-2 md:py-3 flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-4">
-                <!-- Logo -->
                 <div class="w-9 h-9 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
                     <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-0.5 md:p-1">
                 </div>
@@ -75,12 +74,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <!-- Botón Iniciar Sesión más pequeño y elegante -->
                 <a href="admin.html" class="bg-terracota text-white px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-terracota/80 transition-all duration-300 shadow-sm flex items-center gap-1">
                     <span class="material-icons text-sm">login</span>
                     <span class="hidden sm:inline">Ingresar</span>
                 </a>
-                <!-- Botón Hamburguesa (solo en móvil) -->
                 <button id="menuBtn" class="md:hidden bg-terracota/10 p-1.5 rounded-full text-terracota">
                     <span class="material-icons">menu</span>
                 </button>
@@ -88,7 +85,7 @@
         </div>
     </header>
     
-    <!-- MENÚ LATERAL (Hamburguesa) - Solo visible en móvil -->
+    <!-- MENÚ LATERAL (Hamburguesa) -->
     <div id="mobileMenu" class="fixed inset-0 z-[150] bg-black/50 backdrop-blur-sm hidden transition-all duration-300">
         <div class="bg-white w-64 h-full shadow-2xl p-4 animate-slideInLeft">
             <div class="flex justify-between items-center mb-6 pb-3 border-b border-arena">
@@ -150,16 +147,28 @@
         </div>
     </section>
     
-    <!-- NAVEGACIÓN ESCRITORIO (visible solo en md+) -->
+    <!-- NAVEGACIÓN ESCRITORIO (con íconos) -->
     <nav class="hidden md:block bg-white border-b border-arena sticky top-[73px] z-40 shadow-sm">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-start gap-6 py-3">
-                <button class="nav-btn-desktop text-marron font-semibold border-b-2 border-terracota pb-2" data-section="inicio">Inicio</button>
-                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="tramites">Trámites</button>
-                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="capacitaciones">Capacitaciones</button>
-                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="profesionales">Profesionales</button>
-                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="descargar">Descargar App</button>
-                <button class="nav-btn-desktop text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="contacto">Contacto</button>
+                <button class="nav-btn-desktop flex items-center gap-2 text-marron font-semibold border-b-2 border-terracota pb-2" data-section="inicio">
+                    <span class="material-icons text-base">home</span> Inicio
+                </button>
+                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="tramites">
+                    <span class="material-icons text-base">description</span> Trámites
+                </button>
+                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="capacitaciones">
+                    <span class="material-icons text-base">school</span> Capacitaciones
+                </button>
+                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="profesionales">
+                    <span class="material-icons text-base">group</span> Profesionales
+                </button>
+                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="descargar">
+                    <span class="material-icons text-base">download</span> Descargar App
+                </button>
+                <button class="nav-btn-desktop flex items-center gap-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota pb-2" data-section="contacto">
+                    <span class="material-icons text-base">contact_mail</span> Contacto
+                </button>
             </div>
         </div>
     </nav>
@@ -294,6 +303,41 @@
             if (window.playSound) window.playSound('click');
         });
         
+        // ========== FUNCIÓN GLOBAL DE NAVEGACIÓN ==========
+        window.cambiarSeccion = function(seccion) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.seccion-publica').forEach(sec => {
+                sec.classList.add('hidden');
+            });
+            // Mostrar la sección seleccionada
+            const seccionElement = document.getElementById(`seccion-${seccion}`);
+            if (seccionElement) {
+                seccionElement.classList.remove('hidden');
+            }
+            // Actualizar estilos de botones de escritorio
+            document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
+                btn.classList.remove('border-terracota', 'text-marron');
+                btn.classList.add('text-marronClaro');
+                if (btn.getAttribute('data-section') === seccion) {
+                    btn.classList.add('border-terracota', 'text-marron');
+                    btn.classList.remove('text-marronClaro');
+                }
+            });
+            if (window.playSound) window.playSound('click');
+            // Recargar profesionales si es necesario
+            if (seccion === 'profesionales' && typeof cargarProfesionales === 'function') {
+                cargarProfesionales();
+            }
+        };
+        
+        // Navegación escritorio
+        document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const section = btn.getAttribute('data-section');
+                if (section) window.cambiarSeccion(section);
+            });
+        });
+        
         // MENÚ HAMBURGUESA
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -310,7 +354,7 @@
         document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const section = btn.getAttribute('data-section');
-                if (section && window.cambiarSeccion) window.cambiarSeccion(section);
+                if (section) window.cambiarSeccion(section);
                 closeMenu();
             });
         });
