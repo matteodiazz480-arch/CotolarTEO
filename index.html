@@ -65,7 +65,7 @@
     <header class="bg-white border-b border-arena sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-3 md:px-4 py-2 md:py-3 flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-4">
-                <div class="w-9 h-9 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
+                <div class="w-20 h-20 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
                     <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-0.5 md:p-1">
                 </div>
                 <div>
@@ -78,46 +78,46 @@
                     <span class="material-icons text-sm">login</span>
                     <span class="hidden sm:inline">Ingresar</span>
                 </a>
-                <button id="menuBtn" class="md:hidden bg-terracota/10 p-1.5 rounded-full text-terracota">
+                <button id="menuBtn" class="md:hidden bg-terracota/10 p-2 rounded-full text-terracota">
                     <span class="material-icons">menu</span>
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- MENÚ LATERAL (Hamburguesa) -->
+    <!-- MENÚ LATERAL (Hamburguesa) con botones más grandes -->
     <div id="mobileMenu" class="fixed inset-0 z-[150] bg-black/50 backdrop-blur-sm hidden transition-all duration-300">
-        <div class="bg-white w-64 h-full shadow-2xl p-4 animate-slideInLeft">
+        <div class="bg-white w-72 h-full shadow-2xl p-5 animate-slideInLeft">
             <div class="flex justify-between items-center mb-6 pb-3 border-b border-arena">
-                <span class="font-bold text-marron">Menú</span>
-                <button id="closeMenuBtn" class="text-terracota">
+                <span class="font-bold text-marron text-lg">Menú</span>
+                <button id="closeMenuBtn" class="text-terracota p-1">
                     <span class="material-icons">close</span>
                 </button>
             </div>
-            <nav class="flex flex-col gap-2">
+            <nav class="flex flex-col gap-3">
                 <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="inicio">
-                    <span class="material-icons text-terracota">home</span>
-                    <span class="text-marron font-medium">Inicio</span>
+                    <span class="material-icons text-terracota text-2xl">home</span>
+                    <span class="text-marron font-medium text-base">Inicio</span>
                 </button>
                 <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="tramites">
-                    <span class="material-icons text-terracota">description</span>
-                    <span class="text-marron font-medium">Trámites</span>
+                    <span class="material-icons text-terracota text-2xl">description</span>
+                    <span class="text-marron font-medium text-base">Trámites</span>
                 </button>
                 <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="capacitaciones">
-                    <span class="material-icons text-terracota">school</span>
-                    <span class="text-marron font-medium">Capacitaciones</span>
+                    <span class="material-icons text-terracota text-2xl">school</span>
+                    <span class="text-marron font-medium text-base">Capacitaciones</span>
                 </button>
                 <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="profesionales">
-                    <span class="material-icons text-terracota">group</span>
-                    <span class="text-marron font-medium">Profesionales</span>
+                    <span class="material-icons text-terracota text-2xl">group</span>
+                    <span class="text-marron font-medium text-base">Profesionales</span>
                 </button>
                 <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="descargar">
-                    <span class="material-icons text-terracota">download</span>
-                    <span class="text-marron font-medium">Descargar App</span>
+                    <span class="material-icons text-terracota text-2xl">download</span>
+                    <span class="text-marron font-medium text-base">Descargar App</span>
                 </button>
                 <button class="mobile-nav-btn flex items-center gap-3 p-3 rounded-xl hover:bg-beige transition-colors w-full text-left" data-section="contacto">
-                    <span class="material-icons text-terracota">contact_mail</span>
-                    <span class="text-marron font-medium">Contacto</span>
+                    <span class="material-icons text-terracota text-2xl">contact_mail</span>
+                    <span class="text-marron font-medium text-base">Contacto</span>
                 </button>
             </nav>
         </div>
@@ -147,7 +147,7 @@
         </div>
     </section>
     
-    <!-- NAVEGACIÓN ESCRITORIO (con íconos) -->
+    <!-- NAVEGACIÓN ESCRITORIO -->
     <nav class="hidden md:block bg-white border-b border-arena sticky top-[73px] z-40 shadow-sm">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-start gap-6 py-3">
@@ -221,31 +221,48 @@
             <div class="mt-6 md:mt-8 text-center"><span class="text-marronClaro text-xs md:text-sm">Total de profesionales: <span id="totalProfesionales" class="font-bold text-terracota">0</span></span></div>
         </div>
         
-        <!-- Sección Descargar App -->
+        <!-- Sección Descargar App - CON BOTÓN DE DESCARGA REAL -->
         <div id="seccion-descargar" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-xl md:text-2xl font-bold text-marron mb-4 md:mb-6">📱 Descargar la App</h1>
-            <p class="text-marronClaro text-sm md:text-base mb-4 md:mb-8">Llevá COTOLAR a tu celular como una aplicación nativa</p>
-            <div class="grid md:grid-cols-2 gap-4 md:gap-8">
-                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena">
-                    <div class="flex items-center gap-2 md:gap-3 mb-3 md:mb-4"><span class="material-icons text-terracota text-3xl md:text-4xl">android</span><h2 class="text-lg md:text-xl font-bold text-marron">Android</h2></div>
-                    <p class="text-marronClaro text-xs md:text-sm mb-3 md:mb-4">Seguí estos pasos:</p>
-                    <ol class="list-decimal list-inside space-y-2 md:space-y-3 text-marronClaro text-xs md:text-sm mb-4 md:mb-6"><li>Abrí Chrome</li><li>Ingresá a cotolar.vercel.app</li><li>Tocá los 3 puntos (⋮)</li><li>Seleccioná "Instalar aplicación"</li></ol>
-                    <div class="bg-beige p-2 md:p-3 rounded-xl border border-arena"><p class="text-marronClaro text-xs md:text-sm flex items-center gap-1 md:gap-2"><span class="material-icons text-oliva text-sm">check_circle</span> La app quedará en tu pantalla de inicio</p></div>
+            <p class="text-marronClaro text-sm md:text-base mb-6 md:mb-8">Instalá COTOLAR en tu celular como una aplicación nativa</p>
+            
+            <!-- Botón de descarga principal -->
+            <div class="text-center mb-8">
+                <button id="downloadAppBtn" class="bg-terracota text-white px-8 py-4 rounded-2xl text-lg font-bold shadow-lg hover:bg-terracota/80 transition-all duration-300 flex items-center gap-3 mx-auto">
+                    <span class="material-icons text-2xl">download</span>
+                    Descargar App
+                    <span class="material-icons text-2xl">install_mobile</span>
+                </button>
+                <p class="text-marronClaro text-xs mt-3">Compatible con Android e iOS (PWA)</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4 md:gap-8 mt-6">
+                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena text-center">
+                    <span class="material-icons text-terracota text-5xl mb-3">android</span>
+                    <h2 class="text-lg md:text-xl font-bold text-marron mb-2">Android</h2>
+                    <p class="text-marronClaro text-sm mb-3">Instalación directa</p>
+                    <button class="download-android-btn w-full bg-oliva text-white py-2 rounded-xl font-semibold hover:bg-oliva/80 transition-all duration-300 flex items-center justify-center gap-2">
+                        <span class="material-icons">get_app</span> Instalar ahora
+                    </button>
                 </div>
-                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena">
-                    <div class="flex items-center gap-2 md:gap-3 mb-3 md:mb-4"><span class="material-icons text-terracota text-3xl md:text-4xl">apple</span><h2 class="text-lg md:text-xl font-bold text-marron">iPhone / iPad</h2></div>
-                    <p class="text-marronClaro text-xs md:text-sm mb-3 md:mb-4">Seguí estos pasos:</p>
-                    <ol class="list-decimal list-inside space-y-2 md:space-y-3 text-marronClaro text-xs md:text-sm mb-4 md:mb-6"><li>Abrí Safari</li><li>Ingresá a cotolar.vercel.app</li><li>Tocá Compartir</li><li>Seleccioná "Agregar a pantalla de inicio"</li></ol>
-                    <div class="bg-beige p-2 md:p-3 rounded-xl border border-arena"><p class="text-marronClaro text-xs md:text-sm flex items-center gap-1 md:gap-2"><span class="material-icons text-oliva text-sm">check_circle</span> Funciona como app nativa</p></div>
+                <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-arena text-center">
+                    <span class="material-icons text-terracota text-5xl mb-3">apple</span>
+                    <h2 class="text-lg md:text-xl font-bold text-marron mb-2">iPhone / iPad</h2>
+                    <p class="text-marronClaro text-sm mb-3">Instalación desde Safari</p>
+                    <button class="download-ios-btn w-full bg-marron text-white py-2 rounded-xl font-semibold hover:bg-marron/80 transition-all duration-300 flex items-center justify-center gap-2">
+                        <span class="material-icons">ios_share</span> Guía de instalación
+                    </button>
                 </div>
             </div>
-            <div class="mt-6 md:mt-10 bg-gradient-to-r from-terracota/10 to-oliva/10 rounded-xl md:rounded-2xl p-4 md:p-6 border border-arena">
-                <h3 class="font-bold text-marron text-base md:text-lg mb-3 md:mb-4 flex items-center gap-2"><span class="material-icons text-terracota">stars</span> Beneficios</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-                    <div class="text-center"><span class="material-icons text-terracota text-xl md:text-2xl">offline_bolt</span><p class="text-marronClaro text-[10px] md:text-xs mt-1">Offline</p></div>
-                    <div class="text-center"><span class="material-icons text-terracota text-xl md:text-2xl">notifications</span><p class="text-marronClaro text-[10px] md:text-xs mt-1">Notificaciones</p></div>
-                    <div class="text-center"><span class="material-icons text-terracota text-xl md:text-2xl">speed</span><p class="text-marronClaro text-[10px] md:text-xs mt-1">Más rápida</p></div>
-                    <div class="text-center"><span class="material-icons text-terracota text-xl md:text-2xl">home</span><p class="text-marronClaro text-[10px] md:text-xs mt-1">Icono en pantalla</p></div>
+            
+            <!-- Beneficios -->
+            <div class="mt-8 bg-gradient-to-r from-terracota/10 to-oliva/10 rounded-xl md:rounded-2xl p-4 md:p-6 border border-arena">
+                <h3 class="font-bold text-marron text-base md:text-lg mb-3 md:mb-4 flex items-center gap-2 justify-center"><span class="material-icons text-terracota">stars</span> Beneficios de la app</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                    <div class="text-center"><span class="material-icons text-terracota text-2xl md:text-3xl">offline_bolt</span><p class="text-marronClaro text-xs md:text-sm mt-1">Funciona offline</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-2xl md:text-3xl">notifications</span><p class="text-marronClaro text-xs md:text-sm mt-1">Notificaciones</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-2xl md:text-3xl">speed</span><p class="text-marronClaro text-xs md:text-sm mt-1">Más rápida</p></div>
+                    <div class="text-center"><span class="material-icons text-terracota text-2xl md:text-3xl">home</span><p class="text-marronClaro text-xs md:text-sm mt-1">Icono en pantalla</p></div>
                 </div>
             </div>
         </div>
@@ -303,18 +320,39 @@
             if (window.playSound) window.playSound('click');
         });
         
+        // ========== FUNCIÓN DE DESCARGA ==========
+        function mostrarGuiaInstalacion() {
+            alert("📱 CÓMO INSTALAR LA APP:\n\nAndroid:\n1. Abrí Chrome\n2. Tocá los 3 puntos (⋮)\n3. Seleccioná 'Instalar aplicación'\n\niPhone:\n1. Abrí Safari\n2. Tocá Compartir\n3. Seleccioná 'Agregar a pantalla de inicio'");
+        }
+        
+        document.getElementById('downloadAppBtn')?.addEventListener('click', () => {
+            if (window.playSound) window.playSound('click');
+            mostrarGuiaInstalacion();
+        });
+        
+        document.querySelectorAll('.download-android-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (window.playSound) window.playSound('click');
+                alert("📱 Para instalar en Android:\n\n1. Abrí Chrome\n2. Tocá los 3 puntos (⋮)\n3. Seleccioná 'Instalar aplicación'\n4. Confirmá la instalación");
+            });
+        });
+        
+        document.querySelectorAll('.download-ios-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (window.playSound) window.playSound('click');
+                alert("📱 Para instalar en iPhone:\n\n1. Abrí Safari\n2. Tocá el botón Compartir\n3. Seleccioná 'Agregar a pantalla de inicio'\n4. Tocá 'Agregar'");
+            });
+        });
+        
         // ========== FUNCIÓN GLOBAL DE NAVEGACIÓN ==========
         window.cambiarSeccion = function(seccion) {
-            // Ocultar todas las secciones
             document.querySelectorAll('.seccion-publica').forEach(sec => {
                 sec.classList.add('hidden');
             });
-            // Mostrar la sección seleccionada
             const seccionElement = document.getElementById(`seccion-${seccion}`);
             if (seccionElement) {
                 seccionElement.classList.remove('hidden');
             }
-            // Actualizar estilos de botones de escritorio
             document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
                 btn.classList.remove('border-terracota', 'text-marron');
                 btn.classList.add('text-marronClaro');
@@ -324,13 +362,11 @@
                 }
             });
             if (window.playSound) window.playSound('click');
-            // Recargar profesionales si es necesario
             if (seccion === 'profesionales' && typeof cargarProfesionales === 'function') {
                 cargarProfesionales();
             }
         };
         
-        // Navegación escritorio
         document.querySelectorAll('.nav-btn-desktop').forEach(btn => {
             btn.addEventListener('click', () => {
                 const section = btn.getAttribute('data-section');
@@ -350,7 +386,6 @@
         closeMenuBtn?.addEventListener('click', closeMenu);
         mobileMenu?.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMenu(); });
         
-        // Navegación móvil
         document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const section = btn.getAttribute('data-section');
