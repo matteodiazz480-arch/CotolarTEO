@@ -75,22 +75,36 @@ function cargarProfesionales() {
     
     container.innerHTML = profesionales.map(prof => `
         <div class="bg-white rounded-xl p-4 border border-arena shadow-sm hover:shadow-md transition-all duration-300">
-            <div class="flex items-center gap-3">
+            <div class="flex items-start gap-3">
                 <span class="material-icons text-terracota text-3xl">account_circle</span>
                 <div>
                     <p class="font-semibold text-marron text-sm">${prof.nombre}</p>
                     <p class="text-marronClaro text-xs">${prof.especialidad}</p>
-                    <p class="text-marronClaro text-xs">📍 ${prof.localidad}</p>
+                    <p class="text-marronClaro text-xs mt-1 flex items-center gap-1">
+                        <span class="material-icons text-xs">location_on</span> ${prof.localidad}
+                    </p>
                 </div>
             </div>
         </div>
     `).join('');
+    
+    const totalSpan = document.getElementById('totalProfesionales');
+    if (totalSpan) {
+        totalSpan.textContent = profesionales.length;
+    }
 }
 
 function cambiarSeccion(seccion) {
+    // Ocultar todas las secciones
     document.querySelectorAll('.seccion-publica').forEach(sec => sec.classList.add('hidden'));
-    document.getElementById(`seccion-${seccion}`).classList.remove('hidden');
     
+    // Mostrar la sección seleccionada
+    const seccionElement = document.getElementById(`seccion-${seccion}`);
+    if (seccionElement) {
+        seccionElement.classList.remove('hidden');
+    }
+    
+    // Actualizar estilo de los botones de navegación
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('border-terracota', 'text-marron');
         btn.classList.add('text-marronClaro');
@@ -102,8 +116,14 @@ function cambiarSeccion(seccion) {
     
     currentSection = seccion;
     if (window.playSound) window.playSound('click');
+    
+    // Si es la sección de profesionales, recargar por si hay cambios
+    if (seccion === 'profesionales') {
+        cargarProfesionales();
+    }
 }
 
+// Inicializar navegación
 document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const section = btn.getAttribute('data-section');
@@ -111,6 +131,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
     });
 });
 
+// Cargar datos al iniciar
 document.addEventListener('DOMContentLoaded', () => {
     if (window.DATOS_LOCALES) {
         cargarNoticias();

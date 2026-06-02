@@ -1,4 +1,4 @@
-// chat.js - Asistente COTOLAR con preguntas predeterminadas
+// chat.js - Asistente COTOLAR con respuestas completas
 
 function inicializarChat() {
     const bubble = document.getElementById('chatBubble');
@@ -17,17 +17,13 @@ function inicializarChat() {
     bubble.addEventListener('click', toggleChat);
     if (closeBtn) closeBtn.addEventListener('click', toggleChat);
     
-    // Enviar mensaje
     const sendMessage = async (question) => {
         if (!question.trim()) return;
-        
         addMessage(question, 'user');
         if (window.playSound) window.playSound('click');
         input.value = '';
         
-        // Mostrar indicador de escritura
         showTypingIndicator();
-        
         setTimeout(async () => {
             const respuesta = await buscarRespuesta(question);
             removeTypingIndicator();
@@ -36,18 +32,11 @@ function inicializarChat() {
         }, 500);
     };
     
-    // Evento del botón enviar
     if (sendBtn) sendBtn.addEventListener('click', () => sendMessage(input.value));
-    if (input) input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage(input.value);
-    });
+    if (input) input.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(input.value); });
     
-    // Eventos para los botones de sugerencias
     document.querySelectorAll('.suggestion-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const question = btn.getAttribute('data-question');
-            sendMessage(question);
-        });
+        btn.addEventListener('click', () => { sendMessage(btn.getAttribute('data-question')); });
     });
 }
 
@@ -69,7 +58,6 @@ function removeTypingIndicator() {
 function addMessage(text, sender) {
     const container = document.getElementById('chatMessages');
     if (!container) return;
-    
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender}`;
     msgDiv.textContent = text;
@@ -78,74 +66,68 @@ function addMessage(text, sender) {
 }
 
 async function buscarRespuesta(pregunta) {
-    const preguntaLower = pregunta.toLowerCase();
+    const p = pregunta.toLowerCase();
     const datos = window.DATOS_LOCALES;
     
     // MATRICULACIÓN
-    if (preguntaLower.includes('matrícula') || preguntaLower.includes('matricular') || preguntaLower.includes('inscripción') || preguntaLower.includes('como me matricula')) {
+    if (p.includes('matrícula') || p.includes('matricular') || p.includes('inscripción') || p.includes('como me matricula')) {
         return "📝 Para matricularte en COTOLAR necesitás:\n\n✅ Título de Terapia Ocupacional (copia autenticada)\n✅ DNI actualizado\n✅ Foto 4x4 fondo blanco\n✅ Comprobante de pago de arancel\n✅ Curso de Ética Profesional (válido 2 años)\n\n📞 ¿Más dudas? Contactanos al 380 412-3456";
     }
     
     // ARANCELES
-    if (preguntaLower.includes('arancel') || preguntaLower.includes('costo') || preguntaLower.includes('precio') || preguntaLower.includes('cuanto cuesta')) {
+    if (p.includes('arancel') || p.includes('costo') || p.includes('precio') || p.includes('cuanto cuesta')) {
         return "💰 Aranceles COTOLAR 2025:\n\n• Matrícula Inicial: $15.000\n• Renovación Anual: $8.500\n• Certificado de Buena Conducta: $2.000\n• Constancia de Matrícula: $1.200\n\n📅 Los precios pueden actualizarse cada año.";
     }
     
     // REQUISITOS
-    if (preguntaLower.includes('requisitos') || preguntaLower.includes('documentación') || preguntaLower.includes('que necesito')) {
+    if (p.includes('requisitos') || p.includes('documentación') || p.includes('que necesito')) {
         return "📋 Requisitos para matriculación:\n\n1. Título de Terapia Ocupacional (original y copia autenticada)\n2. DNI actualizado (frente y dorso)\n3. Foto 4x4 fondo blanco (últimos 6 meses)\n4. Comprobante de pago del arancel\n5. Certificado del Curso de Ética Profesional\n\n📌 Todos los documentos deben presentarse en la sede del colegio.";
     }
     
-    // CAPACITACIONES / CURSOS
-    if (preguntaLower.includes('capacitación') || preguntaLower.includes('curso') || preguntaLower.includes('jornada') || preguntaLower.includes('próximas')) {
+    // CAPACITACIONES
+    if (p.includes('capacitación') || p.includes('curso') || p.includes('jornada') || p.includes('próximas')) {
         const cursos = datos.capacitaciones;
         if (cursos && cursos.length > 0) {
             let respuesta = "🎓 Próximas capacitaciones:\n\n";
-            cursos.forEach(c => {
-                respuesta += `• ${c.nombre_curso}\n  📅 ${new Date(c.fecha_inicio).toLocaleDateString('es-AR')} | ${c.modalidad} | $${c.arancel_curso.toLocaleString()}\n\n`;
-            });
+            cursos.forEach(c => { respuesta += `• ${c.nombre_curso}\n  📅 ${new Date(c.fecha_inicio).toLocaleDateString('es-AR')} | ${c.modalidad} | $${c.arancel_curso.toLocaleString()}\n\n`; });
             return respuesta;
         }
-        return "🎓 Actualmente no hay capacitaciones programadas. Consultá más tarde o contactanos para más información.";
+        return "🎓 Actualmente no hay capacitaciones programadas. Consultá más tarde.";
     }
     
-    // UBICACIÓN / DIRECCIÓN
-    if (preguntaLower.includes('ubicación') || preguntaLower.includes('dirección') || preguntaLower.includes('dónde están') || preguntaLower.includes('donde queda')) {
+    // UBICACIÓN
+    if (p.includes('ubicación') || p.includes('dirección') || p.includes('dónde están') || p.includes('donde queda')) {
         return "📍 Nuestra sede está en:\n\nAv. Ramírez de Velazco 123, La Rioja Capital\n\n🕐 Horario: Lunes a Viernes de 8:00 a 14:00\n📞 Tel: 380 412-3456\n📧 Email: info@cotolar.org";
     }
     
     // HORARIOS
-    if (preguntaLower.includes('horario') || preguntaLower.includes('atención') || preguntaLower.includes('cuando abren')) {
+    if (p.includes('horario') || p.includes('atención') || p.includes('cuando abren')) {
         return "🕐 Horarios de atención:\n\nLunes a Viernes: 8:00 a 14:00\n\n📞 Consultas telefónicas: 380 412-3456\n📧 Consultas por email: info@cotolar.org";
     }
     
-    // CONTACTO / TELÉFONO
-    if (preguntaLower.includes('contacto') || preguntaLower.includes('teléfono') || preguntaLower.includes('whatsapp') || preguntaLower.includes('llamar')) {
+    // CONTACTO
+    if (p.includes('contacto') || p.includes('teléfono') || p.includes('whatsapp') || p.includes('llamar')) {
         return "📞 Datos de contacto:\n\n• Teléfono: 380 412-3456\n• Email: info@cotolar.org\n• Dirección: Av. Ramírez de Velazco 123, La Rioja Capital\n\n🕐 Atención: Lunes a Viernes 8:00 a 14:00";
     }
     
-    // Buscar en noticias
-    const noticia = datos.noticias.find(n => 
-        n.titulo.toLowerCase().includes(preguntaLower) || 
-        n.contenido.toLowerCase().includes(preguntaLower)
-    );
-    if (noticia) {
-        return `📰 ${noticia.titulo}: ${noticia.contenido.substring(0, 150)}...`;
+    // PROFESIONALES
+    if (p.includes('profesional') || p.includes('colegiado') || p.includes('matriculado')) {
+        const pro = window.PROFESIONALES_ACTIVOS || [];
+        if (pro.length > 0) {
+            let respuesta = "👥 Profesionales matriculados en COTOLAR:\n\n";
+            pro.slice(0, 10).forEach(p => { respuesta += `• ${p.nombre} - ${p.especialidad} (${p.localidad})\n`; });
+            if (pro.length > 10) respuesta += `\n... y ${pro.length - 10} más.`;
+            return respuesta;
+        }
+        return "👥 Actualmente hay más de 350 profesionales matriculados en COTOLAR en toda la provincia.";
     }
     
-    // Buscar en cursos específicos
-    const curso = datos.capacitaciones.find(c => 
-        c.nombre_curso.toLowerCase().includes(preguntaLower)
-    );
-    if (curso) {
-        return `🎓 ${curso.nombre_curso}\n\n📅 Fecha: ${new Date(curso.fecha_inicio).toLocaleDateString('es-AR')}\n📍 Modalidad: ${curso.modalidad}\n💰 Arancel: $${curso.arancel_curso.toLocaleString()}\n👨‍🏫 Instructor: ${curso.instructor}\n📍 Lugar: ${curso.lugar}`;
-    }
+    // NOTICIAS
+    const noticia = datos.noticias.find(n => n.titulo.toLowerCase().includes(p) || n.contenido.toLowerCase().includes(p));
+    if (noticia) return `📰 ${noticia.titulo}: ${noticia.contenido.substring(0, 150)}...`;
     
-    // Respuesta por defecto
-    return "📌 No encontré información exacta sobre eso. Te sugiero:\n\n• Revisar la sección Trámites en el menú\n• Consultar nuestras capacitaciones disponibles\n• Contactarnos directamente al 380 412-3456\n\n¿Podés reformular tu pregunta?";
+    // RESPUESTA POR DEFECTO
+    return "📌 No encontré información exacta sobre eso. Te sugiero:\n\n• Revisar la sección Trámites en el menú\n• Consultar nuestras capacitaciones disponibles\n• Contactarnos directamente al 380 412-3456\n• Escribir info@cotolar.org\n\n¿Podés reformular tu pregunta?";
 }
 
-// Inicializar el chat
-document.addEventListener('DOMContentLoaded', () => {
-    inicializarChat();
-});
+document.addEventListener('DOMContentLoaded', () => { inicializarChat(); });

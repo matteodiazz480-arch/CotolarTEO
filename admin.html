@@ -7,7 +7,7 @@
     <title>COTOLAR | Panel Admin</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     
@@ -31,7 +31,6 @@
 </head>
 <body class="bg-beige">
     
-    <!-- Sonidos -->
     <audio id="sound-click" preload="auto" src="sounds/click.mp3"></audio>
     <audio id="sound-error" preload="auto" src="sounds/error.mp3"></audio>
     <audio id="sound-notification" preload="auto" src="sounds/notification.mp3"></audio>
@@ -39,95 +38,54 @@
     
     <script>
         window.playSound = function(soundName) {
-            try {
-                const audio = document.getElementById(`sound-${soundName}`);
-                if (audio) {
-                    audio.currentTime = 0;
-                    audio.play().catch(e => console.log('Audio error:', e));
-                }
-            } catch(e) { console.log(e); }
+            try { const audio = document.getElementById(`sound-${soundName}`); if (audio) { audio.currentTime = 0; audio.play().catch(e => console.log('Audio error:', e)); } } catch(e) { console.log(e); }
         };
     </script>
     
-    <!-- Pantalla de Login -->
     <div id="loginScreen" class="min-h-screen flex items-center justify-center p-4">
         <div class="max-w-sm w-full animate-fadeIn">
             <div class="text-center mb-8">
-                <!-- LOGO MÁS GRANDE en login (de w-16 a w-24) -->
-                <div class="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg animate-pulse-slow overflow-hidden bg-white p-2">
-                    <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain">
-                </div>
+                <div class="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg animate-pulse-slow overflow-hidden bg-white p-2"><img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain"></div>
                 <h1 class="text-2xl font-bold text-marron tracking-wide">COTOLAR</h1>
                 <p class="text-marronClaro text-sm italic tracking-wide mt-1">Terapia Ocupacional · La Rioja</p>
                 <p class="text-marronClaro text-xs mt-2">Panel de Gestión</p>
             </div>
-            
             <div class="bg-white rounded-2xl shadow-xl p-6 border border-arena animate-slideUp">
-                <div class="mb-4">
-                    <label class="block text-marron font-semibold mb-2 text-sm">Email</label>
-                    <input type="email" id="adminEmail" value="admin@cotolar.org" 
-                           class="w-full px-4 py-3 border border-arena rounded-xl focus:outline-none focus:ring-2 focus:ring-terracota bg-beige">
-                </div>
-                <div class="mb-6">
-                    <label class="block text-marron font-semibold mb-2 text-sm">Contraseña</label>
-                    <input type="password" id="adminPassword" value="admin123" 
-                           class="w-full px-4 py-3 border border-arena rounded-xl focus:outline-none focus:ring-2 focus:ring-terracota bg-beige">
-                </div>
-                <button id="btnAdminLogin" class="w-full bg-terracota text-white py-3 rounded-xl font-semibold hover:bg-terracota/80 transition-all duration-300 shadow-md">
-                    <i class="fas fa-sign-in-alt mr-2"></i> Ingresar
-                </button>
-                <div class="mt-4 text-center">
-                    <a href="index.html" class="text-marronClaro text-sm hover:text-terracota transition">
-                        ← Volver al sitio público
-                    </a>
-                </div>
-                <div class="mt-6 pt-4 border-t border-arena text-center text-marronClaro text-xs">
-                    <p class="font-semibold text-marron">Credenciales de prueba:</p>
-                    <p>admin@cotolar.org / admin123</p>
-                </div>
+                <div class="mb-4"><label class="block text-marron font-semibold mb-2 text-sm">Email</label><input type="email" id="adminEmail" value="admin@cotolar.org" class="w-full px-4 py-3 border border-arena rounded-xl focus:outline-none focus:ring-2 focus:ring-terracota bg-beige"></div>
+                <div class="mb-6"><label class="block text-marron font-semibold mb-2 text-sm">Contraseña</label><input type="password" id="adminPassword" value="admin123" class="w-full px-4 py-3 border border-arena rounded-xl focus:outline-none focus:ring-2 focus:ring-terracota bg-beige"></div>
+                <button id="btnAdminLogin" class="w-full bg-terracota text-white py-3 rounded-xl font-semibold hover:bg-terracota/80 transition-all duration-300 shadow-md"><span class="material-icons text-base mr-2">login</span> Ingresar</button>
+                <div class="mt-4 text-center"><a href="index.html" class="text-marronClaro text-sm hover:text-terracota transition">← Volver al sitio público</a></div>
+                <div class="mt-6 pt-4 border-t border-arena text-center text-marronClaro text-xs"><p class="font-semibold text-marron">Credenciales de prueba:</p><p>admin@cotolar.org / admin123</p></div>
             </div>
         </div>
     </div>
     
-    <!-- Panel Admin -->
     <div id="adminPanel" style="display: none;">
         <header class="bg-gradient-to-r from-terracota to-oliva text-white py-3 px-4 shadow-md">
             <div class="max-w-6xl mx-auto flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <!-- LOGO MÁS GRANDE en header admin (de w-7 a w-10) -->
-                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1">
-                        <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain">
-                    </div>
-                    <span class="font-bold tracking-wide text-lg">COTOLAR Admin</span>
-                </div>
-                <button id="btnLogout" class="bg-white text-terracota px-4 py-1 rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300">
-                    <i class="fas fa-sign-out-alt mr-1"></i> Salir
-                </button>
+                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1"><img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain"></div><span class="font-bold tracking-wide text-lg">COTOLAR Admin</span></div>
+                <button id="btnLogout" class="bg-white text-terracota px-4 py-1 rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300"><span class="material-icons text-sm mr-1">logout</span> Salir</button>
             </div>
         </header>
         
         <nav class="bg-white border-b border-arena sticky top-0 z-40 shadow-sm">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="flex gap-4 overflow-x-auto py-3">
-                    <button class="admin-tab-btn px-3 py-2 text-marron font-semibold border-b-2 border-terracota whitespace-nowrap" data-tab="noticias">Noticias</button>
-                    <button class="admin-tab-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-tab="aranceles">Aranceles</button>
-                    <button class="admin-tab-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-tab="requisitos">Requisitos</button>
-                    <button class="admin-tab-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-tab="capacitaciones">Capacitaciones</button>
-                </div>
-            </div>
+            <div class="max-w-6xl mx-auto px-4"><div class="flex gap-4 overflow-x-auto py-3">
+                <button class="admin-tab-btn px-3 py-2 text-marron font-semibold border-b-2 border-terracota whitespace-nowrap" data-tab="noticias"><span class="material-icons text-base mr-1">newspaper</span> Noticias</button>
+                <button class="admin-tab-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-tab="aranceles"><span class="material-icons text-base mr-1">attach_money</span> Aranceles</button>
+                <button class="admin-tab-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-tab="requisitos"><span class="material-icons text-base mr-1">checklist</span> Requisitos</button>
+                <button class="admin-tab-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-tab="capacitaciones"><span class="material-icons text-base mr-1">school</span> Capacitaciones</button>
+                <button class="admin-tab-btn px-3 py-2 text-marronClaro font-semibold border-b-2 border-transparent hover:border-terracota whitespace-nowrap" data-tab="profesionales"><span class="material-icons text-base mr-1">group</span> Profesionales</button>
+            </div></div>
         </nav>
         
         <main class="max-w-6xl mx-auto px-4 py-8 pb-24">
             <div class="bg-white rounded-2xl shadow-md p-6 border border-arena mb-6">
                 <h2 class="text-xl font-bold text-marron mb-4" id="formTitle">Agregar Noticia</h2>
                 <div id="formFields"></div>
-                <button id="btnSave" class="bg-terracota text-white px-6 py-2 rounded-xl font-semibold hover:bg-terracota/80 transition-all duration-300 mt-3 shadow-sm">
-                    <i class="fas fa-save mr-2"></i> Guardar
-                </button>
+                <button id="btnSave" class="bg-terracota text-white px-6 py-2 rounded-xl font-semibold hover:bg-terracota/80 transition-all duration-300 mt-3 shadow-sm"><span class="material-icons text-base mr-1">save</span> Guardar</button>
             </div>
-            
             <div class="bg-white rounded-2xl shadow-md p-6 border border-arena">
-                <h2 class="text-xl font-bold text-marron mb-4">Listado</h2>
+                <h2 class="text-xl font-bold text-marron mb-4" id="listTitle">Listado</h2>
                 <div id="adminList"></div>
             </div>
         </main>
@@ -137,11 +95,7 @@
     <script src="admin.js"></script>
     
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-                .then(reg => console.log('✅ Service Worker registrado'))
-                .catch(err => console.log('❌ Error SW:', err));
-        }
+        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').then(reg => console.log('✅ Service Worker registrado')).catch(err => console.log('❌ Error SW:', err)); }
     </script>
 </body>
 </html>
