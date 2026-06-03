@@ -148,7 +148,7 @@
         </div>
     </section>
     
-    <!-- STATS (fuera de las pestañas, se ve siempre) -->
+    <!-- STATS (fuera de pestañas, visibles siempre) -->
     <section class="py-8 md:py-12 px-4 border-b border-azulBorde bg-azulCard">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 text-center">
             <div class="animate-scaleIn"><div class="text-3xl md:text-4xl font-bold text-azulPrimario">+350</div><p class="text-azulSec text-sm md:text-base mt-2">Profesionales Matriculados</p></div>
@@ -193,28 +193,10 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main class="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8 pb-24 md:pb-32">
         
-        <!-- Sección Inicio (incluye "Quiénes somos") -->
+        <!-- ================= SECCIÓN INICIO ================= -->
         <div id="seccion-inicio" class="seccion-publica animate-fadeIn">
-            <!-- Tarjetas de servicios -->
-            <div class="grid md:grid-cols-3 gap-5 md:gap-6 mb-8 md:mb-10">
-                <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
-                    <span class="material-icons text-azulPrimario text-4xl mb-3">badge</span>
-                    <h3 class="font-bold text-azulMarino text-lg mb-1">Matrícula Habilitante</h3>
-                    <p class="text-azulSec text-sm">Verificá la habilitación legal de cualquier profesional.</p>
-                </div>
-                <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
-                    <span class="material-icons text-azulPrimario text-4xl mb-3">assignment</span>
-                    <h3 class="font-bold text-azulMarino text-lg mb-1">Trámites y Requisitos</h3>
-                    <p class="text-azulSec text-sm">Información para iniciar o renovar tu matrícula.</p>
-                </div>
-                <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
-                    <span class="material-icons text-azulPrimario text-4xl mb-3">support_agent</span>
-                    <h3 class="font-bold text-azulMarino text-lg mb-1">Atención al Colegiado</h3>
-                    <p class="text-azulSec text-sm">Consultas, trámites presenciales y administrativos.</p>
-                </div>
-            </div>
             
-            <!-- SECCIÓN QUIÉNES SOMOS (solo visible en Inicio) -->
+            <!-- 1️⃣ SECCIÓN "¿QUIÉNES SOMOS?" (PRIMERO) -->
             <div class="mb-10">
                 <div class="flex flex-col md:flex-row items-center gap-8">
                     <!-- Texto -->
@@ -248,12 +230,32 @@
                 </div>
             </div>
             
-            <!-- Noticias -->
+            <!-- 2️⃣ TARJETAS DE SERVICIOS (LUEGO) -->
+            <div class="grid md:grid-cols-3 gap-5 md:gap-6 mb-10">
+                <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
+                    <span class="material-icons text-azulPrimario text-4xl mb-3">badge</span>
+                    <h3 class="font-bold text-azulMarino text-lg mb-1">Matrícula Habilitante</h3>
+                    <p class="text-azulSec text-sm">Verificá la habilitación legal de cualquier profesional.</p>
+                </div>
+                <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
+                    <span class="material-icons text-azulPrimario text-4xl mb-3">assignment</span>
+                    <h3 class="font-bold text-azulMarino text-lg mb-1">Trámites y Requisitos</h3>
+                    <p class="text-azulSec text-sm">Información para iniciar o renovar tu matrícula.</p>
+                </div>
+                <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
+                    <span class="material-icons text-azulPrimario text-4xl mb-3">support_agent</span>
+                    <h3 class="font-bold text-azulMarino text-lg mb-1">Atención al Colegiado</h3>
+                    <p class="text-azulSec text-sm">Consultas, trámites presenciales y administrativos.</p>
+                </div>
+            </div>
+            
+            <!-- 3️⃣ NOTICIAS (AL FINAL) -->
             <h2 class="text-2xl font-bold text-azulMarino mb-2">Noticias Institucionales</h2>
             <p class="text-azulSec mb-6">Mantente informado sobre novedades del colegio.</p>
             <div id="noticiasContainer" class="grid md:grid-cols-2 gap-6"></div>
         </div>
         
+        <!-- ================= RESTO DE SECCIONES (Trámites, Capacitaciones, etc.) ================= -->
         <!-- Sección Trámites -->
         <div id="seccion-tramites" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-5">Trámites y Requisitos</h1>
