@@ -32,7 +32,7 @@
 </head>
 <body class="bg-azulClaro">
     
-    <!-- MODAL DE AVISO DE DEMO (sin cambios) -->
+    <!-- MODAL DE AVISO DE DEMO -->
     <div id="demoModal" class="fixed inset-0 z-[200] flex items-center justify-center p-4" style="background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px);">
         <div class="bg-azulCard rounded-2xl max-w-md w-full shadow-2xl border border-azulBorde animate-scaleIn overflow-hidden">
             <div class="bg-gradient-to-r from-azulPrimario to-celeste p-4 text-white">
@@ -66,7 +66,7 @@
     <header class="bg-azulCard border-b border-azulBorde sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
             <div class="flex items-center gap-3 md:gap-5">
-                <div class="w-10 h-10 md:w-20 md:h-20 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
+                <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
                     <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-1">
                 </div>
                 <div>
@@ -148,43 +148,7 @@
         </div>
     </section>
     
-        <!-- SECCIÓN QUIÉNES SOMOS con imagen a la derecha y texto ampliado -->
-    <section class="py-6 md:py-8 px-4 bg-azulCard border-b border-azulBorde">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-8">
-                <!-- Texto -->
-                <div class="flex-1 text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
-                        <span class="material-icons text-azulPrimario text-3xl">info</span>
-                        <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">¿Quiénes somos?</h2>
-                    </div>
-                    <div class="bg-azulClaro rounded-xl p-5 shadow-md border border-azulBorde">
-                        <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
-                            El <strong>Colegio de Terapistas Ocupacionales de La Rioja (CO.T.O.LaR)</strong> es la institución que agrupa y regula a todos los terapistas ocupacionales que ejercen en la provincia de La Rioja. Nació con la <strong>Ley 5511 el 20 de diciembre de 1990</strong>, y La Rioja fue una de las primeras provincias de Argentina en tener colegio propio.
-                        </p>
-                        <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
-                            Básicamente es quien lleva el control de la <strong>matrícula profesional</strong> de terapista ocupacional necesaria para ejercer legalmente en La Rioja. Una vez registrado y matriculado, habilita el desempeño en hospitales, centros, escuelas estatales o de forma particular.
-                        </p>
-                        <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
-                            El colegio es quien <strong>controla que se cumpla la ley, el reglamento y el código de ética</strong>. Si hay algún problema ético, mala praxis o ejercicio ilegal de la profesión, el colegio interviene. También defiende los derechos de los colegiados y representa a la Terapia Ocupacional frente al Ministerio de Salud y otras instituciones.
-                        </p>
-                        <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
-                            Otra función importante es <strong>tener al día el registro de todos los profesionales que están activos en la provincia</strong>. Eso sirve para que el Estado y la sociedad sepan quiénes están habilitados para trabajar. Pueden incorporarse quienes tengan el título universitario de terapista ocupacional o un título equivalente homologado.
-                        </p>
-                        <p class="text-azulMarino text-sm md:text-base leading-relaxed">
-                            En La Rioja la terapia ocupacional tiene historia, porque <strong>acá se hizo el primer Congreso Argentino de Terapia Ocupacional el 10 de septiembre de 1985</strong>, y por eso ese día se celebra el día de la profesión en todo el país.
-                        </p>
-                    </div>
-                </div>
-                <!-- Imagen lateral -->
-                <div class="flex-1 flex justify-center">
-                    <img src="image2.png" alt="Terapia Ocupacional" class="rounded-xl shadow-lg max-w-full h-auto border border-azulBorde" style="max-height: 500px; object-fit: cover;">
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- STATS (sin cambios) -->
+    <!-- STATS (fuera de las pestañas, se ve siempre) -->
     <section class="py-8 md:py-12 px-4 border-b border-azulBorde bg-azulCard">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 text-center">
             <div class="animate-scaleIn"><div class="text-3xl md:text-4xl font-bold text-azulPrimario">+350</div><p class="text-azulSec text-sm md:text-base mt-2">Profesionales Matriculados</p></div>
@@ -226,10 +190,12 @@
         </div>
     </nav>
     
-    <!-- CONTENIDO PRINCIPAL (secciones iguales, sin emojis) -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8 pb-24 md:pb-32">
-        <!-- Inicio -->
+        
+        <!-- Sección Inicio (incluye "Quiénes somos") -->
         <div id="seccion-inicio" class="seccion-publica animate-fadeIn">
+            <!-- Tarjetas de servicios -->
             <div class="grid md:grid-cols-3 gap-5 md:gap-6 mb-8 md:mb-10">
                 <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
                     <span class="material-icons text-azulPrimario text-4xl mb-3">badge</span>
@@ -247,19 +213,55 @@
                     <p class="text-azulSec text-sm">Consultas, trámites presenciales y administrativos.</p>
                 </div>
             </div>
+            
+            <!-- SECCIÓN QUIÉNES SOMOS (solo visible en Inicio) -->
+            <div class="mb-10">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <!-- Texto -->
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                            <span class="material-icons text-azulPrimario text-3xl">info</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">¿Quiénes somos?</h2>
+                        </div>
+                        <div class="bg-azulClaro rounded-xl p-5 shadow-md border border-azulBorde">
+                            <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
+                                El <strong>Colegio de Terapistas Ocupacionales de La Rioja (CO.T.O.LaR)</strong> es la institución que agrupa y regula a todos los terapistas ocupacionales que ejercen en la provincia de La Rioja. Nació con la <strong>Ley 5511 el 20 de diciembre de 1990</strong>, y La Rioja fue una de las primeras provincias de Argentina en tener colegio propio.
+                            </p>
+                            <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
+                                Básicamente es quien lleva el control de la <strong>matrícula profesional</strong> de terapista ocupacional necesaria para ejercer legalmente en La Rioja. Una vez registrado y matriculado, habilita el desempeño en hospitales, centros, escuelas estatales o de forma particular.
+                            </p>
+                            <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
+                                El colegio es quien <strong>controla que se cumpla la ley, el reglamento y el código de ética</strong>. Si hay algún problema ético, mala praxis o ejercicio ilegal de la profesión, el colegio interviene. También defiende los derechos de los colegiados y representa a la Terapia Ocupacional frente al Ministerio de Salud y otras instituciones.
+                            </p>
+                            <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
+                                Otra función importante es <strong>tener al día el registro de todos los profesionales que están activos en la provincia</strong>. Eso sirve para que el Estado y la sociedad sepan quiénes están habilitados para trabajar. Pueden incorporarse quienes tengan el título universitario de terapista ocupacional o un título equivalente homologado.
+                            </p>
+                            <p class="text-azulMarino text-sm md:text-base leading-relaxed">
+                                En La Rioja la terapia ocupacional tiene historia, porque <strong>acá se hizo el primer Congreso Argentino de Terapia Ocupacional el 10 de septiembre de 1985</strong>, y por eso ese día se celebra el día de la profesión en todo el país.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Imagen lateral -->
+                    <div class="flex-1 flex justify-center">
+                        <img src="image2.png" alt="Terapia Ocupacional" class="rounded-xl shadow-lg max-w-full h-auto border border-azulBorde" style="max-height: 320px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Noticias -->
             <h2 class="text-2xl font-bold text-azulMarino mb-2">Noticias Institucionales</h2>
             <p class="text-azulSec mb-6">Mantente informado sobre novedades del colegio.</p>
             <div id="noticiasContainer" class="grid md:grid-cols-2 gap-6"></div>
         </div>
         
-        <!-- Trámites -->
+        <!-- Sección Trámites -->
         <div id="seccion-tramites" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-5">Trámites y Requisitos</h1>
             <div class="mb-8"><h2 class="text-xl font-semibold text-azulPrimario mb-4">Aranceles Vigentes</h2><div id="arancelesContainer" class="grid md:grid-cols-2 gap-4"></div></div>
             <div><h2 class="text-xl font-semibold text-azulPrimario mb-4">Requisitos para Matriculación</h2><div id="requisitosContainer" class="space-y-3"></div></div>
         </div>
         
-        <!-- Capacitaciones -->
+        <!-- Sección Capacitaciones -->
         <div id="seccion-capacitaciones" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-5">Capacitaciones</h1>
             <div id="capacitacionesContainer" class="grid md:grid-cols-2 gap-6"></div>
@@ -270,7 +272,7 @@
             </div>
         </div>
         
-        <!-- Profesionales -->
+        <!-- Sección Profesionales -->
         <div id="seccion-profesionales" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-3">Profesionales Activos</h1>
             <p class="text-azulSec mb-6">Colegiados matriculados en COTOLAR</p>
@@ -278,21 +280,21 @@
             <div class="mt-6 text-center"><span class="text-azulSec">Total de profesionales: <span id="totalProfesionales" class="font-bold text-azulPrimario">0</span></span></div>
         </div>
         
-        <!-- Autoridades -->
+        <!-- Sección Autoridades -->
         <div id="seccion-autoridades" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-3">Autoridades del Colegio</h1>
             <p class="text-azulSec mb-6">Comisión directiva COTOLAR período 2024-2028</p>
             <div id="autoridadesContainer" class="grid md:grid-cols-2 gap-4"></div>
         </div>
         
-        <!-- Normativa -->
+        <!-- Sección Normativa -->
         <div id="seccion-normativa" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-3">Normativa Vigente</h1>
             <p class="text-azulSec mb-6">Marco legal y ético de la Terapia Ocupacional en Argentina</p>
             <div id="normativaContainer"></div>
         </div>
         
-        <!-- Descargar App (sin emojis) -->
+        <!-- Sección Descargar App -->
         <div id="seccion-descargar" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-3">Descargar la App</h1>
             <p class="text-azulSec mb-6">Instalá COTOLAR en tu celular como una aplicación nativa</p>
@@ -325,7 +327,7 @@
             </div>
         </div>
         
-        <!-- Contacto -->
+        <!-- Sección Contacto -->
         <div id="seccion-contacto" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-5">Contacto</h1>
             <div class="grid md:grid-cols-2 gap-6">
@@ -351,7 +353,7 @@
         </div>
     </footer>
     
-    <!-- Robotito Asistente (sin cambios) -->
+    <!-- Robotito Asistente -->
     <div class="chat-widget">
         <div class="chat-bubble" id="chatBubble"><span class="material-icons text-white text-2xl">smart_toy</span></div>
         <div class="chat-panel" id="chatPanel">
@@ -408,6 +410,7 @@
         document.getElementById('androidInstallBtn')?.addEventListener('click', instalarPWA);
         document.getElementById('iosInstallBtn')?.addEventListener('click', instalarPWA);
         
+        // Menú hamburguesa
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const closeMenuBtn = document.getElementById('closeMenuBtn');
