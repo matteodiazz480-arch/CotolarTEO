@@ -1,11 +1,11 @@
-// data.js - COTOLAR con soporte para imágenes
+// data.js - COTOLAR
 
 window.DATOS_LOCALES = {
     noticias: [
         { 
             id: 1, 
             titulo: "Jornada de Actualización en Neurorehabilitación 2025", 
-            contenido: "El COTOLAR invita a todos los profesionales matriculados a participar de la jornada anual de actualización en técnicas de neurorehabilitación. Cupos limitados.\n\nLa jornada contará con expositores nacionales e internacionales, talleres prácticos y espacios de intercambio. Se entregarán certificados de asistencia.\n\n📅 Fecha: 10 de julio de 2025\n📍 Lugar: Centro de Convenciones, La Rioja Capital\n💰 Arancel: $12.000 para matriculados, $15.000 para no matriculados\n\n📌 Inscripciones abiertas hasta el 5 de julio.",
+            contenido: "El COTOLAR invita a todos los profesionales matriculados a participar de la jornada anual de actualización en técnicas de neurorehabilitación. Cupos limitados.\n\nLa jornada contará con expositores nacionales e internacionales, talleres prácticos y espacios de intercambio.",
             destacada: true, 
             fecha: "2025-05-28",
             categoria: "Capacitación",
@@ -14,12 +14,21 @@ window.DATOS_LOCALES = {
         { 
             id: 2, 
             titulo: "Nuevo proceso de matriculación: requisitos actualizados", 
-            contenido: "Se informa que a partir del 1° de junio entran en vigencia los nuevos requisitos para la matriculación inicial y la renovación anual de matrícula profesional.\n\n✅ Cambios principales:\n• Se incorpora curso de Ética Profesional obligatorio\n• Actualización de aranceles\n• Nuevos plazos de presentación\n\n📌 Para más información, comunicarse al 380 412-3456.",
+            contenido: "Se informa que a partir del 1° de junio entran en vigencia los nuevos requisitos para la matriculación inicial y la renovación anual de matrícula profesional.",
             destacada: true, 
             fecha: "2025-05-15",
             categoria: "Institucional",
             imagen: ""
         },
+        { 
+            id: 3, 
+            titulo: "Convenio con la Universidad Nacional de La Rioja", 
+            contenido: "El Colegio firmó un convenio de colaboración académica con la UNLaR para promover la formación continua y la inserción laboral de los nuevos egresados de Terapia Ocupacional.",
+            destacada: false, 
+            fecha: "2025-05-03",
+            categoria: "Convenios",
+            imagen: ""
+        }
     ],
     
     aranceles: [
@@ -47,7 +56,7 @@ window.DATOS_LOCALES = {
             lugar: "Centro de Convenciones, La Rioja Capital",
             vacantes: 80,
             imagen: "",
-            contenido: "Jornada intensiva con expertos en neurorehabilitación. Se abordarán las últimas técnicas y avances en el tratamiento de pacientes con daño neurológico."
+            contenido: "Jornada intensiva con expertos en neurorehabilitación."
         },
         { 
             id: 2, 
@@ -59,19 +68,88 @@ window.DATOS_LOCALES = {
             lugar: "Plataforma Zoom",
             vacantes: 50,
             imagen: "",
-            contenido: "Curso teórico-práctico sobre intervenciones de Terapia Ocupacional en dispositivos de salud mental comunitarios."
+            contenido: "Curso teórico-práctico sobre intervenciones en salud mental."
         }
     ],
     
     normativa: {
         id: 1,
-        codigoEtica: "CÓDIGO DE ÉTICA DE TERAPIA OCUPACIONAL DE LA REPÚBLICA ARGENTINA\n\nArtículo 1°: El Terapeuta Ocupacional tiene como objetivo principal la promoción, prevención, habilitación y rehabilitación de las personas con discapacidad o en situación de vulnerabilidad, respetando su dignidad y autonomía.\n\nArtículo 2°: Debe mantener una conducta ética y profesional en todo momento, actuando con honestidad, responsabilidad y respeto hacia sus pacientes, colegas y otros profesionales de la salud.\n\nArtículo 3°: La confidencialidad de la información del paciente es un deber fundamental, solo puede ser revelada con consentimiento expreso o por mandato judicial.\n\nArtículo 4°: El Terapeuta Ocupacional debe mantener actualizados sus conocimientos a través de la formación continua y capacitación permanente.\n\nArtículo 5°: Debe denunciar cualquier práctica profesional que vaya en contra de la ética o que ponga en riesgo la salud de los pacientes.\n\nArtículo 6°: Las relaciones con otros profesionales deben basarse en el respeto mutuo y la colaboración interdisciplinaria.\n\nArtículo 7°: Está prohibido utilizar la posición profesional para obtener beneficios personales indebidos.\n\nArtículo 8°: El incumplimiento de este código será sancionado según lo establecido por el Colegio de Terapia Ocupacional.",
+        codigoEtica: "CÓDIGO DE ÉTICA DE TERAPIA OCUPACIONAL DE LA REPÚBLICA ARGENTINA\n\nArtículo 1°: El Terapeuta Ocupacional tiene como objetivo principal la promoción, prevención, habilitación y rehabilitación de las personas con discapacidad o en situación de vulnerabilidad, respetando su dignidad y autonomía.\n\nArtículo 2°: Debe mantener una conducta ética y profesional en todo momento, actuando con honestidad, responsabilidad y respeto hacia sus pacientes, colegas y otros profesionales de la salud.\n\nArtículo 3°: La confidencialidad de la información del paciente es un deber fundamental, solo puede ser revelada con consentimiento expreso o por mandato judicial.",
         
-        ley: "LEY NACIONAL DE TERAPIA OCUPACIONAL N° 27.123\n\nCAPÍTULO I - DISPOSICIONES GENERALES\n\nArtículo 1°: Declárese de interés nacional la formación, el desarrollo y la práctica profesional de la Terapia Ocupacional en todo el territorio de la República Argentina.\n\nArtículo 2°: La Terapia Ocupacional es una profesión del área de la salud que tiene por objeto el estudio, prevención, tratamiento y rehabilitación de personas con limitaciones en su desempeño ocupacional.\n\nCAPÍTULO II - DEL EJERCICIO PROFESIONAL\n\nArtículo 5°: Para ejercer la Terapia Ocupacional se requiere:\na) Poseer título de Terapeuta Ocupacional expedido por universidad reconocida.\nb) Estar matriculado en el colegio profesional correspondiente.\nc) Cumplir con los requisitos de formación continua establecidos.\n\nArtículo 8°: El ejercicio profesional incluye:\na) Evaluación y diagnóstico ocupacional.\nb) Diseño e implementación de planes de intervención.\nc) Asesoramiento y consultoría.\nd) Docencia e investigación en Terapia Ocupacional.\n\nCAPÍTULO III - DE LOS COLEGIOS PROFESIONALES\n\nArtículo 12°: Los colegios profesionales son los organismos encargados de:\na) Regular y fiscalizar el ejercicio profesional.\nb) Llevar el registro de matriculados.\nc) Promover la formación continua.\nd) Velar por el cumplimiento del código de ética.\n\nCAPÍTULO IV - SANCIONES\n\nArtículo 20°: Las sanciones aplicables por infracciones a la presente ley son:\na) Apercibimiento.\nb) Multa.\nc) Suspensión de la matrícula.\nd) Cancelación de la matrícula."
+        ley: "LEY NACIONAL DE TERAPIA OCUPACIONAL N° 27.123\n\nArtículo 1°: Declárese de interés nacional la formación, el desarrollo y la práctica profesional de la Terapia Ocupacional en todo el territorio de la República Argentina.\n\nArtículo 2°: La Terapia Ocupacional es una profesión del área de la salud que tiene por objeto el estudio, prevención, tratamiento y rehabilitación de personas con limitaciones en su desempeño ocupacional."
     }
 };
 
-// Autoridades ordenadas por jerarquía
+// MATRICULADOS (nueva tabla para gestión)
+window.MATRICULADOS = [
+    { 
+        id: 1, 
+        nroMatricula: "TO-001", 
+        nombre: "Lic. María Eugenia Pérez", 
+        dni: "30123456", 
+        fechaMatriculacion: "2023-01-15",
+        fechaVencimiento: "2025-12-31",
+        estado: "Activo",
+        especialidad: "Neurorehabilitación",
+        localidad: "Capital",
+        telefono: "380-4123456",
+        email: "maria.perez@cotolar.org"
+    },
+    { 
+        id: 2, 
+        nroMatricula: "TO-002", 
+        nombre: "Lic. Carlos Rodríguez", 
+        dni: "31234567", 
+        fechaMatriculacion: "2023-03-20",
+        fechaVencimiento: "2025-12-31",
+        estado: "Activo",
+        especialidad: "Pediatría",
+        localidad: "Capital",
+        telefono: "380-4234567",
+        email: "carlos.rodriguez@cotolar.org"
+    },
+    { 
+        id: 3, 
+        nroMatricula: "TO-003", 
+        nombre: "Dra. Laura Gómez", 
+        dni: "32345678", 
+        fechaMatriculacion: "2022-06-10",
+        fechaVencimiento: "2025-06-30",
+        estado: "Por renovar",
+        especialidad: "Salud Mental",
+        localidad: "Chilecito",
+        telefono: "382-4345678",
+        email: "laura.gomez@cotolar.org"
+    },
+    { 
+        id: 4, 
+        nroMatricula: "TO-004", 
+        nombre: "Lic. Ana Martínez", 
+        dni: "33456789", 
+        fechaMatriculacion: "2024-01-05",
+        fechaVencimiento: "2025-12-31",
+        estado: "Activo",
+        especialidad: "Geriatría",
+        localidad: "Capital",
+        telefono: "380-4456789",
+        email: "ana.martinez@cotolar.org"
+    },
+    { 
+        id: 5, 
+        nroMatricula: "TO-005", 
+        nombre: "Lic. Roberto Sánchez", 
+        dni: "34567890", 
+        fechaMatriculacion: "2024-02-15",
+        fechaVencimiento: "2025-12-31",
+        estado: "Activo",
+        especialidad: "Discapacidad",
+        localidad: "Aimogasta",
+        telefono: "382-4567890",
+        email: "roberto.sanchez@cotolar.org"
+    }
+];
+
+// Autoridades
 window.AUTORIDADES = [
     { id: 1, nombre: "Lic. María José Fernández", cargo: "Presidente", orden: 1, foto: "", descripcion: "Presidente del COTOLAR período 2024-2028" },
     { id: 2, nombre: "Dr. Carlos Alberto Méndez", cargo: "Vicepresidente", orden: 2, foto: "", descripcion: "Vicepresidente del Colegio" },
@@ -82,21 +160,14 @@ window.AUTORIDADES = [
     { id: 7, nombre: "Lic. Verónica del Carmen Luna", cargo: "Revisora de Cuentas", orden: 7, foto: "", descripcion: "Revisora de Cuentas" }
 ];
 
-// Profesionales activos
-window.PROFESIONALES_ACTIVOS = [
-    { id: 1, nombre: "Lic. María Eugenia Pérez", especialidad: "Neurorehabilitación", localidad: "Capital", foto: "" },
-    { id: 2, nombre: "Lic. Carlos Rodríguez", especialidad: "Pediatría", localidad: "Capital", foto: "" },
-    { id: 3, nombre: "Dra. Laura Gómez", especialidad: "Salud Mental", localidad: "Chilecito", foto: "" },
-    { id: 4, nombre: "Lic. Ana Martínez", especialidad: "Geriatría", localidad: "Capital", foto: "" },
-    { id: 5, nombre: "Lic. Roberto Sánchez", especialidad: "Discapacidad", localidad: "Aimogasta", foto: "" },
-    { id: 6, nombre: "Lic. Silvia López", especialidad: "Laboral", localidad: "Capital", foto: "" },
-    { id: 7, nombre: "Lic. Fernando Díaz", especialidad: "Neurodesarrollo", localidad: "Castro Barros", foto: "" },
-    { id: 8, nombre: "Lic. Marcela Romero", especialidad: "Comunitaria", localidad: "Chamical", foto: "" },
-    { id: 9, nombre: "Lic. Pablo González", especialidad: "Educación", localidad: "Capital", foto: "" },
-    { id: 10, nombre: "Lic. Verónica Fernández", especialidad: "Clínica", localidad: "Chepes", foto: "" },
-    { id: 11, nombre: "Lic. Daniel Morales", especialidad: "Rehabilitación", localidad: "Villa Unión", foto: "" },
-    { id: 12, nombre: "Lic. Carolina Flores", especialidad: "Infantil", localidad: "Capital", foto: "" }
-];
+// Profesionales activos (versión simplificada, mantiene compatibilidad)
+window.PROFESIONALES_ACTIVOS = window.MATRICULADOS.filter(m => m.estado === "Activo").map(m => ({
+    id: m.id,
+    nombre: m.nombre,
+    especialidad: m.especialidad,
+    localidad: m.localidad,
+    foto: ""
+}));
 
 // Usuarios válidos
 window.USUARIOS_VALIDOS = [
