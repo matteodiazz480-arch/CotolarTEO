@@ -283,3 +283,22 @@ button, a, .nav-btn, .chat-bubble { cursor: pointer; touch-action: manipulation;
 .bg-gradient-to-br {
     background: linear-gradient(135deg, rgba(41,128,185,0.1), rgba(93,173,226,0.1)) !important;
 }
+
+/* Animación de la manita saludando */
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(10deg); }
+    80% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+.animate-wave {
+    animation: wave 1.5s ease-in-out infinite;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+.animate-wave:hover {
+    transform: scale(1.1);
+}
