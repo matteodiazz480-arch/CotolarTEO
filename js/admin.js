@@ -3,6 +3,153 @@
 let currentTab = 'noticias';
 let editingId = null;
 
+// ========== GENERAR CONSTANCIA PDF ==========
+function generarConstanciaPDF(matriculado) {
+    // Crear un elemento temporal para el contenido del PDF
+    const contenido = `
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Constancia de Matrícula - ${matriculado.nroMatricula}</title>
+            <style>
+                body {
+                    font-family: 'Times New Roman', Georgia, serif;
+                    margin: 0;
+                    padding: 40px;
+                    background: white;
+                }
+                .container {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    border: 2px solid #2980B9;
+                    padding: 30px;
+                    border-radius: 10px;
+                }
+                .header {
+                    text-align: center;
+                    margin-bottom: 30px;
+                    border-bottom: 2px solid #2980B9;
+                    padding-bottom: 20px;
+                }
+                .logo {
+                    font-size: 28px;
+                    font-weight: bold;
+                    color: #154360;
+                }
+                .subtitulo {
+                    font-size: 14px;
+                    color: #2E86C1;
+                    margin-top: 5px;
+                }
+                .titulo-documento {
+                    text-align: center;
+                    font-size: 22px;
+                    font-weight: bold;
+                    margin: 30px 0;
+                    color: #154360;
+                    text-transform: uppercase;
+                }
+                .contenido {
+                    margin: 30px 0;
+                    line-height: 1.8;
+                }
+                .datos {
+                    background: #EAF2F8;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                }
+                .firma {
+                    margin-top: 50px;
+                    text-align: center;
+                }
+                .firma-linea {
+                    width: 250px;
+                    margin: 20px auto 0;
+                    border-top: 1px solid #000;
+                    padding-top: 10px;
+                }
+                .footer {
+                    text-align: center;
+                    font-size: 11px;
+                    color: #666;
+                    margin-top: 40px;
+                    border-top: 1px solid #ccc;
+                    padding-top: 15px;
+                }
+                .estado-activo {
+                    color: green;
+                    font-weight: bold;
+                }
+                .estado-por-renovar {
+                    color: orange;
+                    font-weight: bold;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <div class="logo">COTOLAR</div>
+                    <div class="subtitulo">Colegio de Terapistas Ocupacionales de La Rioja</div>
+                    <div class="subtitulo">Ley Provincial N° 5511 | Fundado 20/12/1990</div>
+                </div>
+                
+                <div class="titulo-documento">CONSTANCIA DE MATRÍCULA</div>
+                
+                <div class="contenido">
+                    <p>El Colegio de Terapistas Ocupacionales de La Rioja <strong>COTOLAR</strong>, conforme a las facultades otorgadas por la <strong>Ley Provincial N° 5511</strong>,</p>
+                    
+                    <p style="text-align: center; margin: 25px 0;"><strong>CERTIFICA</strong></p>
+                    
+                    <p>Que el/la profesional <strong>${matriculado.nombre}</strong>, DNI N° <strong>${matriculado.dni}</strong>, se encuentra debidamente matriculado/a en esta institución con el N° de Matrícula <strong>${matriculado.nroMatricula}</strong>.</p>
+                    
+                    <div class="datos">
+                        <p><strong>📋 Datos del profesional:</strong></p>
+                        <p>• Matrícula N°: ${matriculado.nroMatricula}</p>
+                        <p>• Fecha de matriculación: ${new Date(matriculado.fechaMatriculacion).toLocaleDateString('es-AR')}</p>
+                        <p>• Fecha de vencimiento: ${new Date(matriculado.fechaVencimiento).toLocaleDateString('es-AR')}</p>
+                        <p>• Especialidad: ${matriculado.especialidad}</p>
+                        <p>• Localidad: ${matriculado.localidad}</p>
+                        <p>• Estado: <span class="${matriculado.estado === 'Activo' ? 'estado-activo' : 'estado-por-renovar'}">${matriculado.estado}</span></p>
+                    </div>
+                    
+                    <p>El/la profesional se encuentra habilitado/a para ejercer la Terapia Ocupacional en todo el ámbito de la provincia de La Rioja, cumpliendo con las normativas vigentes y el Código de Ética.</p>
+                    
+                    <p>Se extiende la presente constancia a solicitud del interesado para los fines que estime convenientes.</p>
+                </div>
+                
+                <div class="firma">
+                    <div class="firma-linea">Lic. María José Fernández</div>
+                    <div>PRESIDENTE</div>
+                </div>
+                
+                <div class="footer">
+                    <p>Av. Ramírez de Velazco 123 - La Rioja Capital</p>
+                    <p>contacto@cotolar.org.ar | www.cotolar.org.ar</p>
+                    <p>Documento emitido el ${new Date().toLocaleDateString('es-AR')} a las ${new Date().toLocaleTimeString('es-AR')}</p>
+                </div>
+            </div>
+        </body>
+        </html>
+    `;
+    
+    // Crear blob y descargar
+    const blob = new Blob([contenido], { type: 'application/pdf' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.href = url;
+    link.download = `Constancia_Matricula_${matriculado.nroMatricula}_${matriculado.nombre.replace(/\s/g, '_')}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    if (window.playSound) window.playSound('success');
+    alert('Constancia generada correctamente');
+}
+
+
 function checkAdminSession() {
     const session = localStorage.getItem('adminSession');
     if (session) {
@@ -216,48 +363,36 @@ function cargarAdminList() {
     const container = document.getElementById('adminList');
     
     if (currentTab === 'matriculados') {
-        const matriculados = window.MATRICULADOS || [];
-        if (matriculados.length === 0) {
-            container.innerHTML = '<p class="text-azulSec text-center py-4">No hay matriculados cargados.</p>';
-            return;
-        }
-        
-        // Colores de estado
-        const getEstadoColor = (estado) => {
-            if (estado === 'Activo') return 'text-green-600 bg-green-100';
-            if (estado === 'Por renovar') return 'text-yellow-600 bg-yellow-100';
-            if (estado === 'Suspendido') return 'text-red-600 bg-red-100';
-            return 'text-gray-500 bg-gray-100';
-        };
-        
-        container.innerHTML = `<div class="space-y-3">${matriculados.map(m => `
-            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-azulBorde">
-                <div>
-                    <p class="font-semibold text-azulMarino">${m.nroMatricula} - ${m.nombre}</p>
-                    <p class="text-azulSec text-sm">DNI: ${m.dni} | ${m.especialidad} | ${m.localidad}</p>
-                    <p class="text-xs mt-1">Vence: ${m.fechaVencimiento} | <span class="px-1 py-0.5 rounded-full text-xs ${getEstadoColor(m.estado)}">${m.estado}</span></p>
-                </div>
-                <div>
-                    <button onclick="window.editarItem(${m.id})" class="text-azulPrimario mr-3"><span class="material-icons text-sm">edit</span></button>
-                    <button onclick="window.eliminarItem(${m.id})" class="text-red-500"><span class="material-icons text-sm">delete</span></button>
-                </div>
-            </div>`).join('')}</div>`;
+    const matriculados = window.MATRICULADOS || [];
+    if (matriculados.length === 0) {
+        container.innerHTML = '<p class="text-azulSec text-center py-4">No hay matriculados cargados.</p>';
         return;
     }
     
-    if (currentTab === 'profesionales') {
-        const profesionales = window.PROFESIONALES_ACTIVOS || [];
-        if (profesionales.length === 0) {
-            container.innerHTML = '<p class="text-azulSec text-center py-4">No hay profesionales cargados.</p>';
-            return;
-        }
-        container.innerHTML = `<div class="space-y-3">${profesionales.map(p => `
-            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-azulBorde">
-                <div><p class="font-semibold text-azulMarino">${p.nombre}</p><p class="text-azulSec text-sm">${p.especialidad} • ${p.localidad}</p><small class="text-azulSec">ID: ${p.id}</small></div>
-                <div><button onclick="window.editarItem(${p.id})" class="text-azulPrimario mr-3"><span class="material-icons text-sm">edit</span></button><button onclick="window.eliminarItem(${p.id})" class="text-red-500"><span class="material-icons text-sm">delete</span></button></div>
-            </div>`).join('')}</div>`;
-        return;
-    }
+    const getEstadoColor = (estado) => {
+        if (estado === 'Activo') return 'text-green-600 bg-green-100';
+        if (estado === 'Por renovar') return 'text-yellow-600 bg-yellow-100';
+        if (estado === 'Suspendido') return 'text-red-600 bg-red-100';
+        return 'text-gray-500 bg-gray-100';
+    };
+    
+    container.innerHTML = `<div class="space-y-3">${matriculados.map(m => `
+        <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-azulBorde">
+            <div>
+                <p class="font-semibold text-azulMarino">${m.nroMatricula} - ${m.nombre}</p>
+                <p class="text-azulSec text-sm">DNI: ${m.dni} | ${m.especialidad} | ${m.localidad}</p>
+                <p class="text-xs mt-1">Vence: ${m.fechaVencimiento} | <span class="px-1 py-0.5 rounded-full text-xs ${getEstadoColor(m.estado)}">${m.estado}</span></p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="window.generarConstancia(${JSON.stringify(m).replace(/"/g, '&quot;')})" class="bg-green-600 text-white px-2 py-1 rounded-lg text-xs flex items-center gap-1 hover:bg-green-700">
+                    <span class="material-icons text-sm">picture_as_pdf</span> PDF
+                </button>
+                <button onclick="window.editarItem(${m.id})" class="text-azulPrimario"><span class="material-icons text-sm">edit</span></button>
+                <button onclick="window.eliminarItem(${m.id})" class="text-red-500"><span class="material-icons text-sm">delete</span></button>
+            </div>
+        </div>`).join('')}</div>`;
+    return;
+}
     
     if (currentTab === 'autoridades') {
         const autoridades = window.AUTORIDADES || [];
@@ -340,4 +475,5 @@ document.querySelectorAll('.admin-tab-btn').forEach(btn => {
     });
 });
 
+window.generarConstancia = generarConstanciaPDF;
 checkAdminSession();
