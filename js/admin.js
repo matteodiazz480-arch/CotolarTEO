@@ -1,154 +1,7 @@
-// admin.js - Panel con CRUD completo incluyendo Matriculados
+// admin.js - Panel con Dashboard y CRUD completo
 
-let currentTab = 'noticias';
+let currentTab = 'dashboard';
 let editingId = null;
-
-// ========== GENERAR CONSTANCIA PDF ==========
-function generarConstanciaPDF(matriculado) {
-    // Crear un elemento temporal para el contenido del PDF
-    const contenido = `
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Constancia de Matrícula - ${matriculado.nroMatricula}</title>
-            <style>
-                body {
-                    font-family: 'Times New Roman', Georgia, serif;
-                    margin: 0;
-                    padding: 40px;
-                    background: white;
-                }
-                .container {
-                    max-width: 800px;
-                    margin: 0 auto;
-                    border: 2px solid #2980B9;
-                    padding: 30px;
-                    border-radius: 10px;
-                }
-                .header {
-                    text-align: center;
-                    margin-bottom: 30px;
-                    border-bottom: 2px solid #2980B9;
-                    padding-bottom: 20px;
-                }
-                .logo {
-                    font-size: 28px;
-                    font-weight: bold;
-                    color: #154360;
-                }
-                .subtitulo {
-                    font-size: 14px;
-                    color: #2E86C1;
-                    margin-top: 5px;
-                }
-                .titulo-documento {
-                    text-align: center;
-                    font-size: 22px;
-                    font-weight: bold;
-                    margin: 30px 0;
-                    color: #154360;
-                    text-transform: uppercase;
-                }
-                .contenido {
-                    margin: 30px 0;
-                    line-height: 1.8;
-                }
-                .datos {
-                    background: #EAF2F8;
-                    padding: 15px;
-                    border-radius: 8px;
-                    margin: 20px 0;
-                }
-                .firma {
-                    margin-top: 50px;
-                    text-align: center;
-                }
-                .firma-linea {
-                    width: 250px;
-                    margin: 20px auto 0;
-                    border-top: 1px solid #000;
-                    padding-top: 10px;
-                }
-                .footer {
-                    text-align: center;
-                    font-size: 11px;
-                    color: #666;
-                    margin-top: 40px;
-                    border-top: 1px solid #ccc;
-                    padding-top: 15px;
-                }
-                .estado-activo {
-                    color: green;
-                    font-weight: bold;
-                }
-                .estado-por-renovar {
-                    color: orange;
-                    font-weight: bold;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <div class="header">
-                    <div class="logo">COTOLAR</div>
-                    <div class="subtitulo">Colegio de Terapistas Ocupacionales de La Rioja</div>
-                    <div class="subtitulo">Ley Provincial N° 5511 | Fundado 20/12/1990</div>
-                </div>
-                
-                <div class="titulo-documento">CONSTANCIA DE MATRÍCULA</div>
-                
-                <div class="contenido">
-                    <p>El Colegio de Terapistas Ocupacionales de La Rioja <strong>COTOLAR</strong>, conforme a las facultades otorgadas por la <strong>Ley Provincial N° 5511</strong>,</p>
-                    
-                    <p style="text-align: center; margin: 25px 0;"><strong>CERTIFICA</strong></p>
-                    
-                    <p>Que el/la profesional <strong>${matriculado.nombre}</strong>, DNI N° <strong>${matriculado.dni}</strong>, se encuentra debidamente matriculado/a en esta institución con el N° de Matrícula <strong>${matriculado.nroMatricula}</strong>.</p>
-                    
-                    <div class="datos">
-                        <p><strong>📋 Datos del profesional:</strong></p>
-                        <p>• Matrícula N°: ${matriculado.nroMatricula}</p>
-                        <p>• Fecha de matriculación: ${new Date(matriculado.fechaMatriculacion).toLocaleDateString('es-AR')}</p>
-                        <p>• Fecha de vencimiento: ${new Date(matriculado.fechaVencimiento).toLocaleDateString('es-AR')}</p>
-                        <p>• Especialidad: ${matriculado.especialidad}</p>
-                        <p>• Localidad: ${matriculado.localidad}</p>
-                        <p>• Estado: <span class="${matriculado.estado === 'Activo' ? 'estado-activo' : 'estado-por-renovar'}">${matriculado.estado}</span></p>
-                    </div>
-                    
-                    <p>El/la profesional se encuentra habilitado/a para ejercer la Terapia Ocupacional en todo el ámbito de la provincia de La Rioja, cumpliendo con las normativas vigentes y el Código de Ética.</p>
-                    
-                    <p>Se extiende la presente constancia a solicitud del interesado para los fines que estime convenientes.</p>
-                </div>
-                
-                <div class="firma">
-                    <div class="firma-linea">Lic. María José Fernández</div>
-                    <div>PRESIDENTE</div>
-                </div>
-                
-                <div class="footer">
-                    <p>Av. Ramírez de Velazco 123 - La Rioja Capital</p>
-                    <p>contacto@cotolar.org.ar | www.cotolar.org.ar</p>
-                    <p>Documento emitido el ${new Date().toLocaleDateString('es-AR')} a las ${new Date().toLocaleTimeString('es-AR')}</p>
-                </div>
-            </div>
-        </body>
-        </html>
-    `;
-    
-    // Crear blob y descargar
-    const blob = new Blob([contenido], { type: 'application/pdf' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.href = url;
-    link.download = `Constancia_Matricula_${matriculado.nroMatricula}_${matriculado.nombre.replace(/\s/g, '_')}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-    
-    if (window.playSound) window.playSound('success');
-    alert('Constancia generada correctamente');
-}
-
 
 function checkAdminSession() {
     const session = localStorage.getItem('adminSession');
@@ -157,7 +10,9 @@ function checkAdminSession() {
             const user = JSON.parse(session);
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('adminPanel').style.display = 'block';
-            cargarAdminData('noticias');
+            document.getElementById('adminNameDisplay').textContent = user.nombre;
+            cargarDashboard();
+            mostrarTab('dashboard');
         } catch(e) { localStorage.removeItem('adminSession'); }
     }
 }
@@ -183,30 +38,232 @@ document.getElementById('btnLogout')?.addEventListener('click', () => {
     location.reload();
 });
 
+// ========== DASHBOARD ==========
+function cargarDashboard() {
+    const container = document.getElementById('dashboardContainer');
+    const matriculados = window.MATRICULADOS || [];
+    const noticias = window.DATOS_LOCALES.noticias || [];
+    const capacitaciones = window.DATOS_LOCALES.capacitaciones || [];
+    
+    const totalMatriculados = matriculados.length;
+    const activos = matriculados.filter(m => m.estado === 'Activo').length;
+    const porRenovar = matriculados.filter(m => m.estado === 'Por renovar').length;
+    const suspendidos = matriculados.filter(m => m.estado === 'Suspendido').length;
+    const tasaActividad = totalMatriculados > 0 ? Math.round((activos / totalMatriculados) * 100) : 0;
+    
+    const hoy = new Date();
+    const vencidos = matriculados.filter(m => new Date(m.fechaVencimiento) < hoy).length;
+    
+    container.innerHTML = `
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 dashboard-stats">
+            <div class="bg-gradient-to-br from-azulPrimario to-celeste rounded-xl p-4 text-white shadow-md dashboard-card">
+                <div class="flex items-center justify-between">
+                    <span class="material-icons text-3xl opacity-80">badge</span>
+                    <span class="text-2xl font-bold">${totalMatriculados}</span>
+                </div>
+                <p class="text-sm opacity-90 mt-2">Total Matriculados</p>
+            </div>
+            <div class="bg-green-600 rounded-xl p-4 text-white shadow-md dashboard-card">
+                <div class="flex items-center justify-between">
+                    <span class="material-icons text-3xl opacity-80">check_circle</span>
+                    <span class="text-2xl font-bold">${activos}</span>
+                </div>
+                <p class="text-sm opacity-90 mt-2">Activos</p>
+            </div>
+            <div class="bg-yellow-500 rounded-xl p-4 text-white shadow-md dashboard-card">
+                <div class="flex items-center justify-between">
+                    <span class="material-icons text-3xl opacity-80">warning</span>
+                    <span class="text-2xl font-bold">${porRenovar}</span>
+                </div>
+                <p class="text-sm opacity-90 mt-2">Por renovar</p>
+            </div>
+            <div class="bg-red-600 rounded-xl p-4 text-white shadow-md dashboard-card">
+                <div class="flex items-center justify-between">
+                    <span class="material-icons text-3xl opacity-80">cancel</span>
+                    <span class="text-2xl font-bold">${suspendidos}</span>
+                </div>
+                <p class="text-sm opacity-90 mt-2">Suspendidos/Inactivos</p>
+            </div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-azulCard rounded-xl p-4 border border-azulBorde shadow-sm">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="material-icons text-azulPrimario">timeline</span>
+                    <h3 class="font-semibold text-azulMarino">Tasa de Actividad</h3>
+                </div>
+                <div class="relative pt-1">
+                    <div class="flex mb-2 items-center justify-between">
+                        <span class="text-xs font-semibold inline-block text-azulPrimario">Profesionales activos</span>
+                        <span class="text-xs font-semibold inline-block text-azulPrimario">${tasaActividad}%</span>
+                    </div>
+                    <div class="overflow-hidden h-2 text-xs flex rounded bg-azulClaro">
+                        <div style="width:${tasaActividad}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-azulPrimario"></div>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-azulBorde">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-azulSec"><span class="material-icons text-sm align-middle">event</span> Vencidos</span>
+                        <span class="font-semibold text-red-600">${vencidos}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-azulCard rounded-xl p-4 border border-azulBorde shadow-sm">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="material-icons text-azulPrimario">newspaper</span>
+                    <h3 class="font-semibold text-azulMarino">Contenido</h3>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-azulSec flex items-center gap-1"><span class="material-icons text-sm">article</span> Noticias</span>
+                        <span class="font-semibold text-azulMarino">${noticias.length}</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-azulSec flex items-center gap-1"><span class="material-icons text-sm">school</span> Capacitaciones</span>
+                        <span class="font-semibold text-azulMarino">${capacitaciones.length}</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-azulSec flex items-center gap-1"><span class="material-icons text-sm">groups</span> Autoridades</span>
+                        <span class="font-semibold text-azulMarino">${window.AUTORIDADES?.length || 0}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-azulCard rounded-xl p-4 border border-azulBorde shadow-sm mt-4">
+            <div class="flex items-center gap-2 mb-3">
+                <span class="material-icons text-azulPrimario">location_on</span>
+                <h3 class="font-semibold text-azulMarino">Distribución por Localidad</h3>
+            </div>
+            <div class="space-y-2">
+                ${Object.entries(matriculados.reduce((acc, m) => {
+                    acc[m.localidad] = (acc[m.localidad] || 0) + 1;
+                    return acc;
+                }, {})).map(([localidad, count]) => `
+                    <div class="flex justify-between items-center">
+                        <span class="text-azulSec">${localidad}</span>
+                        <span class="font-semibold text-azulMarino">${count}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+// ========== GENERAR CONSTANCIA PDF (CORREGIDO) ==========
+function generarConstanciaPDF(matriculado) {
+    const { jsPDF } = window.jspdf;
+    if (!jsPDF) {
+        alert('Cargando generador de PDF, intentá nuevamente...');
+        return;
+    }
+    
+    const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+    });
+    
+    const fechaActual = new Date().toLocaleDateString('es-AR');
+    const horaActual = new Date().toLocaleTimeString('es-AR');
+    
+    doc.setFont('helvetica', 'normal');
+    
+    // Logo y encabezado
+    doc.setFontSize(22);
+    doc.setTextColor(41, 128, 185);
+    doc.text('COTOLAR', 105, 25, { align: 'center' });
+    
+    doc.setFontSize(10);
+    doc.setTextColor(46, 134, 193);
+    doc.text('Colegio de Terapistas Ocupacionales de La Rioja', 105, 33, { align: 'center' });
+    doc.setFontSize(9);
+    doc.text('Ley Provincial N° 5511 | Fundado 20/12/1990', 105, 39, { align: 'center' });
+    
+    // Línea
+    doc.setDrawColor(41, 128, 185);
+    doc.line(20, 45, 190, 45);
+    
+    // Título
+    doc.setFontSize(18);
+    doc.setTextColor(21, 67, 96);
+    doc.text('CONSTANCIA DE MATRÍCULA', 105, 60, { align: 'center' });
+    
+    // Contenido
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    
+    doc.text('El Colegio de Terapistas Ocupacionales de La Rioja COTOLAR,', 20, 80);
+    doc.text('conforme a las facultades otorgadas por la Ley Provincial N° 5511,', 20, 87);
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('C E R T I F I C A', 105, 102, { align: 'center' });
+    
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    
+    doc.text(`Que el/la profesional ${matriculado.nombre}, DNI N° ${matriculado.dni},`, 20, 118);
+    doc.text(`se encuentra debidamente matriculado/a en esta institución con el N°`, 20, 125);
+    doc.text(`de Matrícula ${matriculado.nroMatricula}.`, 20, 132);
+    
+    // Datos
+    doc.setFillColor(234, 242, 248);
+    doc.rect(20, 145, 170, 45, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.text('Datos del profesional:', 25, 155);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Fecha de matriculación: ${new Date(matriculado.fechaMatriculacion).toLocaleDateString('es-AR')}`, 25, 163);
+    doc.text(`Fecha de vencimiento: ${new Date(matriculado.fechaVencimiento).toLocaleDateString('es-AR')}`, 25, 171);
+    doc.text(`Especialidad: ${matriculado.especialidad} - Localidad: ${matriculado.localidad}`, 25, 179);
+    doc.text(`Estado: ${matriculado.estado}`, 25, 187);
+    
+    doc.text('Se extiende la presente constancia a solicitud del interesado.', 20, 210);
+    doc.text('para los fines que estime convenientes.', 20, 217);
+    
+    // Firmas
+    doc.setFont('helvetica', 'bold');
+    doc.text('Lic. María José Fernández', 105, 250, { align: 'center' });
+    doc.setFont('helvetica', 'normal');
+    doc.text('PRESIDENTE', 105, 258, { align: 'center' });
+    
+    // Footer
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Av. Ramírez de Velazco 123 - La Rioja Capital', 105, 275, { align: 'center' });
+    doc.text(`Documento emitido el ${fechaActual} a las ${horaActual}`, 105, 282, { align: 'center' });
+    
+    doc.save(`Constancia_Matricula_${matriculado.nroMatricula}_${matriculado.nombre.replace(/\s/g, '_')}.pdf`);
+    if (window.playSound) window.playSound('success');
+    alert('Constancia generada correctamente');
+}
+
+// ========== FUNCIONES DEL CRUD ==========
 function renderForm() {
     const formContainer = document.getElementById('formFields');
     const formTitle = document.getElementById('formTitle');
     
     if (currentTab === 'noticias') {
-        formTitle.textContent = editingId ? '✏️ Editar Noticia' : '➕ Agregar Noticia';
+        formTitle.textContent = editingId ? 'Editar Noticia' : 'Agregar Noticia';
         formContainer.innerHTML = `<input type="text" id="titulo" placeholder="Título" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><textarea id="contenido" placeholder="Contenido" rows="3" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"></textarea><input type="text" id="categoria" placeholder="Categoría" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><select id="destacada" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><option value="false">No destacada</option><option value="true">Destacada</option></select><input type="date" id="fecha" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3">`;
     } else if (currentTab === 'aranceles') {
-        formTitle.textContent = editingId ? '✏️ Editar Arancel' : '➕ Agregar Arancel';
+        formTitle.textContent = editingId ? 'Editar Arancel' : 'Agregar Arancel';
         formContainer.innerHTML = `<input type="text" id="titulo" placeholder="Título" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="number" id="monto" placeholder="Monto" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><textarea id="descripcion" placeholder="Descripción" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"></textarea>`;
     } else if (currentTab === 'requisitos') {
-        formTitle.textContent = editingId ? '✏️ Editar Requisito' : '➕ Agregar Requisito';
+        formTitle.textContent = editingId ? 'Editar Requisito' : 'Agregar Requisito';
         formContainer.innerHTML = `<input type="text" id="nombre" placeholder="Nombre" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><textarea id="descripcion_detallada" placeholder="Descripción" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"></textarea><input type="number" id="orden_prioridad" placeholder="Orden" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3">`;
     } else if (currentTab === 'capacitaciones') {
-        formTitle.textContent = editingId ? '✏️ Editar Capacitación' : '➕ Agregar Capacitación';
+        formTitle.textContent = editingId ? 'Editar Capacitación' : 'Agregar Capacitación';
         formContainer.innerHTML = `<input type="text" id="nombre_curso" placeholder="Nombre del curso" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="date" id="fecha_inicio" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><select id="modalidad" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><option value="Presencial">Presencial</option><option value="Virtual">Virtual</option><option value="Híbrido">Híbrido</option></select><input type="text" id="lugar" placeholder="Lugar" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="number" id="arancel_curso" placeholder="Arancel" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="text" id="instructor" placeholder="Instructor" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="number" id="vacantes" placeholder="Vacantes" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3">`;
     } else if (currentTab === 'profesionales') {
-        formTitle.textContent = editingId ? '✏️ Editar Profesional' : '➕ Agregar Profesional';
+        formTitle.textContent = editingId ? 'Editar Profesional' : 'Agregar Profesional';
         formContainer.innerHTML = `<input type="text" id="nombre" placeholder="Nombre completo" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="text" id="especialidad" placeholder="Especialidad" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="text" id="localidad" placeholder="Localidad" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3">`;
     } else if (currentTab === 'autoridades') {
-        formTitle.textContent = editingId ? '✏️ Editar Autoridad' : '➕ Agregar Autoridad';
+        formTitle.textContent = editingId ? 'Editar Autoridad' : 'Agregar Autoridad';
         formContainer.innerHTML = `<input type="text" id="nombre" placeholder="Nombre completo" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="text" id="cargo" placeholder="Cargo" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><input type="number" id="orden" placeholder="Orden" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"><textarea id="descripcion" placeholder="Descripción" rows="2" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3"></textarea>`;
     } else if (currentTab === 'matriculados') {
-        formTitle.textContent = editingId ? '✏️ Editar Matriculado' : '➕ Agregar Matriculado';
+        formTitle.textContent = editingId ? 'Editar Matriculado' : 'Agregar Matriculado';
         formContainer.innerHTML = `
             <input type="text" id="nroMatricula" placeholder="N° Matrícula (ej: TO-001)" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3">
             <input type="text" id="nombre" placeholder="Nombre completo" class="w-full px-4 py-2 border border-azulBorde rounded-lg mb-3">
@@ -316,13 +373,8 @@ function guardarItem() {
             matriculados.push({ id: newId, ...newData });
         }
         
-        // Actualizar también PROFESIONALES_ACTIVOS para mantener consistencia
         window.PROFESIONALES_ACTIVOS = window.MATRICULADOS.filter(m => m.estado === "Activo").map(m => ({
-            id: m.id,
-            nombre: m.nombre,
-            especialidad: m.especialidad,
-            localidad: m.localidad,
-            foto: ""
+            id: m.id, nombre: m.nombre, especialidad: m.especialidad, localidad: m.localidad, foto: ""
         }));
         
         if (window.playSound) window.playSound('success');
@@ -363,36 +415,50 @@ function cargarAdminList() {
     const container = document.getElementById('adminList');
     
     if (currentTab === 'matriculados') {
-    const matriculados = window.MATRICULADOS || [];
-    if (matriculados.length === 0) {
-        container.innerHTML = '<p class="text-azulSec text-center py-4">No hay matriculados cargados.</p>';
+        const matriculados = window.MATRICULADOS || [];
+        if (matriculados.length === 0) {
+            container.innerHTML = '<p class="text-azulSec text-center py-4">No hay matriculados cargados.</p>';
+            return;
+        }
+        
+        const getEstadoColor = (estado) => {
+            if (estado === 'Activo') return 'text-green-600 bg-green-100';
+            if (estado === 'Por renovar') return 'text-yellow-600 bg-yellow-100';
+            if (estado === 'Suspendido') return 'text-red-600 bg-red-100';
+            return 'text-gray-500 bg-gray-100';
+        };
+        
+        container.innerHTML = `<div class="space-y-3">${matriculados.map(m => `
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-azulBorde">
+                <div>
+                    <p class="font-semibold text-azulMarino">${m.nroMatricula} - ${m.nombre}</p>
+                    <p class="text-azulSec text-sm">DNI: ${m.dni} | ${m.especialidad} | ${m.localidad}</p>
+                    <p class="text-xs mt-1">Vence: ${m.fechaVencimiento} | <span class="px-1 py-0.5 rounded-full text-xs ${getEstadoColor(m.estado)}">${m.estado}</span></p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="window.generarConstancia(${JSON.stringify(m).replace(/"/g, '&quot;')})" class="bg-green-600 text-white px-2 py-1 rounded-lg text-xs flex items-center gap-1 hover:bg-green-700">
+                        <span class="material-icons text-sm">picture_as_pdf</span> PDF
+                    </button>
+                    <button onclick="window.editarItem(${m.id})" class="text-azulPrimario"><span class="material-icons text-sm">edit</span></button>
+                    <button onclick="window.eliminarItem(${m.id})" class="text-red-500"><span class="material-icons text-sm">delete</span></button>
+                </div>
+            </div>`).join('')}</div>`;
         return;
     }
     
-    const getEstadoColor = (estado) => {
-        if (estado === 'Activo') return 'text-green-600 bg-green-100';
-        if (estado === 'Por renovar') return 'text-yellow-600 bg-yellow-100';
-        if (estado === 'Suspendido') return 'text-red-600 bg-red-100';
-        return 'text-gray-500 bg-gray-100';
-    };
-    
-    container.innerHTML = `<div class="space-y-3">${matriculados.map(m => `
-        <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-azulBorde">
-            <div>
-                <p class="font-semibold text-azulMarino">${m.nroMatricula} - ${m.nombre}</p>
-                <p class="text-azulSec text-sm">DNI: ${m.dni} | ${m.especialidad} | ${m.localidad}</p>
-                <p class="text-xs mt-1">Vence: ${m.fechaVencimiento} | <span class="px-1 py-0.5 rounded-full text-xs ${getEstadoColor(m.estado)}">${m.estado}</span></p>
-            </div>
-            <div class="flex items-center gap-2">
-                <button onclick="window.generarConstancia(${JSON.stringify(m).replace(/"/g, '&quot;')})" class="bg-green-600 text-white px-2 py-1 rounded-lg text-xs flex items-center gap-1 hover:bg-green-700">
-                    <span class="material-icons text-sm">picture_as_pdf</span> PDF
-                </button>
-                <button onclick="window.editarItem(${m.id})" class="text-azulPrimario"><span class="material-icons text-sm">edit</span></button>
-                <button onclick="window.eliminarItem(${m.id})" class="text-red-500"><span class="material-icons text-sm">delete</span></button>
-            </div>
-        </div>`).join('')}</div>`;
-    return;
-}
+    if (currentTab === 'profesionales') {
+        const profesionales = window.PROFESIONALES_ACTIVOS || [];
+        if (profesionales.length === 0) {
+            container.innerHTML = '<p class="text-azulSec text-center py-4">No hay profesionales cargados.</p>';
+            return;
+        }
+        container.innerHTML = `<div class="space-y-3">${profesionales.map(p => `
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-azulBorde">
+                <div><p class="font-semibold text-azulMarino">${p.nombre}</p><p class="text-azulSec text-sm">${p.especialidad} • ${p.localidad}</p><small class="text-azulSec">ID: ${p.id}</small></div>
+                <div><button onclick="window.editarItem(${p.id})" class="text-azulPrimario mr-3"><span class="material-icons text-sm">edit</span></button><button onclick="window.eliminarItem(${p.id})" class="text-red-500"><span class="material-icons text-sm">delete</span></button></div>
+            </div>`).join('')}</div>`;
+        return;
+    }
     
     if (currentTab === 'autoridades') {
         const autoridades = window.AUTORIDADES || [];
@@ -438,7 +504,6 @@ window.eliminarItem = (id) => {
         } else if (currentTab === 'matriculados') {
             const index = window.MATRICULADOS.findIndex(m => m.id === id);
             if (index !== -1) window.MATRICULADOS.splice(index, 1);
-            // Actualizar profesionales activos
             window.PROFESIONALES_ACTIVOS = window.MATRICULADOS.filter(m => m.estado === "Activo").map(m => ({
                 id: m.id, nombre: m.nombre, especialidad: m.especialidad, localidad: m.localidad, foto: ""
             }));
@@ -461,7 +526,24 @@ function cargarAdminData(tab) {
     cargarAdminList();
 }
 
+function mostrarTab(tab) {
+    const dashboardDiv = document.getElementById('tab-dashboard');
+    const formListDiv = document.getElementById('tab-form-list');
+    
+    if (tab === 'dashboard') {
+        dashboardDiv.style.display = 'block';
+        formListDiv.style.display = 'none';
+        cargarDashboard();
+    } else {
+        dashboardDiv.style.display = 'none';
+        formListDiv.style.display = 'block';
+        cargarAdminData(tab);
+    }
+}
+
 document.getElementById('btnSave')?.addEventListener('click', guardarItem);
+
+// Eventos para tabs de escritorio
 document.querySelectorAll('.admin-tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const tab = btn.getAttribute('data-tab');
@@ -471,9 +553,42 @@ document.querySelectorAll('.admin-tab-btn').forEach(btn => {
         });
         btn.classList.add('border-azulPrimario', 'text-azulMarino');
         btn.classList.remove('text-azulSec');
-        cargarAdminData(tab);
+        mostrarTab(tab);
+        currentTab = tab;
     });
 });
 
+// Eventos para tabs móviles
+document.querySelectorAll('.admin-mobile-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const tab = btn.getAttribute('data-tab');
+        mostrarTab(tab);
+        currentTab = tab;
+        cerrarAdminMenu();
+        // Actualizar estilo del tab activo en escritorio también
+        document.querySelectorAll('.admin-tab-btn').forEach(b => {
+            b.classList.remove('border-azulPrimario', 'text-azulMarino');
+            b.classList.add('text-azulSec');
+            if (b.getAttribute('data-tab') === tab) {
+                b.classList.add('border-azulPrimario', 'text-azulMarino');
+                b.classList.remove('text-azulSec');
+            }
+        });
+    });
+});
+
+// Menú móvil para admin
+const adminMenuBtn = document.getElementById('menuAdminBtn');
+const adminMobileMenu = document.getElementById('adminMobileMenu');
+const closeAdminMenuBtn = document.getElementById('closeAdminMenuBtn');
+
+function openAdminMenu() { if (adminMobileMenu) adminMobileMenu.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+function cerrarAdminMenu() { if (adminMobileMenu) adminMobileMenu.classList.add('hidden'); document.body.style.overflow = ''; }
+
+adminMenuBtn?.addEventListener('click', openAdminMenu);
+closeAdminMenuBtn?.addEventListener('click', cerrarAdminMenu);
+adminMobileMenu?.addEventListener('click', (e) => { if (e.target === adminMobileMenu) cerrarAdminMenu(); });
+
 window.generarConstancia = generarConstanciaPDF;
+
 checkAdminSession();

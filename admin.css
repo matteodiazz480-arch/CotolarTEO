@@ -1,0 +1,75 @@
+/* admin.css - Estilos responsivos para panel de administración */
+
+/* Animación para fade in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .admin-table-container {
+        overflow-x: auto;
+    }
+    
+    .admin-table {
+        min-width: 600px;
+    }
+    
+    .dashboard-stats {
+        gap: 0.75rem;
+    }
+    
+    .stat-card {
+        padding: 0.75rem;
+    }
+    
+    .stat-card .material-icons {
+        font-size: 1.5rem;
+    }
+    
+    .stat-card .stat-number {
+        font-size: 1.25rem;
+    }
+    
+    .stat-card .stat-label {
+        font-size: 0.65rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+    .dashboard-stats {
+        gap: 1.5rem;
+    }
+}
+
+/* Estilos para el dashboard */
+.dashboard-bg {
+    background: linear-gradient(135deg, #2980B9 0%, #5DADE2 100%);
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mejora para tablas en móvil */
+@media (max-width: 640px) {
+    .admin-tab-btn {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.5rem;
+    }
+    .admin-tab-btn .material-icons {
+        font-size: 0.8rem;
+    }
+}

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#2980B9">
     <title>COTOLAR | Panel Admin</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
     <link rel="manifest" href="manifest.json">
     
     <script>
@@ -42,6 +43,7 @@
         };
     </script>
     
+    <!-- Login Screen -->
     <div id="loginScreen" class="min-h-screen flex items-center justify-center p-4">
         <div class="max-w-sm w-full animate-fadeIn">
             <div class="text-center mb-8">
@@ -55,42 +57,89 @@
             <div class="bg-azulCard rounded-2xl shadow-xl p-6 border border-azulBorde animate-slideUp">
                 <div class="mb-4"><label class="block text-azulMarino font-semibold mb-2 text-sm">Email</label><input type="email" id="adminEmail" value="admin@cotolar.org" class="w-full px-4 py-3 border border-azulBorde rounded-xl focus:outline-none focus:ring-2 focus:ring-azulPrimario bg-white"></div>
                 <div class="mb-6"><label class="block text-azulMarino font-semibold mb-2 text-sm">Contraseña</label><input type="password" id="adminPassword" value="admin123" class="w-full px-4 py-3 border border-azulBorde rounded-xl focus:outline-none focus:ring-2 focus:ring-azulPrimario bg-white"></div>
-                <button id="btnAdminLogin" class="w-full bg-azulPrimario text-white py-3 rounded-xl font-semibold hover:bg-azulPrimario/80 transition-all duration-300 shadow-md flex items-center justify-center gap-2"><span class="material-icons text-base">login</span> Ingresar</button>
+                <button id="btnAdminLogin" class="w-full bg-azulPrimario text-white py-3 rounded-xl font-semibold hover:bg-azulPrimario/80 transition-all duration-300 shadow-md flex items-center justify-center gap-2"><span class="material-icons">login</span> Ingresar</button>
                 <div class="mt-4 text-center"><a href="index.html" class="text-azulSec text-sm hover:text-azulPrimario transition">← Volver al sitio público</a></div>
                 <div class="mt-6 pt-4 border-t border-azulBorde text-center text-azulSec text-xs"><p class="font-semibold text-azulMarino">Credenciales de prueba:</p><p>admin@cotolar.org / admin123</p></div>
             </div>
         </div>
     </div>
     
+    <!-- Admin Panel -->
     <div id="adminPanel" style="display: none;">
-        <header class="bg-gradient-to-r from-azulPrimario to-celeste text-white py-3 px-4 shadow-md">
-            <div class="max-w-6xl mx-auto flex justify-between items-center">
-                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1"><img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain"></div><span class="font-bold tracking-wide text-lg">COTOLAR Admin</span></div>
-                <button id="btnLogout" class="bg-white text-azulPrimario px-4 py-1 rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-1"><span class="material-icons text-sm">logout</span> Salir</button>
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-azulPrimario to-celeste text-white shadow-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1"><img src="icon.svg" alt="Logo" class="w-full h-full object-contain"></div>
+                    <span class="font-bold tracking-wide text-lg hidden sm:inline">COTOLAR Admin</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span id="adminNameDisplay" class="text-sm hidden sm:inline">Administrador</span>
+                    <button id="menuAdminBtn" class="md:hidden bg-white/20 p-2 rounded-full">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <button id="btnLogout" class="bg-white text-azulPrimario px-4 py-1.5 rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-1">
+                        <span class="material-icons text-sm">logout</span> <span class="hidden sm:inline">Salir</span>
+                    </button>
+                </div>
             </div>
         </header>
         
-        <nav class="bg-azulCard border-b border-azulBorde sticky top-0 z-40 shadow-sm">
-            <div class="max-w-6xl mx-auto px-3"><div class="flex gap-3 overflow-x-auto py-2">
-                <button class="admin-tab-btn px-2 py-1 text-azulMarino font-semibold border-b-2 border-azulPrimario whitespace-nowrap text-sm" data-tab="noticias"><span class="material-icons text-sm mr-1">newspaper</span> Noticias</button>
-                <button class="admin-tab-btn px-2 py-1 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm" data-tab="aranceles"><span class="material-icons text-sm mr-1">attach_money</span> Aranceles</button>
-                <button class="admin-tab-btn px-2 py-1 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm" data-tab="requisitos"><span class="material-icons text-sm mr-1">checklist</span> Requisitos</button>
-                <button class="admin-tab-btn px-2 py-1 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm" data-tab="capacitaciones"><span class="material-icons text-sm mr-1">school</span> Capacitaciones</button>
-                <button class="admin-tab-btn px-2 py-1 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm" data-tab="profesionales"><span class="material-icons text-sm mr-1">group</span> Profesionales</button>
-                <button class="admin-tab-btn px-2 py-1 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm" data-tab="autoridades"><span class="material-icons text-sm mr-1">groups</span> Autoridades</button>
-                <button class="admin-tab-btn px-2 py-1 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm" data-tab="matriculados"><span class="material-icons text-sm mr-1">badge</span> Matriculados</button>
-            </div></div>
+        <!-- Menú lateral móvil para admin -->
+        <div id="adminMobileMenu" class="fixed inset-0 z-[150] bg-black/50 backdrop-blur-sm hidden transition-all duration-300">
+            <div class="bg-azulCard w-80 h-full shadow-2xl p-6 animate-slideInLeft border-r border-azulBorde">
+                <div class="flex justify-between items-center mb-8 pb-4 border-b border-azulBorde">
+                    <span class="font-bold text-azulMarino text-xl">Menú Admin</span>
+                    <button id="closeAdminMenuBtn" class="text-azulPrimario p-1"><span class="material-icons">close</span></button>
+                </div>
+                <nav class="flex flex-col gap-2">
+                    <button class="admin-mobile-tab-btn flex items-center gap-3 p-3 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-tab="dashboard"><span class="material-icons text-azulPrimario">dashboard</span><span class="text-azulMarino">Dashboard</span></button>
+                    <button class="admin-mobile-tab-btn flex items-center gap-3 p-3 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-tab="noticias"><span class="material-icons text-azulPrimario">newspaper</span><span class="text-azulMarino">Noticias</span></button>
+                    <button class="admin-mobile-tab-btn flex items-center gap-3 p-3 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-tab="aranceles"><span class="material-icons text-azulPrimario">attach_money</span><span class="text-azulMarino">Aranceles</span></button>
+                    <button class="admin-mobile-tab-btn flex items-center gap-3 p-3 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-tab="requisitos"><span class="material-icons text-azulPrimario">checklist</span><span class="text-azulMarino">Requisitos</span></button>
+                    <button class="admin-mobile-tab-btn flex items-center gap-3 p-3 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-tab="capacitaciones"><span class="material-icons text-azulPrimario">school</span><span class="text-azulMarino">Capacitaciones</span></button>
+                    <button class="admin-mobile-tab-btn flex items-center gap-3 p-3 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-tab="profesionales"><span class="material-icons text-azulPrimario">group</span><span class="text-azulMarino">Profesionales</span></button>
+                    <button class="admin-mobile-tab-btn flex items-center gap-3 p-3 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-tab="autoridades"><span class="material-icons text-azulPrimario">groups</span><span class="text-azulMarino">Autoridades</span></button>
+                    <button class="admin-mobile-tab-btn flex items-center gap-3 p-3 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-tab="matriculados"><span class="material-icons text-azulPrimario">badge</span><span class="text-azulMarino">Matriculados</span></button>
+                </nav>
+            </div>
+        </div>
+        
+        <!-- Navegación escritorio -->
+        <nav class="hidden md:block bg-azulCard border-b border-azulBorde sticky top-[61px] z-40 shadow-sm overflow-x-auto">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex gap-1 py-2">
+                    <button class="admin-tab-btn px-3 py-2 text-azulMarino font-semibold border-b-2 border-azulPrimario whitespace-nowrap text-sm flex items-center gap-1" data-tab="dashboard"><span class="material-icons text-sm">dashboard</span> Dashboard</button>
+                    <button class="admin-tab-btn px-3 py-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm flex items-center gap-1" data-tab="noticias"><span class="material-icons text-sm">newspaper</span> Noticias</button>
+                    <button class="admin-tab-btn px-3 py-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm flex items-center gap-1" data-tab="aranceles"><span class="material-icons text-sm">attach_money</span> Aranceles</button>
+                    <button class="admin-tab-btn px-3 py-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm flex items-center gap-1" data-tab="requisitos"><span class="material-icons text-sm">checklist</span> Requisitos</button>
+                    <button class="admin-tab-btn px-3 py-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm flex items-center gap-1" data-tab="capacitaciones"><span class="material-icons text-sm">school</span> Capacitaciones</button>
+                    <button class="admin-tab-btn px-3 py-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm flex items-center gap-1" data-tab="profesionales"><span class="material-icons text-sm">group</span> Profesionales</button>
+                    <button class="admin-tab-btn px-3 py-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm flex items-center gap-1" data-tab="autoridades"><span class="material-icons text-sm">groups</span> Autoridades</button>
+                    <button class="admin-tab-btn px-3 py-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario whitespace-nowrap text-sm flex items-center gap-1" data-tab="matriculados"><span class="material-icons text-sm">badge</span> Matriculados</button>
+                </div>
+            </div>
         </nav>
         
-        <main class="max-w-6xl mx-auto px-3 py-4 pb-20">
-            <div class="bg-azulCard rounded-xl shadow-md p-4 border border-azulBorde mb-4">
-                <h2 class="text-lg font-bold text-azulMarino mb-3" id="formTitle">Agregar Noticia</h2>
-                <div id="formFields"></div>
-                <button id="btnSave" class="bg-azulPrimario text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-azulPrimario/80 transition-all duration-300 mt-3 shadow-sm flex items-center gap-1"><span class="material-icons text-sm">save</span> Guardar</button>
+        <main class="max-w-7xl mx-auto px-4 py-6 pb-24">
+            <!-- Dashboard -->
+            <div id="tab-dashboard" class="admin-tab-content">
+                <div id="dashboardContainer" class="space-y-6">
+                    <!-- Las estadísticas se cargan dinámicamente -->
+                </div>
             </div>
-            <div class="bg-azulCard rounded-xl shadow-md p-4 border border-azulBorde">
-                <h2 class="text-lg font-bold text-azulMarino mb-3">Listado</h2>
-                <div id="adminList"></div>
+            
+            <!-- Formulario y listado para las otras pestañas -->
+            <div id="tab-form-list" style="display: none;">
+                <div class="bg-azulCard rounded-xl shadow-md p-4 border border-azulBorde mb-4">
+                    <h2 class="text-lg font-bold text-azulMarino mb-3" id="formTitle">Agregar Noticia</h2>
+                    <div id="formFields"></div>
+                    <button id="btnSave" class="bg-azulPrimario text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-azulPrimario/80 transition-all duration-300 mt-3 shadow-sm flex items-center gap-1"><span class="material-icons text-sm">save</span> Guardar</button>
+                </div>
+                <div class="bg-azulCard rounded-xl shadow-md p-4 border border-azulBorde">
+                    <h2 class="text-lg font-bold text-azulMarino mb-3">Listado</h2>
+                    <div id="adminList"></div>
+                </div>
             </div>
         </main>
     </div>
