@@ -17,13 +17,13 @@
             theme: {
                 extend: {
                     colors: {
-                        azulClaro: '#E8F0FE',
-                        azulCard: '#F0F5FF',
-                        azulMarino: '#0A2B4E',
-                        azulSec: '#4A6A8B',
-                        azulPrimario: '#3B82F6',
-                        celeste: '#7AB2D3',
-                        azulBorde: '#C5D9F0',
+                        azulClaro: '#D6EAF8',
+                        azulCard: '#EAF2F8',
+                        azulMarino: '#154360',
+                        azulSec: '#2E86C1',
+                        azulPrimario: '#2980B9',
+                        celeste: '#5DADE2',
+                        azulBorde: '#A9CCE3',
                     }
                 }
             }
@@ -32,9 +32,9 @@
 </head>
 <body class="bg-azulClaro">
     
-    <!-- MODAL DE AVISO DE DEMO -->
+    <!-- MODAL DE AVISO DE DEMO (sin cambios) -->
     <div id="demoModal" class="fixed inset-0 z-[200] flex items-center justify-center p-4" style="background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px);">
-        <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-azulBorde animate-scaleIn overflow-hidden">
+        <div class="bg-azulCard rounded-2xl max-w-md w-full shadow-2xl border border-azulBorde animate-scaleIn overflow-hidden">
             <div class="bg-gradient-to-r from-azulPrimario to-celeste p-4 text-white">
                 <div class="flex items-center gap-3">
                     <span class="material-icons text-2xl">info</span>
@@ -66,7 +66,7 @@
     <header class="bg-azulCard border-b border-azulBorde sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
             <div class="flex items-center gap-3 md:gap-5">
-                <div class="w-20 h-20 md:w-20 md:h-20 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
+                <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
                     <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-1">
                 </div>
                 <div>
@@ -133,7 +133,8 @@
     </div>
     
     <!-- HERO SECTION CON IMAGEN DE FONDO -->
-    <section class="hero-bg py-10 md:py-16 px-4 border-b border-azulBorde animate-fadeIn" style="background-image: url('image.png'); background-size: cover; background-position: center; position: relative;">
+    <section class="hero-bg py-10 md:py-16 px-4 border-b border-azulBorde animate-fadeIn" 
+             style="background-image: url('image.png'); background-size: cover; background-position: center; min-height: 400px;">
         <div class="absolute inset-0 bg-gradient-to-br from-azulPrimario/85 to-celeste/85 z-0"></div>
         <div class="max-w-6xl mx-auto text-center relative z-10">
             <div class="w-24 h-24 md:w-40 md:h-40 rounded-2xl flex items-center justify-center mx-auto mb-5 md:mb-6 shadow-lg animate-pulse-slow overflow-hidden bg-white p-2 md:p-4">
@@ -147,25 +148,41 @@
         </div>
     </section>
     
-    <!-- STATS -->
+    <!-- SECCIÓN QUIÉNES SOMOS con imagen a la derecha -->
+    <section class="py-6 md:py-8 px-4 bg-azulCard border-b border-azulBorde">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <!-- Texto -->
+                <div class="flex-1 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                        <span class="material-icons text-azulPrimario text-3xl">info</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">¿Quiénes somos?</h2>
+                    </div>
+                    <div class="bg-azulClaro rounded-xl p-5 shadow-md border border-azulBorde">
+                        <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
+                            El <strong>Colegio de Terapia Ocupacional de La Rioja (COTOLAR)</strong> es la entidad que agrupa a los profesionales de Terapia Ocupacional de toda la provincia. 
+                            Nuestra misión es garantizar el correcto ejercicio de la profesión, promover la formación continua y defender los derechos de los terapeutas ocupacionales y de la comunidad.
+                        </p>
+                        <p class="text-azulSec text-sm md:text-base leading-relaxed">
+                            Trabajamos por una terapia ocupacional de calidad, inclusiva y comprometida con la salud y el bienestar de todas las personas.
+                        </p>
+                    </div>
+                </div>
+                <!-- Imagen lateral -->
+                <div class="flex-1 flex justify-center">
+                    <img src="image2.png" alt="Terapia Ocupacional" class="rounded-xl shadow-lg max-w-full h-auto border border-azulBorde" style="max-height: 280px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- STATS (sin cambios) -->
     <section class="py-8 md:py-12 px-4 border-b border-azulBorde bg-azulCard">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 text-center">
-            <div class="animate-scaleIn">
-                <div class="text-3xl md:text-4xl font-bold text-azulPrimario">+350</div>
-                <p class="text-azulSec text-sm md:text-base mt-2">Profesionales Matriculados</p>
-            </div>
-            <div class="animate-scaleIn delay-100">
-                <div class="text-3xl md:text-4xl font-bold text-azulPrimario">20+</div>
-                <p class="text-azulSec text-sm md:text-base mt-2">Años de Trayectoria</p>
-            </div>
-            <div class="animate-scaleIn delay-200">
-                <div class="text-3xl md:text-4xl font-bold text-azulPrimario">18</div>
-                <p class="text-azulSec text-sm md:text-base mt-2">Localidades con Cobertura</p>
-            </div>
-            <div class="animate-scaleIn delay-300">
-                <div class="text-3xl md:text-4xl font-bold text-azulPrimario">12</div>
-                <p class="text-azulSec text-sm md:text-base mt-2">Convenios Vigentes</p>
-            </div>
+            <div class="animate-scaleIn"><div class="text-3xl md:text-4xl font-bold text-azulPrimario">+350</div><p class="text-azulSec text-sm md:text-base mt-2">Profesionales Matriculados</p></div>
+            <div class="animate-scaleIn delay-100"><div class="text-3xl md:text-4xl font-bold text-azulPrimario">20+</div><p class="text-azulSec text-sm md:text-base mt-2">Años de Trayectoria</p></div>
+            <div class="animate-scaleIn delay-200"><div class="text-3xl md:text-4xl font-bold text-azulPrimario">18</div><p class="text-azulSec text-sm md:text-base mt-2">Localidades con Cobertura</p></div>
+            <div class="animate-scaleIn delay-300"><div class="text-3xl md:text-4xl font-bold text-azulPrimario">12</div><p class="text-azulSec text-sm md:text-base mt-2">Convenios Vigentes</p></div>
         </div>
     </section>
     
@@ -201,10 +218,9 @@
         </div>
     </nav>
     
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- CONTENIDO PRINCIPAL (secciones iguales, sin emojis) -->
     <main class="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8 pb-24 md:pb-32">
-        
-        <!-- Sección Inicio -->
+        <!-- Inicio -->
         <div id="seccion-inicio" class="seccion-publica animate-fadeIn">
             <div class="grid md:grid-cols-3 gap-5 md:gap-6 mb-8 md:mb-10">
                 <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
@@ -228,21 +244,25 @@
             <div id="noticiasContainer" class="grid md:grid-cols-2 gap-6"></div>
         </div>
         
-        <!-- Sección Trámites -->
+        <!-- Trámites -->
         <div id="seccion-tramites" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-5">Trámites y Requisitos</h1>
             <div class="mb-8"><h2 class="text-xl font-semibold text-azulPrimario mb-4">Aranceles Vigentes</h2><div id="arancelesContainer" class="grid md:grid-cols-2 gap-4"></div></div>
             <div><h2 class="text-xl font-semibold text-azulPrimario mb-4">Requisitos para Matriculación</h2><div id="requisitosContainer" class="space-y-3"></div></div>
         </div>
         
-        <!-- Sección Capacitaciones -->
+        <!-- Capacitaciones -->
         <div id="seccion-capacitaciones" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-5">Capacitaciones</h1>
             <div id="capacitacionesContainer" class="grid md:grid-cols-2 gap-6"></div>
-            <div class="mt-8 bg-gradient-to-r from-azulPrimario to-celeste rounded-xl p-5 text-white shadow-lg"><h3 class="font-bold text-xl mb-2">¿Sos profesional de Terapia Ocupacional?</h3><p class="text-white/90 mb-3">Matriculate y ejercé legalmente en toda la provincia de La Rioja.</p><button class="bg-white text-azulPrimario px-5 py-2 rounded-full font-semibold hover:shadow-lg transition-all duration-300" onclick="alert('Comunicate al correo info@cotolar.org')">Consultar Matrícula</button></div>
+            <div class="mt-8 bg-gradient-to-r from-azulPrimario to-celeste rounded-xl p-5 text-white shadow-lg">
+                <h3 class="font-bold text-xl mb-2">¿Sos profesional de Terapia Ocupacional?</h3>
+                <p class="text-white/90 mb-3">Matriculate y ejercé legalmente en toda la provincia de La Rioja.</p>
+                <button class="bg-white text-azulPrimario px-5 py-2 rounded-full font-semibold hover:shadow-lg transition-all duration-300" onclick="alert('Comunicate al correo info@cotolar.org')">Consultar Matrícula</button>
+            </div>
         </div>
         
-        <!-- Sección Profesionales -->
+        <!-- Profesionales -->
         <div id="seccion-profesionales" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-3">Profesionales Activos</h1>
             <p class="text-azulSec mb-6">Colegiados matriculados en COTOLAR</p>
@@ -250,23 +270,23 @@
             <div class="mt-6 text-center"><span class="text-azulSec">Total de profesionales: <span id="totalProfesionales" class="font-bold text-azulPrimario">0</span></span></div>
         </div>
         
-        <!-- Sección Autoridades -->
+        <!-- Autoridades -->
         <div id="seccion-autoridades" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-3">Autoridades del Colegio</h1>
             <p class="text-azulSec mb-6">Comisión directiva COTOLAR período 2024-2028</p>
             <div id="autoridadesContainer" class="grid md:grid-cols-2 gap-4"></div>
         </div>
         
-        <!-- Sección Normativa -->
+        <!-- Normativa -->
         <div id="seccion-normativa" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-3">Normativa Vigente</h1>
             <p class="text-azulSec mb-6">Marco legal y ético de la Terapia Ocupacional en Argentina</p>
             <div id="normativaContainer"></div>
         </div>
         
-        <!-- Sección Descargar App -->
+        <!-- Descargar App (sin emojis) -->
         <div id="seccion-descargar" class="seccion-publica hidden animate-fadeIn">
-            <h1 class="text-2xl font-bold text-azulMarino mb-3">📱 Descargar la App</h1>
+            <h1 class="text-2xl font-bold text-azulMarino mb-3">Descargar la App</h1>
             <p class="text-azulSec mb-6">Instalá COTOLAR en tu celular como una aplicación nativa</p>
             <div class="text-center mb-8">
                 <button id="downloadAppBtn" class="bg-azulPrimario text-white px-8 py-4 rounded-2xl text-lg font-bold shadow-lg hover:bg-azulPrimario/80 transition-all duration-300 flex items-center gap-3 mx-auto">
@@ -297,7 +317,7 @@
             </div>
         </div>
         
-        <!-- Sección Contacto -->
+        <!-- Contacto -->
         <div id="seccion-contacto" class="seccion-publica hidden animate-fadeIn">
             <h1 class="text-2xl font-bold text-azulMarino mb-5">Contacto</h1>
             <div class="grid md:grid-cols-2 gap-6">
@@ -306,12 +326,16 @@
                     <div class="flex items-start gap-4 mb-4"><span class="material-icons text-azulPrimario text-2xl">phone</span><div><p class="font-semibold text-azulMarino">Teléfono</p><p class="text-azulSec">+54 380 412-3456</p></div></div>
                     <div class="flex items-start gap-4"><span class="material-icons text-azulPrimario text-2xl">email</span><div><p class="font-semibold text-azulMarino">Email</p><p class="text-azulSec">info@cotolar.org</p></div></div>
                 </div>
-                <div class="bg-azulMarino rounded-xl p-5 text-white shadow-lg"><h3 class="font-bold text-xl mb-3">Horarios de atención</h3><p class="text-white/80">Lunes a Viernes: 8:00 a 14:00</p><p class="text-white/80 mt-2">Consultas: info@cotolar.org</p><div class="mt-4 pt-3 border-t border-white/20"><p class="text-white/60 text-sm">Órgano oficial de regulación profesional</p></div></div>
+                <div class="bg-azulMarino rounded-xl p-5 text-white shadow-lg">
+                    <h3 class="font-bold text-xl mb-3">Horarios de atención</h3>
+                    <p class="text-white/80">Lunes a Viernes: 8:00 a 14:00</p>
+                    <p class="text-white/80 mt-2">Consultas: info@cotolar.org</p>
+                    <div class="mt-4 pt-3 border-t border-white/20"><p class="text-white/60 text-sm">Órgano oficial de regulación profesional</p></div>
+                </div>
             </div>
         </div>
     </main>
     
-    <!-- Footer -->
     <footer class="bg-azulMarino text-white py-6 px-4">
         <div class="max-w-6xl mx-auto text-center">
             <p>© 2025 COTOLAR - Colegio de Terapia Ocupacional de La Rioja</p>
@@ -319,20 +343,20 @@
         </div>
     </footer>
     
-    <!-- Robotito Asistente -->
+    <!-- Robotito Asistente (sin cambios) -->
     <div class="chat-widget">
         <div class="chat-bubble" id="chatBubble"><span class="material-icons text-white text-2xl">smart_toy</span></div>
         <div class="chat-panel" id="chatPanel">
             <div class="chat-header"><span><span class="material-icons text-base mr-2">smart_toy</span> Asistente COTOLAR</span><span class="material-icons cursor-pointer" id="closeChat">close</span></div>
             <div class="chat-messages" id="chatMessages">
                 <div class="message bot">👋 ¡Hola! Soy el asistente del COTOLAR. ¿En qué puedo ayudarte?</div>
-                <div class="message bot">💡 Preguntas rápidas:</div>
+                <div class="message bot">Preguntas rápidas:</div>
                 <div class="suggestions-container" id="suggestionsContainer">
-                    <button class="suggestion-btn" data-question="¿Cómo me matrículo?">📝 Matrícula</button>
-                    <button class="suggestion-btn" data-question="¿Cuáles son los aranceles?">💰 Aranceles</button>
-                    <button class="suggestion-btn" data-question="¿Qué requisitos necesito?">📋 Requisitos</button>
-                    <button class="suggestion-btn" data-question="¿Próximas capacitaciones?">🎓 Cursos</button>
-                    <button class="suggestion-btn" data-question="¿Dónde están ubicados?">📍 Ubicación</button>
+                    <button class="suggestion-btn" data-question="¿Cómo me matrículo?">Matrícula</button>
+                    <button class="suggestion-btn" data-question="¿Cuáles son los aranceles?">Aranceles</button>
+                    <button class="suggestion-btn" data-question="¿Qué requisitos necesito?">Requisitos</button>
+                    <button class="suggestion-btn" data-question="¿Próximas capacitaciones?">Cursos</button>
+                    <button class="suggestion-btn" data-question="¿Dónde están ubicados?">Ubicación</button>
                 </div>
             </div>
             <div class="chat-input-area">
@@ -376,7 +400,6 @@
         document.getElementById('androidInstallBtn')?.addEventListener('click', instalarPWA);
         document.getElementById('iosInstallBtn')?.addEventListener('click', instalarPWA);
         
-        // Menú hamburguesa
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const closeMenuBtn = document.getElementById('closeMenuBtn');
