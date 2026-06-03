@@ -120,10 +120,6 @@
                     <span class="material-icons text-azulPrimario text-2xl">groups</span>
                     <span class="text-azulMarino font-medium text-base">Autoridades</span>
                 </button>
-                <button class="mobile-nav-btn flex items-center gap-4 p-4 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-section="normativa">
-                    <span class="material-icons text-azulPrimario text-2xl">gavel</span>
-                    <span class="text-azulMarino font-medium text-base">Normativa</span>
-                </button>
                 <button class="mobile-nav-btn flex items-center gap-4 p-4 rounded-xl hover:bg-azulClaro transition-colors w-full text-left" data-section="descargar">
                     <span class="material-icons text-azulPrimario text-2xl">download</span>
                     <span class="text-azulMarino font-medium text-base">Descargar App</span>
@@ -184,9 +180,6 @@
                 <button class="nav-btn-desktop flex items-center gap-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario pb-2 text-base" data-section="autoridades">
                     <span class="material-icons">groups</span> Autoridades
                 </button>
-                <button class="nav-btn-desktop flex items-center gap-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario pb-2 text-base" data-section="normativa">
-                    <span class="material-icons">gavel</span> Normativa
-                </button>
                 <button class="nav-btn-desktop flex items-center gap-2 text-azulSec font-semibold border-b-2 border-transparent hover:border-azulPrimario pb-2 text-base" data-section="descargar">
                     <span class="material-icons">download</span> App
                 </button>
@@ -202,41 +195,32 @@
         
         <!-- ================= SECCIÓN INICIO ================= -->
         <div id="seccion-inicio" class="seccion-publica animate-fadeIn">
-            
-            <!-- 1️⃣ SECCIÓN "¿QUIÉNES SOMOS?" (PRIMERO) -->
-            <div class="mb-10">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <!-- Texto -->
-                    <div class="flex-1 text-center md:text-left">
-                        <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
-                            <span class="material-icons text-azulPrimario text-3xl">info</span>
-                            <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">¿Quiénes somos?</h2>
-                        </div>
-                        <div class="bg-azulClaro rounded-xl p-5 shadow-md border border-azulBorde">
-                            <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
-                                El <strong>Colegio de Terapistas Ocupacionales de La Rioja (CO.T.O.LaR)</strong> es la institución que agrupa y regula a todos los terapistas ocupacionales que ejercen en la provincia de La Rioja. Nació con la <strong>Ley 5511 el 20 de diciembre de 1990</strong>, y La Rioja fue una de las primeras provincias de Argentina en tener colegio propio.
-                            </p>
-                            <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
-                                Básicamente es quien lleva el control de la <strong>matrícula profesional</strong> de terapista ocupacional necesaria para ejercer legalmente en La Rioja. Una vez registrado y matriculado, habilita el desempeño en hospitales, centros, escuelas estatales o de forma particular.
-                            </p>
-                            <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
-                                El colegio es quien <strong>controla que se cumpla la ley, el reglamento y el código de ética</strong>. Si hay algún problema ético, mala praxis o ejercicio ilegal de la profesión, el colegio interviene. También defiende los derechos de los colegiados y representa a la Terapia Ocupacional frente al Ministerio de Salud y otras instituciones.
-                            </p>
-                            <p class="text-azulMarino text-sm md:text-base leading-relaxed mb-3">
-                                Otra función importante es <strong>tener al día el registro de todos los profesionales que están activos en la provincia</strong>. Eso sirve para que el Estado y la sociedad sepan quiénes están habilitados para trabajar. Pueden incorporarse quienes tengan el título universitario de terapista ocupacional o un título equivalente homologado.
-                            </p>
-                            <p class="text-azulMarino text-sm md:text-base leading-relaxed">
-                                En La Rioja la terapia ocupacional tiene historia, porque <strong>acá se hizo el primer Congreso Argentino de Terapia Ocupacional el 10 de septiembre de 1985</strong>, y por eso ese día se celebra el día de la profesión en todo el país.
-                            </p>
-                        </div>
+            <!-- SECCIÓN QUIÉNES SOMOS (resumida + botón leer más que redirige a Institucional) -->
+        <div class="mb-10">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <!-- Texto resumido -->
+                <div class="flex-1 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                        <span class="material-icons text-azulPrimario text-3xl">info</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">¿Quiénes somos?</h2>
                     </div>
-                    <!-- Imagen lateral -->
-                    <div class="flex-1 flex justify-center">
-                        <img src="image2.png" alt="Terapia Ocupacional" class="rounded-xl shadow-lg max-w-full h-auto border border-azulBorde" style="max-height: 400px; object-fit: cover;">
+                    <div class="bg-azulClaro rounded-xl p-5 shadow-md border border-azulBorde">
+                        <p class="text-azulMarino text-sm md:text-base leading-relaxed">
+                            El <strong>Colegio de Terapistas Ocupacionales de La Rioja (CO.T.O.LaR)</strong> es la institución que agrupa y regula a todos los terapistas ocupacionales que ejercen en la provincia de La Rioja, creado por <strong>Ley Provincial N° 5511</strong> el 20 de diciembre de 1990. Somos el organismo encargado de controlar la matrícula profesional, hacer cumplir el código de ética y defender los derechos de los colegiados.
+                        </p>
+                        <div class="mt-4 text-center md:text-left">
+                            <a href="institucional.html" class="inline-flex items-center gap-2 text-azulPrimario font-semibold hover:underline">
+                                Leer más <span class="material-icons text-sm">arrow_forward</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <!-- Imagen lateral -->
+                <div class="flex-1 flex justify-center">
+                    <img src="image2.png" alt="Terapia Ocupacional" class="rounded-xl shadow-lg max-w-full h-auto border border-azulBorde" style="max-height: 320px; object-fit: cover;">
+                </div>
             </div>
-            
+        </div>
             <!-- 2️⃣ TARJETAS DE SERVICIOS (LUEGO) -->
             <div class="grid md:grid-cols-3 gap-5 md:gap-6 mb-10">
                 <div class="bg-azulCard rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-azulBorde">
