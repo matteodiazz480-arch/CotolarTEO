@@ -20,15 +20,6 @@ window.DATOS_LOCALES = {
             categoria: "Institucional",
             imagen: ""
         },
-        { 
-            id: 3, 
-            titulo: "Convenio con la Universidad Nacional de La Rioja", 
-            contenido: "El Colegio firmó un convenio de colaboración académica con la UNLaR para promover la formación continua y la inserción laboral de los nuevos egresados de Terapia Ocupacional.\n\n🎓 Beneficios para estudiantes y graduados:\n• Descuentos en capacitaciones\n• Pasantías profesionales\n• Acceso a biblioteca virtual\n\n📌 El convenio tendrá vigencia por 3 años.",
-            destacada: false, 
-            fecha: "2025-05-03",
-            categoria: "Convenios",
-            imagen: ""
-        }
     ],
     
     aranceles: [
