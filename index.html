@@ -434,45 +434,60 @@
                 closeMenu();
             });
         });
-        // ========== MANITA Y BURBUJA DE AYUDA ==========
+       // ========== MANITA Y BURBUJA DE AYUDA ==========
         const chatHelper = document.getElementById('chatHelper');
         const chatBubbleMsg = document.getElementById('chatBubbleMsg');
         const closeBubbleBtn = document.getElementById('closeBubbleMsg');
         const handWave = document.getElementById('handWave');
 
-        // Mostrar la burbuja después de 2 segundos
-        setTimeout(() => {
-            if (chatBubbleMsg) {
-                chatBubbleMsg.classList.remove('opacity-0', 'translate-y-2');
-                chatBubbleMsg.classList.add('opacity-100', 'translate-y-0');
-            }
-        }, 2000);
+        // Verificar si ya fue cerrado en esta sesión
+        const yaCerrado = sessionStorage.getItem('chatHelperCerrado');
 
-        // Cerrar la burbuja manualmente
-        if (closeBubbleBtn) {
-            closeBubbleBtn.addEventListener('click', () => {
+        if (!yaCerrado) {
+            // Mostrar la burbuja después de 2 segundos
+            setTimeout(() => {
                 if (chatBubbleMsg) {
-                    chatBubbleMsg.classList.add('opacity-0', 'translate-y-2');
-                    setTimeout(() => {
-                        chatBubbleMsg.style.display = 'none';
-                    }, 300);
+                    chatBubbleMsg.classList.remove('opacity-0', 'translate-y-2');
+                    chatBubbleMsg.classList.add('opacity-100', 'translate-y-0');
                 }
+                if (handWave) handWave.style.display = 'inline-block';
+            }, 2000);
+        } else {
+            // Si ya fue cerrado, ocultar todo permanentemente
+            if (chatBubbleMsg) chatBubbleMsg.style.display = 'none';
+            if (handWave) handWave.style.display = 'none';
+            if (chatHelper) chatHelper.style.display = 'none';
+        }
+
+        // Función para cerrar burbuja Y manita
+        function cerrarAyuda() {
+            if (chatBubbleMsg) {
+                chatBubbleMsg.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => {
+                    chatBubbleMsg.style.display = 'none';
+                }, 300);
+            }
+            if (handWave) handWave.style.display = 'none';
+            if (chatHelper) chatHelper.style.display = 'none';
+            sessionStorage.setItem('chatHelperCerrado', 'true');
+        }
+
+        if (closeBubbleBtn) {
+            closeBubbleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cerrarAyuda();
+                if (window.playSound) window.playSound('click');
             });
         }
 
-        // Al hacer clic en la manita, abrir el chat y (opcional) cerrar la burbuja
+        // Al hacer clic en la manita, abrir el chat y cerrar la ayuda
         if (handWave) {
             handWave.addEventListener('click', () => {
                 const chatPanel = document.getElementById('chatPanel');
                 if (chatPanel) {
                     chatPanel.classList.toggle('open');
                     if (chatPanel.classList.contains('open')) {
-                        if (chatBubbleMsg) {
-                            chatBubbleMsg.classList.add('opacity-0', 'translate-y-2');
-                            setTimeout(() => {
-                                chatBubbleMsg.style.display = 'none';
-                            }, 300);
-                        }
+                        cerrarAyuda(); // también cierra burbuja y manita al abrir chat
                     }
                 }
                 if (window.playSound) window.playSound('click');
