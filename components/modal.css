@@ -1,4 +1,4 @@
-/* modal.css - Estilos para el modal de lectura de noticias */
+/* modal.css - Estilos para el modal de lectura de noticias (solo azules) */
 
 .modal-overlay {
     position: fixed;
@@ -23,16 +23,16 @@
     max-height: 85vh;
     overflow-y: auto;
     animation: slideUp 0.3s ease;
-    border: 1px solid #E8DDD0;
+    border: 1px solid #A9CCE3;
 }
 
 .modal-header {
     padding: 20px 24px;
-    border-bottom: 1px solid #E8DDD0;
+    border-bottom: 1px solid #A9CCE3;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #D46A4A, #6B7B5E);
+    background: linear-gradient(135deg, #2980B9, #5DADE2);
     border-radius: 24px 24px 0 0;
     color: white;
 }
@@ -66,14 +66,14 @@
 }
 
 .modal-body .fecha {
-    color: #8B6B5A;
+    color: #2E86C1;
     font-size: 0.8rem;
     margin-bottom: 16px;
     display: block;
 }
 
 .modal-body .contenido {
-    color: #2C1810;
+    color: #154360;
     line-height: 1.6;
     white-space: pre-line;
 }
@@ -81,7 +81,7 @@
 .modal-close-btn {
     width: 100%;
     padding: 12px;
-    background: #D46A4A;
+    background: #2980B9;
     color: white;
     border: none;
     border-radius: 12px;
@@ -92,7 +92,7 @@
 }
 
 .modal-close-btn:hover {
-    background: #6B7B5E;
+    background: #1a5d8a;
 }
 
 @keyframes fadeIn {

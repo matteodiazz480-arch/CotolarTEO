@@ -34,6 +34,46 @@
 </head>
 <body class="bg-azulClaro">
     
+        <!-- SPLASH SCREEN DE CARGA - Diseño profesional -->
+    <div id="splashScreen" class="fixed inset-0 z-[300] flex items-center justify-center transition-all duration-1000" style="background: linear-gradient(135deg, #1a5d8a 0%, #2980B9 50%, #5DADE2 100%);">
+        
+        <!-- Ondas decorativas SVG -->
+        <svg class="absolute bottom-0 left-0 w-full h-32 opacity-20" preserveAspectRatio="none" viewBox="0 0 1440 320">
+            <path fill="white" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,186.7C672,192,768,224,864,229.3C960,235,1056,213,1152,197.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+        <svg class="absolute bottom-0 left-0 w-full h-20 opacity-10" preserveAspectRatio="none" viewBox="0 0 1440 320">
+            <path fill="white" fill-opacity="1" d="M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,245.3C672,256,768,256,864,234.7C960,213,1056,171,1152,160C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+
+        <div class="text-center z-10 px-6">
+            <!-- Logo con animación de rebote elegante -->
+            <div class="logo-container mb-6">
+                <div class="w-28 h-28 md:w-40 md:h-40 rounded-3xl flex items-center justify-center mx-auto shadow-2xl overflow-hidden bg-white" style="box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                    <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-3 animate-float">
+                </div>
+            </div>
+            
+            <!-- Título con efecto de escritura -->
+            <h1 class="text-3xl md:text-4xl font-bold text-white tracking-wide mb-2 animate-fadeInUp" style="animation-delay: 0.1s;">COTOLAR</h1>
+            
+            <!-- Línea decorativa -->
+            <div class="w-16 h-0.5 bg-white/50 mx-auto my-3 animate-scaleX"></div>
+            
+            <!-- Subtítulo -->
+            <p class="text-white/90 text-sm md:text-base animate-fadeInUp" style="animation-delay: 0.2s;">Colegio de Terapistas Ocupacionales</p>
+            <p class="text-white/70 text-xs md:text-sm animate-fadeInUp" style="animation-delay: 0.3s;">Provincia de La Rioja</p>
+            
+            <!-- Barra de progreso -->
+            <div class="w-48 md:w-64 mx-auto mt-8">
+                <div class="h-1 bg-white/20 rounded-full overflow-hidden">
+                    <div id="progressBar" class="h-full bg-white rounded-full" style="width: 0%; transition: width 0.1s linear;"></div>
+                </div>
+            </div>
+            
+            <!-- Texto de estado -->
+            <p id="loadingStatus" class="text-white/50 text-xs mt-3 animate-fadeInUp" style="animation-delay: 0.4s;">Iniciando...</p>
+        </div>
+    </div>
     <!-- MODAL DE AVISO DE DEMO -->
     <div id="demoModal" class="fixed inset-0 z-[200] flex items-center justify-center p-4" style="background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px);">
         <div class="bg-azulCard rounded-2xl max-w-md w-full shadow-2xl border border-azulBorde animate-scaleIn overflow-hidden">
@@ -341,10 +381,24 @@
         </div>
     </main>
     
-    <footer class="bg-azulMarino text-white py-6 px-4">
+        <footer class="bg-azulMarino text-white py-6 px-4">
         <div class="max-w-6xl mx-auto text-center">
             <p>© 2025 COTOLAR - Colegio de Terapia Ocupacional de La Rioja</p>
             <p class="text-white/50 text-sm mt-1">Órgano oficial de regulación profesional · Provincia de La Rioja</p>
+            
+            <!-- Redes Sociales -->
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="https://www.instagram.com/cotolar_" target="_blank" rel="noopener noreferrer" class="text-white hover:text-azulClaro transition-all duration-300 transform hover:scale-110">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/colegioto.larioja" target="_blank" rel="noopener noreferrer" class="text-white hover:text-azulClaro transition-all duration-300 transform hover:scale-110">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </footer>
     <!-- MANITA Y BURBUJA DE DIÁLOGO SOBRE EL ROBOTITO -->
@@ -495,6 +549,64 @@
                 if (window.playSound) window.playSound('click');
             });
         }
+        // ========== SPLASH SCREEN CON BARRA DE PROGRESO ==========
+        window.addEventListener('load', function() {
+            const splash = document.getElementById('splashScreen');
+            const progressBar = document.getElementById('progressBar');
+            const loadingStatus = document.getElementById('loadingStatus');
+            
+            const statusMessages = [
+                'Cargando recursos...',
+                'Preparando el colegio...',
+                'Bienvenido a COTOLAR'
+            ];
+            
+            let progress = 0;
+            let messageIndex = 0;
+            
+            // Actualizar mensaje cada 0.8 segundos
+            const messageInterval = setInterval(() => {
+                messageIndex++;
+                if (messageIndex < statusMessages.length && loadingStatus) {
+                    loadingStatus.textContent = statusMessages[messageIndex];
+                }
+            }, 800);
+            
+            // Simular progreso hasta 100%
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    clearInterval(messageInterval);
+                    
+                    // Pequeña pausa para mostrar el 100%
+                    setTimeout(() => {
+                        if (splash) {
+                            splash.style.opacity = '0';
+                            setTimeout(() => {
+                                splash.style.display = 'none';
+                            }, 1000);
+                        }
+                    }, 400);
+                }
+                if (progressBar) {
+                    progressBar.style.width = Math.min(progress, 100) + '%';
+                }
+            }, 150);
+            
+            // Tiempo máximo de seguridad (3 segundos)
+            setTimeout(() => {
+                clearInterval(interval);
+                clearInterval(messageInterval);
+                if (splash && splash.style.display !== 'none') {
+                    splash.style.opacity = '0';
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                    }, 1000);
+                }
+            }, 3500);
+        });
     </script>
     
     <script src="js/imageHandler.js"></script>

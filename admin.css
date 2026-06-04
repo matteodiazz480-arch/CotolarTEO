@@ -1,9 +1,14 @@
 /* admin.css - Estilos responsivos para panel de administración */
 
-/* Animación para fade in */
+/* Animaciones */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .dashboard-card {
@@ -15,22 +20,173 @@
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilos para el dashboard - texto negro para legibilidad */
+.stat-card {
+    background: linear-gradient(135deg, #2980B9 0%, #5DADE2 100%);
+}
+
+.stat-card .stat-number,
+.stat-card .stat-label {
+    color: #1a1a1a !important;
+}
+
+.stat-card-light {
+    background: #EAF2F8;
+    border: 1px solid #A9CCE3;
+}
+
+/* Modal de edición */
+.modal-overlay-admin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-container-admin {
+    background: white;
+    border-radius: 20px;
+    max-width: 550px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: scaleIn 0.3s ease;
+    border: 1px solid #A9CCE3;
+}
+
+.modal-header-admin {
+    padding: 16px 20px;
+    border-bottom: 1px solid #A9CCE3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #2980B9, #5DADE2);
+    border-radius: 20px 20px 0 0;
+    color: white;
+}
+
+.modal-header-admin h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.modal-header-admin .material-icons {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.modal-header-admin .material-icons:hover {
+    opacity: 1;
+}
+
+.modal-body-admin {
+    padding: 20px;
+}
+
+.modal-body-admin input,
+.modal-body-admin textarea,
+.modal-body-admin select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #A9CCE3;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: #FAF7F2;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.modal-body-admin input:focus,
+.modal-body-admin textarea:focus,
+.modal-body-admin select:focus {
+    border-color: #2980B9;
+    ring: 2px solid #2980B9;
+}
+
+/* Botón de subir imagen */
+.btn-upload {
+    background: #EAF2F8;
+    border: 1px solid #A9CCE3;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #2980B9;
+    margin-bottom: 12px;
+}
+
+.btn-upload:hover {
+    background: #2980B9;
+    color: white;
+}
+
+.preview-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #A9CCE3;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.modal-footer-admin {
+    padding: 16px 20px;
+    border-top: 1px solid #A9CCE3;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.modal-footer-admin button {
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-modal-save {
+    background: #2980B9;
+    color: white;
+    border: none;
+}
+
+.btn-modal-save:hover {
+    background: #1a5d8a;
+}
+
+.btn-modal-cancel {
+    background: #EAF2F8;
+    color: #154360;
+    border: 1px solid #A9CCE3;
+}
+
+.btn-modal-cancel:hover {
+    background: #D6EAF8;
+}
+
 /* Responsive para móvil */
 @media (max-width: 768px) {
     .admin-table-container {
         overflow-x: auto;
     }
     
-    .admin-table {
-        min-width: 600px;
-    }
-    
     .dashboard-stats {
         gap: 0.75rem;
-    }
-    
-    .stat-card {
-        padding: 0.75rem;
     }
     
     .stat-card .material-icons {
@@ -41,29 +197,12 @@
         font-size: 1.25rem;
     }
     
-    .stat-card .stat-label {
-        font-size: 0.65rem;
+    .modal-container-admin {
+        width: 95%;
+        margin: 16px;
     }
 }
 
-/* Desktop */
-@media (min-width: 769px) {
-    .dashboard-stats {
-        gap: 1.5rem;
-    }
-}
-
-/* Estilos para el dashboard */
-.dashboard-bg {
-    background: linear-gradient(135deg, #2980B9 0%, #5DADE2 100%);
-}
-
-/* Scroll suave */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Mejora para tablas en móvil */
 @media (max-width: 640px) {
     .admin-tab-btn {
         font-size: 0.7rem;
@@ -72,4 +211,26 @@ html {
     .admin-tab-btn .material-icons {
         font-size: 0.8rem;
     }
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Redes sociales */
+.social-icons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.social-icon {
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
 }

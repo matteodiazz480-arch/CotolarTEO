@@ -9,7 +9,7 @@ window.DATOS_LOCALES = {
             destacada: true, 
             fecha: "2025-05-28",
             categoria: "Capacitación",
-            imagen: ""
+            imagen: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.noticiaslosrios.cl%2Fwp-content%2Fuploads%2F2018%2F05%2FTerapia-Ocupacional.jpg&f=1&nofb=1&ipt=2808fe971ed05c70c1f824c688078489a226f158e9a6563a07b918b5a9b19556"
         },
         { 
             id: 2, 
@@ -18,17 +18,8 @@ window.DATOS_LOCALES = {
             destacada: true, 
             fecha: "2025-05-15",
             categoria: "Institucional",
-            imagen: ""
+            imagen: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn1.eldia.com%2F102020%2F1602791168236.jpg&f=1&nofb=1&ipt=8f28efbbd8821d38bb089ad3260581daa5f1f819009eebb0445dd9162013f916"
         },
-        { 
-            id: 3, 
-            titulo: "Convenio con la Universidad Nacional de La Rioja", 
-            contenido: "El Colegio firmó un convenio de colaboración académica con la UNLaR para promover la formación continua y la inserción laboral de los nuevos egresados de Terapia Ocupacional.",
-            destacada: false, 
-            fecha: "2025-05-03",
-            categoria: "Convenios",
-            imagen: ""
-        }
     ],
     
     aranceles: [
@@ -55,7 +46,7 @@ window.DATOS_LOCALES = {
             fecha_inicio: "2025-07-10",
             lugar: "Centro de Convenciones, La Rioja Capital",
             vacantes: 80,
-            imagen: "",
+            imagen: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ellitoral.com%2Fimages%2F2025%2F09%2F10%2FuwJG0VxwR_870x580__1.jpg&f=1&nofb=1&ipt=f4ca5cf8591622cacb55932d98c6b9338d756de04a39b69838b20d96172ad065",
             contenido: "Jornada intensiva con expertos en neurorehabilitación."
         },
         { 
@@ -67,109 +58,54 @@ window.DATOS_LOCALES = {
             fecha_inicio: "2025-08-05",
             lugar: "Plataforma Zoom",
             vacantes: 50,
-            imagen: "",
+            imagen: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fadmision.uandes.cl%2Fimages%2Fdefault-source%2Fimagenes-noticias%2Fnoticia-terapia-ocupacional-uandes.png%3Fsfvrsn%3Df421269e_3&f=1&nofb=1&ipt=fca17f0755df5c39edb27667b963a55b7a0685389497bc3de6de623445b82970",
             contenido: "Curso teórico-práctico sobre intervenciones en salud mental."
         }
     ],
     
     normativa: {
         id: 1,
-        codigoEtica: "CÓDIGO DE ÉTICA DE TERAPIA OCUPACIONAL DE LA REPÚBLICA ARGENTINA\n\nArtículo 1°: El Terapeuta Ocupacional tiene como objetivo principal la promoción, prevención, habilitación y rehabilitación de las personas con discapacidad o en situación de vulnerabilidad, respetando su dignidad y autonomía.\n\nArtículo 2°: Debe mantener una conducta ética y profesional en todo momento, actuando con honestidad, responsabilidad y respeto hacia sus pacientes, colegas y otros profesionales de la salud.\n\nArtículo 3°: La confidencialidad de la información del paciente es un deber fundamental, solo puede ser revelada con consentimiento expreso o por mandato judicial.",
-        
-        ley: "LEY NACIONAL DE TERAPIA OCUPACIONAL N° 27.123\n\nArtículo 1°: Declárese de interés nacional la formación, el desarrollo y la práctica profesional de la Terapia Ocupacional en todo el territorio de la República Argentina.\n\nArtículo 2°: La Terapia Ocupacional es una profesión del área de la salud que tiene por objeto el estudio, prevención, tratamiento y rehabilitación de personas con limitaciones en su desempeño ocupacional."
+        codigoEtica: "CÓDIGO DE ÉTICA DE TERAPIA OCUPACIONAL DE LA REPÚBLICA ARGENTINA\n\nArtículo 1°: El Terapeuta Ocupacional tiene como objetivo principal la promoción, prevención, habilitación y rehabilitación de las personas con discapacidad o en situación de vulnerabilidad, respetando su dignidad y autonomía.",
+        ley: "LEY NACIONAL DE TERAPIA OCUPACIONAL N° 27.123\n\nArtículo 1°: Declárese de interés nacional la formación, el desarrollo y la práctica profesional de la Terapia Ocupacional en todo el territorio de la República Argentina."
     }
 };
 
-// MATRICULADOS (nueva tabla para gestión)
+// MATRICULADOS
 window.MATRICULADOS = [
-    { 
-        id: 1, 
-        nroMatricula: "TO-001", 
-        nombre: "Lic. María Eugenia Pérez", 
-        dni: "30123456", 
-        fechaMatriculacion: "2023-01-15",
-        fechaVencimiento: "2025-12-31",
-        estado: "Activo",
-        especialidad: "Neurorehabilitación",
-        localidad: "Capital",
-        telefono: "380-4123456",
-        email: "maria.perez@cotolar.org"
-    },
-    { 
-        id: 2, 
-        nroMatricula: "TO-002", 
-        nombre: "Lic. Carlos Rodríguez", 
-        dni: "31234567", 
-        fechaMatriculacion: "2023-03-20",
-        fechaVencimiento: "2025-12-31",
-        estado: "Activo",
-        especialidad: "Pediatría",
-        localidad: "Capital",
-        telefono: "380-4234567",
-        email: "carlos.rodriguez@cotolar.org"
-    },
-    { 
-        id: 3, 
-        nroMatricula: "TO-003", 
-        nombre: "Dra. Laura Gómez", 
-        dni: "32345678", 
-        fechaMatriculacion: "2022-06-10",
-        fechaVencimiento: "2025-06-30",
-        estado: "Por renovar",
-        especialidad: "Salud Mental",
-        localidad: "Chilecito",
-        telefono: "382-4345678",
-        email: "laura.gomez@cotolar.org"
-    },
-    { 
-        id: 4, 
-        nroMatricula: "TO-004", 
-        nombre: "Lic. Ana Martínez", 
-        dni: "33456789", 
-        fechaMatriculacion: "2024-01-05",
-        fechaVencimiento: "2025-12-31",
-        estado: "Activo",
-        especialidad: "Geriatría",
-        localidad: "Capital",
-        telefono: "380-4456789",
-        email: "ana.martinez@cotolar.org"
-    },
-    { 
-        id: 5, 
-        nroMatricula: "TO-005", 
-        nombre: "Lic. Roberto Sánchez", 
-        dni: "34567890", 
-        fechaMatriculacion: "2024-02-15",
-        fechaVencimiento: "2025-12-31",
-        estado: "Activo",
-        especialidad: "Discapacidad",
-        localidad: "Aimogasta",
-        telefono: "382-4567890",
-        email: "roberto.sanchez@cotolar.org"
-    }
+    { id: 1, nroMatricula: "TO-001", nombre: "Lic. María Eugenia Pérez", dni: "30123456", fechaMatriculacion: "2023-01-15", fechaVencimiento: "2025-12-31", estado: "Activo", especialidad: "Neurorehabilitación", localidad: "Capital", telefono: "380-4123456", email: "maria.perez@cotolar.org" },
+    { id: 2, nroMatricula: "TO-002", nombre: "Lic. Carlos Rodríguez", dni: "31234567", fechaMatriculacion: "2023-03-20", fechaVencimiento: "2025-12-31", estado: "Activo", especialidad: "Pediatría", localidad: "Capital", telefono: "380-4234567", email: "carlos.rodriguez@cotolar.org" },
+    { id: 3, nroMatricula: "TO-003", nombre: "Dra. Laura Gómez", dni: "32345678", fechaMatriculacion: "2022-06-10", fechaVencimiento: "2025-06-30", estado: "Por renovar", especialidad: "Salud Mental", localidad: "Chilecito", telefono: "382-4345678", email: "laura.gomez@cotolar.org" },
+    { id: 4, nroMatricula: "TO-004", nombre: "Lic. Ana Martínez", dni: "33456789", fechaMatriculacion: "2024-01-05", fechaVencimiento: "2025-12-31", estado: "Activo", especialidad: "Geriatría", localidad: "Capital", telefono: "380-4456789", email: "ana.martinez@cotolar.org" },
+    { id: 5, nroMatricula: "TO-005", nombre: "Lic. Roberto Sánchez", dni: "34567890", fechaMatriculacion: "2024-02-15", fechaVencimiento: "2025-12-31", estado: "Activo", especialidad: "Discapacidad", localidad: "Aimogasta", telefono: "382-4567890", email: "roberto.sanchez@cotolar.org" }
 ];
 
-// Autoridades
+// AUTORIDADES con fotos de ejemplo
 window.AUTORIDADES = [
-    { id: 1, nombre: "Lic. María José Fernández", cargo: "Presidente", orden: 1, foto: "", descripcion: "Presidente del COTOLAR período 2024-2028" },
-    { id: 2, nombre: "Dr. Carlos Alberto Méndez", cargo: "Vicepresidente", orden: 2, foto: "", descripcion: "Vicepresidente del Colegio" },
-    { id: 3, nombre: "Lic. Laura Beatriz González", cargo: "Secretaria General", orden: 3, foto: "", descripcion: "Secretaria General" },
-    { id: 4, nombre: "Lic. Roberto Carlos Díaz", cargo: "Tesorero", orden: 4, foto: "", descripcion: "Tesorero del Colegio" },
-    { id: 5, nombre: "Lic. Ana Silvia Romero", cargo: "Vocal Titular", orden: 5, foto: "", descripcion: "Vocal Titular" },
-    { id: 6, nombre: "Dr. Pablo Ezequiel Sosa", cargo: "Vocal Suplente", orden: 6, foto: "", descripcion: "Vocal Suplente" },
-    { id: 7, nombre: "Lic. Verónica del Carmen Luna", cargo: "Revisora de Cuentas", orden: 7, foto: "", descripcion: "Revisora de Cuentas" }
+    { id: 1, nombre: "Lic. María José Fernández", cargo: "Presidente", orden: 1, foto: "https://randomuser.me/api/portraits/women/68.jpg", descripcion: "Presidente del COTOLAR período 2024-2028" },
+    { id: 2, nombre: "Dr. Carlos Alberto Méndez", cargo: "Vicepresidente", orden: 2, foto: "https://randomuser.me/api/portraits/men/32.jpg", descripcion: "Vicepresidente del Colegio" },
+    { id: 3, nombre: "Lic. Laura Beatriz González", cargo: "Secretaria General", orden: 3, foto: "https://randomuser.me/api/portraits/women/45.jpg", descripcion: "Secretaria General" },
+    { id: 4, nombre: "Lic. Roberto Carlos Díaz", cargo: "Tesorero", orden: 4, foto: "https://randomuser.me/api/portraits/men/52.jpg", descripcion: "Tesorero del Colegio" },
+    { id: 5, nombre: "Lic. Ana Silvia Romero", cargo: "Vocal Titular", orden: 5, foto: "https://randomuser.me/api/portraits/women/23.jpg", descripcion: "Vocal Titular" },
+    { id: 6, nombre: "Dr. Pablo Ezequiel Sosa", cargo: "Vocal Suplente", orden: 6, foto: "https://randomuser.me/api/portraits/men/41.jpg", descripcion: "Vocal Suplente" },
+    { id: 7, nombre: "Lic. Verónica del Carmen Luna", cargo: "Revisora de Cuentas", orden: 7, foto: "https://randomuser.me/api/portraits/women/89.jpg", descripcion: "Revisora de Cuentas" }
 ];
 
-// Profesionales activos (versión simplificada, mantiene compatibilidad)
-window.PROFESIONALES_ACTIVOS = window.MATRICULADOS.filter(m => m.estado === "Activo").map(m => ({
-    id: m.id,
-    nombre: m.nombre,
-    especialidad: m.especialidad,
-    localidad: m.localidad,
-    foto: ""
-}));
+// PROFESIONALES ACTIVOS con fotos
+window.PROFESIONALES_ACTIVOS = [
+    { id: 1, nombre: "Lic. María Eugenia Pérez", especialidad: "Neurorehabilitación", localidad: "Capital", foto: "https://randomuser.me/api/portraits/women/1.jpg" },
+    { id: 2, nombre: "Lic. Carlos Rodríguez", especialidad: "Pediatría", localidad: "Capital", foto: "https://randomuser.me/api/portraits/men/2.jpg" },
+    { id: 3, nombre: "Dra. Laura Gómez", especialidad: "Salud Mental", localidad: "Chilecito", foto: "https://randomuser.me/api/portraits/women/3.jpg" },
+    { id: 4, nombre: "Lic. Ana Martínez", especialidad: "Geriatría", localidad: "Capital", foto: "https://randomuser.me/api/portraits/women/4.jpg" },
+    { id: 5, nombre: "Lic. Roberto Sánchez", especialidad: "Discapacidad", localidad: "Aimogasta", foto: "https://randomuser.me/api/portraits/men/5.jpg" },
+    { id: 6, nombre: "Lic. Silvia López", especialidad: "Laboral", localidad: "Capital", foto: "https://randomuser.me/api/portraits/women/6.jpg" },
+    { id: 7, nombre: "Lic. Fernando Díaz", especialidad: "Neurodesarrollo", localidad: "Castro Barros", foto: "https://randomuser.me/api/portraits/men/7.jpg" },
+    { id: 8, nombre: "Lic. Marcela Romero", especialidad: "Comunitaria", localidad: "Chamical", foto: "https://randomuser.me/api/portraits/women/8.jpg" },
+    { id: 9, nombre: "Lic. Pablo González", especialidad: "Educación", localidad: "Capital", foto: "https://randomuser.me/api/portraits/men/9.jpg" },
+    { id: 10, nombre: "Lic. Verónica Fernández", especialidad: "Clínica", localidad: "Chepes", foto: "https://randomuser.me/api/portraits/women/10.jpg" },
+    { id: 11, nombre: "Lic. Daniel Morales", especialidad: "Rehabilitación", localidad: "Villa Unión", foto: "https://randomuser.me/api/portraits/men/11.jpg" },
+    { id: 12, nombre: "Lic. Carolina Flores", especialidad: "Infantil", localidad: "Capital", foto: "https://randomuser.me/api/portraits/women/12.jpg" }
+];
 
-// Usuarios válidos
 window.USUARIOS_VALIDOS = [
     { email: "admin@cotolar.org", password: "admin123", nombre: "Administrador COTOLAR" }
 ];
