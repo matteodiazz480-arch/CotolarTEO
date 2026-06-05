@@ -591,75 +591,48 @@
         document.getElementById('androidInstallBtn')?.addEventListener('click', instalarPWA);
         document.getElementById('iosInstallBtn')?.addEventListener('click', instalarPWA);
         
-        // ========== SPLASH SCREEN CON BARRA DE PROGRESO ==========
-        window.addEventListener('load', function() {
-            const splash = document.getElementById('splashScreen');
-            const progressBar = document.getElementById('progressBar');
-            const loadingStatus = document.getElementById('loadingStatus');
-            const chatWidget = document.querySelector('.chat-widget');
-            const handWave = document.getElementById('handWave');
-            const chatBubbleMsg = document.getElementById('chatBubbleMsg');
-            const chatHelper = document.getElementById('chatHelper');
+// ========== SPLASH SCREEN ==========
+window.addEventListener('load', function() {
+    const splash = document.getElementById('splashScreen');
+    const progressBar = document.getElementById('progressBar');
+    const loadingStatus = document.getElementById('loadingStatus');
+    const chatWidget = document.querySelector('.chat-widget');
+    const handWave = document.getElementById('handWave');
+    const chatBubbleMsg = document.getElementById('chatBubbleMsg');
+    const chatHelper = document.getElementById('chatHelper');
+    
+    // Asegurar que todo esté oculto durante el splash
+    if (chatWidget) chatWidget.classList.remove('visible');
+    if (handWave) handWave.style.display = 'none';
+    if (chatBubbleMsg) chatBubbleMsg.style.display = 'none';
+    if (chatHelper) chatHelper.style.display = 'none';
+    
+    const statusMessages = ['Cargando recursos...', 'Preparando el colegio...', 'Bienvenido a COTOLAR'];
+    let progress = 0;
+    let messageIndex = 0;
+    
+    const messageInterval = setInterval(() => {
+        messageIndex++;
+        if (messageIndex < statusMessages.length && loadingStatus) {
+            loadingStatus.textContent = statusMessages[messageIndex];
+        }
+    }, 800);
+    
+    const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            clearInterval(messageInterval);
             
-            // Asegurar que todo esté oculto durante el splash
-            if (chatWidget) chatWidget.classList.remove('visible');
-            if (handWave) handWave.style.display = 'none';
-            if (chatBubbleMsg) chatBubbleMsg.style.display = 'none';
-            if (chatHelper) chatHelper.style.display = 'none';
-            
-            const statusMessages = ['Cargando recursos...', 'Preparando el colegio...', 'Bienvenido a COTOLAR'];
-            let progress = 0;
-            let messageIndex = 0;
-            
-            const messageInterval = setInterval(() => {
-                messageIndex++;
-                if (messageIndex < statusMessages.length && loadingStatus) {
-                    loadingStatus.textContent = statusMessages[messageIndex];
-                }
-            }, 800);
-            
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    clearInterval(messageInterval);
-                    
-                    // Pequeña pausa para mostrar el 100%
-                    setTimeout(() => {
-                        if (splash) {
-                            splash.style.opacity = '0';
-                            setTimeout(() => {
-                                splash.style.display = 'none';
-                                
-                                // Mostrar el robotito después del splash
-                                if (chatWidget) chatWidget.classList.add('visible');
-                                
-                                // Mostrar la manita y el globo después del splash
-                                if (chatHelper) chatHelper.style.display = 'flex';
-                                if (handWave) handWave.style.display = 'inline-block';
-                                if (chatBubbleMsg) {
-                                    chatBubbleMsg.style.display = 'block';
-                                    setTimeout(() => {
-                                        chatBubbleMsg.classList.remove('opacity-0', 'translate-y-2');
-                                        chatBubbleMsg.classList.add('opacity-100', 'translate-y-0');
-                                    }, 300);
-                                }
-                            }, 1000);
-                        }
-                    }, 400);
-                }
-                if (progressBar) progressBar.style.width = Math.min(progress, 100) + '%';
-            }, 150);
-            
-            // Tiempo máximo de seguridad (4 segundos)
             setTimeout(() => {
-                clearInterval(interval);
-                clearInterval(messageInterval);
-                if (splash && splash.style.display !== 'none') {
+                if (splash) {
                     splash.style.opacity = '0';
+                    splash.style.pointerEvents = 'none';
                     setTimeout(() => {
                         splash.style.display = 'none';
+                        
+                        // Mostrar todo después del splash
                         if (chatWidget) chatWidget.classList.add('visible');
                         if (chatHelper) chatHelper.style.display = 'flex';
                         if (handWave) handWave.style.display = 'inline-block';
@@ -672,60 +645,80 @@
                         }
                     }, 1000);
                 }
-            }, 4000);
-        });
-
-        // ========== MANITA Y BURBUJA DE AYUDA (después del splash) ==========
-        const chatHelper = document.getElementById('chatHelper');
-        const chatBubbleMsgEl = document.getElementById('chatBubbleMsg');
-        const closeBubbleBtn = document.getElementById('closeBubbleMsg');
-        const handWaveEl = document.getElementById('handWave');
-
-        // Verificar si ya fue cerrado en esta sesión
-        const yaCerradoHelper = sessionStorage.getItem('chatHelperCerrado');
-
-        if (!yaCerradoHelper) {
-            // La manita y el globo se mostrarán después del splash (controlado por el splash)
-            console.log('Manita y globo listos para mostrarse después del splash');
-        } else {
-            // Si ya fue cerrado, ocultar todo permanentemente
-            if (chatBubbleMsgEl) chatBubbleMsgEl.style.display = 'none';
-            if (handWaveEl) handWaveEl.style.display = 'none';
-            if (chatHelper) chatHelper.style.display = 'none';
+            }, 400);
         }
-
-        function cerrarAyuda() {
-            if (chatBubbleMsgEl) {
-                chatBubbleMsgEl.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() => {
-                    if (chatBubbleMsgEl) chatBubbleMsgEl.style.display = 'none';
-                }, 300);
-            }
-            if (handWaveEl) handWaveEl.style.display = 'none';
-            if (chatHelper) chatHelper.style.display = 'none';
-            sessionStorage.setItem('chatHelperCerrado', 'true');
-        }
-
-        if (closeBubbleBtn) {
-            closeBubbleBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                cerrarAyuda();
-                if (window.playSound) window.playSound('click');
-            });
-        }
-
-        if (handWaveEl) {
-            handWaveEl.addEventListener('click', () => {
-                const chatPanel = document.getElementById('chatPanel');
-                if (chatPanel) {
-                    chatPanel.classList.toggle('open');
-                    if (chatPanel.classList.contains('open')) {
-                        cerrarAyuda();
-                    }
+        if (progressBar) progressBar.style.width = Math.min(progress, 100) + '%';
+    }, 150);
+    
+    setTimeout(() => {
+        clearInterval(interval);
+        clearInterval(messageInterval);
+        if (splash && splash.style.display !== 'none') {
+            splash.style.opacity = '0';
+            splash.style.pointerEvents = 'none';
+            setTimeout(() => {
+                splash.style.display = 'none';
+                if (chatWidget) chatWidget.classList.add('visible');
+                if (chatHelper) chatHelper.style.display = 'flex';
+                if (handWave) handWave.style.display = 'inline-block';
+                if (chatBubbleMsg) {
+                    chatBubbleMsg.style.display = 'block';
+                    setTimeout(() => {
+                        chatBubbleMsg.classList.remove('opacity-0', 'translate-y-2');
+                        chatBubbleMsg.classList.add('opacity-100', 'translate-y-0');
+                    }, 300);
                 }
-                if (window.playSound) window.playSound('click');
-            });
+            }, 1000);
         }
+    }, 4000);
+});
+
+// ========== MANITA Y BURBUJA ==========
+const chatHelperEl = document.getElementById('chatHelper');
+const chatBubbleMsgEl = document.getElementById('chatBubbleMsg');
+const closeBubbleBtn = document.getElementById('closeBubbleMsg');
+const handWaveEl = document.getElementById('handWave');
+
+const yaCerradoHelper = sessionStorage.getItem('chatHelperCerrado');
+
+if (yaCerradoHelper) {
+    if (chatBubbleMsgEl) chatBubbleMsgEl.style.display = 'none';
+    if (handWaveEl) handWaveEl.style.display = 'none';
+    if (chatHelperEl) chatHelperEl.style.display = 'none';
+}
+
+function cerrarAyuda() {
+    if (chatBubbleMsgEl) {
+        chatBubbleMsgEl.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => {
+            if (chatBubbleMsgEl) chatBubbleMsgEl.style.display = 'none';
+        }, 300);
+    }
+    if (handWaveEl) handWaveEl.style.display = 'none';
+    if (chatHelperEl) chatHelperEl.style.display = 'none';
+    sessionStorage.setItem('chatHelperCerrado', 'true');
+}
+
+if (closeBubbleBtn) {
+    closeBubbleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        cerrarAyuda();
+        if (window.playSound) window.playSound('click');
+    });
+}
+
+if (handWaveEl) {
+    handWaveEl.addEventListener('click', () => {
+        const chatPanel = document.getElementById('chatPanel');
+        if (chatPanel) {
+            chatPanel.classList.toggle('open');
+            if (chatPanel.classList.contains('open')) {
+                cerrarAyuda();
+            }
+        }
+        if (window.playSound) window.playSound('click');
+    });
+}
     </script>
     
     <script src="js/imageHandler.js"></script>
