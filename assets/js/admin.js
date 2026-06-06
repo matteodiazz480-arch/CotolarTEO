@@ -4,39 +4,18 @@ let currentTab = 'dashboard';
 let editingId = null;
 let editingItem = null;
 
-function checkAdminSession() {
-    const session = localStorage.getItem('adminSession');
-    if (session) {
-        try {
-            const user = JSON.parse(session);
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'block';
-            document.getElementById('adminNameDisplay').textContent = user.nombre;
-            cargarDashboard();
-            mostrarTab('dashboard');
-        } catch(e) { localStorage.removeItem('adminSession'); }
-    }
+function initAdminPanel() {
+    const user = Auth.requireAuth(['admin', 'encargado']);
+    if (!user) return;
+    const nameEl = document.getElementById('adminNameDisplay');
+    if (nameEl) nameEl.textContent = user.nombre;
+    cargarDashboard();
+    mostrarTab('dashboard');
 }
 
-document.getElementById('btnAdminLogin')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('adminEmail').value;
-    const password = document.getElementById('adminPassword').value;
-    const user = window.verificarLogin(email, password);
-    if (user) {
-        if (window.playSound) window.playSound('success');
-        localStorage.setItem('adminSession', JSON.stringify(user));
-        checkAdminSession();
-    } else {
-        if (window.playSound) window.playSound('error');
-        alert('Acceso denegado. Verificá tus credenciales.');
-    }
-});
-
 document.getElementById('btnLogout')?.addEventListener('click', () => {
-    localStorage.removeItem('adminSession');
     if (window.playSound) window.playSound('click');
-    location.reload();
+    Auth.logout();
 });
 
 // ========== FUNCIÓN PARA SUBIR IMAGEN ==========
@@ -700,4 +679,4 @@ window.generarConstancia = function(matriculado) {
     alert('Función PDF - Se generará el documento');
 };
 
-checkAdminSession();
+initAdminPanel();

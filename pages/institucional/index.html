@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta name="theme-color" content="#3B82F6">
+    <title>COTOLAR | Institucional</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="manifest" href="/manifest.json">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        azulClaro: '#D6EAF8', azulCard: '#EAF2F8', azulMarino: '#154360',
+                        azulSec: '#2E86C1', azulPrimario: '#2980B9', celeste: '#5DADE2', azulBorde: '#A9CCE3'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-azulClaro">
+
+    <!-- HEADER -->
+    <header class="bg-azulCard border-b border-azulBorde sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
+            <a href="/pages/home/" class="flex items-center gap-3 md:gap-5">
+                <div class="w-20 h-20 md:w-20 md:h-20 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white">
+                    <img src="/assets/icons/icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain p-1">
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-2xl font-bold text-azulMarino tracking-wide">COTOLAR</h1>
+                    <p class="text-azulSec text-[10px] md:text-xs italic tracking-wide">Terapia Ocupacional · La Rioja</p>
+                </div>
+            </a>
+            <a href="/pages/home/" class="bg-azulPrimario text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-azulPrimario/80 transition-all duration-300 shadow-sm flex items-center gap-1">
+                <span class="material-icons text-sm">home</span>
+                <span>Volver al inicio</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- TÍTULO -->
+    <section class="py-8 md:py-12 px-4 bg-gradient-to-r from-azulPrimario to-celeste">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">Institucional</h1>
+            <p class="text-white/90 text-base md:text-lg mt-2">Conocé nuestra historia, autoridades y marco normativo</p>
+        </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12 pb-24">
+
+        <!-- HISTORIA -->
+        <div id="historia" class="mb-12 scroll-mt-20">
+            <div class="flex items-center gap-3 mb-4 border-b border-azulBorde pb-2">
+                <span class="material-icons text-azulPrimario text-3xl">history</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">Historia</h2>
+            </div>
+            <div class="bg-azulCard rounded-xl p-6 shadow-md border border-azulBorde">
+                <p class="text-azulMarino leading-relaxed mb-3">
+                    El <strong>Colegio de Terapistas Ocupacionales de La Rioja (CO.T.O.LaR)</strong> nació con la <strong>Ley Provincial N° 5511</strong> el <strong>20 de diciembre de 1990</strong>, siendo una de las primeras provincias argentinas en contar con un colegio propio que regule la profesión.
+                </p>
+                <p class="text-azulMarino leading-relaxed mb-3">
+                    La Rioja tiene un lugar destacado en la historia de la Terapia Ocupacional nacional: <strong>el 10 de septiembre de 1985</strong> se realizó en nuestra provincia el <strong>Primer Congreso Argentino de Terapia Ocupacional</strong>, fecha que hoy se conmemora como el <strong>Día del Terapista Ocupacional</strong> en todo el país.
+                </p>
+                <p class="text-azulMarino leading-relaxed">
+                    Desde entonces, el COTOLAR ha trabajado incansablemente por la regulación, la formación continua y la defensa de los derechos de los profesionales y de la comunidad riojana.
+                </p>
+            </div>
+        </div>
+
+        <!-- QUIÉNES SOMOS -->
+        <div id="quienes-somos" class="mb-12 scroll-mt-20">
+            <div class="flex items-center gap-3 mb-4 border-b border-azulBorde pb-2">
+                <span class="material-icons text-azulPrimario text-3xl">groups</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">¿Qué es / Quiénes somos?</h2>
+            </div>
+            <div class="bg-azulCard rounded-xl p-6 shadow-md border border-azulBorde">
+                <p class="text-azulMarino leading-relaxed mb-3">
+                    El <strong>CO.T.O.LaR</strong> es la institución que agrupa y regula a todos los terapistas ocupacionales que ejercen en la provincia de La Rioja. Es el organismo encargado de <strong>habilitar, regular y fiscalizar</strong> el ejercicio ético y legal de la Terapia Ocupacional.
+                </p>
+                <p class="text-azulMarino leading-relaxed">
+                    Nuestra misión es garantizar que los profesionales cumplan con los más altos estándares de calidad, promoviendo la formación continua y defendiendo los derechos tanto de los colegiados como de la comunidad que recibe sus servicios.
+                </p>
+            </div>
+        </div>
+
+        <!-- MARCO NORMATIVO -->
+        <div id="normativas" class="mb-12 scroll-mt-20">
+            <div class="flex items-center gap-3 mb-4 border-b border-azulBorde pb-2">
+                <span class="material-icons text-azulPrimario text-3xl">gavel</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">Marco Normativo</h2>
+            </div>
+            <div class="bg-azulCard rounded-xl p-6 shadow-md border border-azulBorde">
+                <h3 class="text-xl font-semibold text-azulPrimario mb-3">📜 Leyes Provinciales</h3>
+                <ul class="list-disc list-inside space-y-2 text-azulMarino mb-5 ml-2">
+                    <li><strong>Ley Provincial N° 5511</strong> (20/12/1990) - Creación del Colegio de Terapistas Ocupacionales de La Rioja.</li>
+                    <li><strong>Ley Provincial N° 8.765</strong> - Regulación del ejercicio profesional de Terapia Ocupacional en la provincia.</li>
+                    <li><strong>Ley Provincial N° 9.234</strong> - Adhesión a la Ley Nacional N° 27.123.</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-azulPrimario mb-3">🏛️ Leyes Nacionales</h3>
+                <ul class="list-disc list-inside space-y-2 text-azulMarino mb-5 ml-2">
+                    <li><strong>Ley Nacional N° 27.123</strong> - Ley Nacional de Terapia Ocupacional.</li>
+                    <li><strong>Ley Nacional N° 26.529</strong> - Derechos del Paciente en su Relación con los Profesionales e Instituciones de la Salud.</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-azulPrimario mb-3">⚖️ Código de Ética (vigente)</h3>
+                <p class="text-azulMarino leading-relaxed">El COTOLAR adopta el <strong>Código de Ética de la FATO</strong>, complementado con normativa local aprobada por Resolución N° 156/2024. Principios: respeto por la dignidad del paciente, confidencialidad, formación continua, actuación interdisciplinaria y rechazo a la mala praxis.</p>
+            </div>
+        </div>
+
+        <!-- CONSEJO DIRECTIVO -->
+        <div id="consejo-directivo" class="mb-12 scroll-mt-20">
+            <div class="flex items-center gap-3 mb-4 border-b border-azulBorde pb-2">
+                <span class="material-icons text-azulPrimario text-3xl">groups</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">Consejo Directivo</h2>
+            </div>
+            <div class="bg-azulCard rounded-xl p-6 shadow-md border border-azulBorde">
+                <div id="consejoDirectivoContainer" class="grid md:grid-cols-2 gap-4"></div>
+            </div>
+        </div>
+
+        <!-- TRIBUNAL DE DISCIPLINA -->
+        <div id="tribunal" class="mb-12 scroll-mt-20">
+            <div class="flex items-center gap-3 mb-4 border-b border-azulBorde pb-2">
+                <span class="material-icons text-azulPrimario text-3xl">gavel</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">Tribunal de Disciplina</h2>
+            </div>
+            <div class="bg-azulCard rounded-xl p-6 shadow-md border border-azulBorde">
+                <div id="tribunalContainer" class="grid md:grid-cols-2 gap-4"></div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO PROFESIONAL -->
+        <div id="ejercicio-profesional" class="mb-12 scroll-mt-20">
+            <div class="flex items-center gap-3 mb-4 border-b border-azulBorde pb-2">
+                <span class="material-icons text-azulPrimario text-3xl">work</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-azulMarino">Ejercicio Profesional</h2>
+            </div>
+            <div class="bg-azulCard rounded-xl p-6 shadow-md border border-azulBorde space-y-5">
+                <div>
+                    <h3 class="text-xl font-semibold text-azulPrimario flex items-center gap-2 mb-2"><span class="material-icons">assignment_ind</span> Matriculación</h3>
+                    <p class="text-azulMarino leading-relaxed">Para ejercer legalmente en La Rioja, todo Terapista Ocupacional debe estar matriculado en el COTOLAR. La matrícula se otorga tras presentar título universitario, DNI, foto 4x4, comprobante de pago y certificado del curso de Ética Profesional.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-azulPrimario flex items-center gap-2 mb-2"><span class="material-icons">attach_money</span> Honorarios Mínimos Éticos</h3>
+                    <p class="text-azulMarino leading-relaxed">El COTOLAR establece anualmente los Honorarios Mínimos Éticos. Todo profesional matriculado debe respetar estos valores.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-azulPrimario flex items-center gap-2 mb-2"><span class="material-icons">apartment</span> Ámbitos de Actuación Profesional</h3>
+                    <p class="text-azulMarino leading-relaxed">El Terapista Ocupacional puede desempeñarse en: hospitales públicos y privados, centros de rehabilitación, escuelas de educación especial, geriátricos, salud mental comunitaria, atención primaria, peritajes judiciales, docencia e investigación.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                class="bg-azulPrimario text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-azulPrimario/80 transition-all duration-300 shadow-md flex items-center gap-2 mx-auto">
+                <span class="material-icons text-sm">arrow_upward</span> Volver arriba
+            </button>
+        </div>
+    </main>
+
+    <footer class="bg-azulMarino text-white py-6 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <p>© 2025 COTOLAR - Colegio de Terapia Ocupacional de La Rioja</p>
+            <p class="text-white/50 text-sm mt-1">Órgano oficial de regulación profesional · Provincia de La Rioja</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/institucional.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+    </script>
+</body>
+</html>

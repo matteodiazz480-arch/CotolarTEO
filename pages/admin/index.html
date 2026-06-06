@@ -5,25 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
     <meta name="theme-color" content="#2980B9">
     <title>COTOLAR | Panel Admin</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="admin.css">
-    <link rel="manifest" href="manifest.json">
-    
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="manifest" href="/manifest.json">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        azulClaro: '#D6EAF8',
-                        azulCard: '#EAF2F8',
-                        azulMarino: '#154360',
-                        azulSec: '#2E86C1',
-                        azulPrimario: '#2980B9',
-                        celeste: '#5DADE2',
-                        azulBorde: '#A9CCE3',
+                        azulClaro: '#D6EAF8', azulCard: '#EAF2F8', azulMarino: '#154360',
+                        azulSec: '#2E86C1', azulPrimario: '#2980B9', celeste: '#5DADE2', azulBorde: '#A9CCE3'
                     }
                 }
             }
@@ -31,61 +26,54 @@
     </script>
 </head>
 <body class="bg-azulClaro">
-    
-    <audio id="sound-click" preload="auto" src="sounds/click.mp3"></audio>
-    <audio id="sound-error" preload="auto" src="sounds/error.mp3"></audio>
-    <audio id="sound-notification" preload="auto" src="sounds/notification.mp3"></audio>
-    <audio id="sound-success" preload="auto" src="sounds/success.mp3"></audio>
-    
+
+    <audio id="sound-click" preload="auto" src="/assets/sounds/click.mp3"></audio>
+    <audio id="sound-error" preload="auto" src="/assets/sounds/error.mp3"></audio>
+    <audio id="sound-notification" preload="auto" src="/assets/sounds/notification.mp3"></audio>
+    <audio id="sound-success" preload="auto" src="/assets/sounds/success.mp3"></audio>
+
     <script>
-        window.playSound = function(soundName) {
-            try { const audio = document.getElementById(`sound-${soundName}`); if (audio) { audio.currentTime = 0; audio.play().catch(e => console.log('Audio error:', e)); } } catch(e) { console.log(e); }
+        window.playSound = function (soundName) {
+            try {
+                const audio = document.getElementById(`sound-${soundName}`);
+                if (audio) { audio.currentTime = 0; audio.play().catch(() => {}); }
+            } catch (e) {}
         };
     </script>
-    
-    <!-- Login Screen -->
-    <div id="loginScreen" class="min-h-screen flex items-center justify-center p-4">
-        <div class="max-w-sm w-full animate-fadeIn">
-            <div class="text-center mb-8">
-                <div class="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg animate-pulse-slow overflow-hidden bg-white p-2">
-                    <img src="icon.svg" alt="COTOLAR Logo" class="w-full h-full object-contain">
-                </div>
-                <h1 class="text-2xl font-bold text-azulMarino tracking-wide">COTOLAR</h1>
-                <p class="text-azulSec text-sm italic tracking-wide mt-1">Terapia Ocupacional · La Rioja</p>
-                <p class="text-azulSec text-xs mt-2">Panel de Gestión</p>
-            </div>
-            <div class="bg-azulCard rounded-2xl shadow-xl p-6 border border-azulBorde animate-slideUp">
-                <div class="mb-4"><label class="block text-azulMarino font-semibold mb-2 text-sm">Email</label><input type="email" id="adminEmail" value="admin@cotolar.org" class="w-full px-4 py-3 border border-azulBorde rounded-xl focus:outline-none focus:ring-2 focus:ring-azulPrimario bg-white"></div>
-                <div class="mb-6"><label class="block text-azulMarino font-semibold mb-2 text-sm">Contraseña</label><input type="password" id="adminPassword" value="admin123" class="w-full px-4 py-3 border border-azulBorde rounded-xl focus:outline-none focus:ring-2 focus:ring-azulPrimario bg-white"></div>
-                <button id="btnAdminLogin" class="w-full bg-azulPrimario text-white py-3 rounded-xl font-semibold hover:bg-azulPrimario/80 transition-all duration-300 shadow-md flex items-center justify-center gap-2"><span class="material-icons">login</span> Ingresar</button>
-                <div class="mt-4 text-center"><a href="index.html" class="text-azulSec text-sm hover:text-azulPrimario transition">← Volver al sitio público</a></div>
-                <div class="mt-6 pt-4 border-t border-azulBorde text-center text-azulSec text-xs"><p class="font-semibold text-azulMarino">Credenciales de prueba:</p><p>admin@cotolar.org / admin123</p></div>
-            </div>
-        </div>
-    </div>
-    
+
     <!-- Admin Panel -->
-    <div id="adminPanel" style="display: none;">
+    <div id="adminPanel">
+
         <!-- Header -->
         <header class="bg-gradient-to-r from-azulPrimario to-celeste text-white shadow-md sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <div class="w-20 h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1"><img src="icon.svg" alt="Logo" class="w-full h-full object-contain"></div>
-                    <span class="font-bold tracking-wide text-lg hidden sm:inline">COTOLAR Admin</span>
+                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1">
+                        <img src="/assets/icons/icon.svg" alt="Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <span class="font-bold tracking-wide text-lg hidden sm:inline">COTOLAR Admin</span>
+                        <p class="text-white/70 text-xs hidden sm:block">Panel de Administración</p>
+                    </div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <span id="adminNameDisplay" class="text-sm hidden sm:inline">Administrador</span>
+                    <span id="adminNameDisplay" class="text-sm hidden sm:inline text-white/90">Administrador</span>
                     <button id="menuAdminBtn" class="md:hidden bg-white/20 p-2 rounded-full">
                         <span class="material-icons">menu</span>
                     </button>
+                    <a href="/pages/home/" class="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full text-sm font-semibold flex items-center gap-1 transition">
+                        <span class="material-icons text-sm">home</span>
+                        <span class="hidden sm:inline">Inicio</span>
+                    </a>
                     <button id="btnLogout" class="bg-white text-azulPrimario px-4 py-1.5 rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-1">
-                        <span class="material-icons text-sm">logout</span> <span class="hidden sm:inline">Salir</span>
+                        <span class="material-icons text-sm">logout</span>
+                        <span class="hidden sm:inline">Salir</span>
                     </button>
                 </div>
             </div>
         </header>
-        
-        <!-- Menú lateral móvil para admin -->
+
+        <!-- Menú lateral móvil -->
         <div id="adminMobileMenu" class="fixed inset-0 z-[150] bg-black/50 backdrop-blur-sm hidden transition-all duration-300">
             <div class="bg-azulCard w-80 h-full shadow-2xl p-6 animate-slideInLeft border-r border-azulBorde">
                 <div class="flex justify-between items-center mb-8 pb-4 border-b border-azulBorde">
@@ -104,7 +92,7 @@
                 </nav>
             </div>
         </div>
-        
+
         <!-- Navegación escritorio -->
         <nav class="hidden md:block bg-azulCard border-b border-azulBorde sticky top-[61px] z-40 shadow-sm overflow-x-auto">
             <div class="max-w-7xl mx-auto px-4">
@@ -120,21 +108,18 @@
                 </div>
             </div>
         </nav>
-        
+
         <main class="max-w-7xl mx-auto px-4 py-6 pb-24">
-            <!-- Dashboard -->
             <div id="tab-dashboard" class="admin-tab-content">
-                <div id="dashboardContainer" class="space-y-6">
-                    <!-- Las estadísticas se cargan dinámicamente -->
-                </div>
+                <div id="dashboardContainer" class="space-y-6"></div>
             </div>
-            
-            <!-- Formulario y listado para las otras pestañas -->
             <div id="tab-form-list" style="display: none;">
                 <div class="bg-azulCard rounded-xl shadow-md p-4 border border-azulBorde mb-4">
-                    <h2 class="text-lg font-bold text-azulMarino mb-3" id="formTitle">Agregar Noticia</h2>
+                    <h2 class="text-lg font-bold text-azulMarino mb-3" id="formTitle">Agregar</h2>
                     <div id="formFields"></div>
-                    <button id="btnSave" class="bg-azulPrimario text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-azulPrimario/80 transition-all duration-300 mt-3 shadow-sm flex items-center gap-1"><span class="material-icons text-sm">save</span> Guardar</button>
+                    <button id="btnSave" class="bg-azulPrimario text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-azulPrimario/80 transition-all duration-300 mt-3 shadow-sm flex items-center gap-1">
+                        <span class="material-icons text-sm">save</span> Guardar
+                    </button>
                 </div>
                 <div class="bg-azulCard rounded-xl shadow-md p-4 border border-azulBorde">
                     <h2 class="text-lg font-bold text-azulMarino mb-3">Listado</h2>
@@ -143,13 +128,15 @@
             </div>
         </main>
     </div>
-    
-    <script src="js/imageHandler.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/admin.js"></script>
-    
+
+    <script src="/assets/js/db.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/imageHandler.js"></script>
+    <script src="/assets/js/data.js"></script>
+    <script src="/assets/js/admin.js"></script>
+
     <script>
-        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').then(reg => console.log('✅ Service Worker registrado')).catch(err => console.log('❌ Error SW:', err)); }
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
     </script>
 </body>
 </html>

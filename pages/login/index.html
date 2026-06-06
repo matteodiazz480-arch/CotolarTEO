@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#2980B9">
+    <title>COTOLAR | Ingresar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        azulClaro: '#D6EAF8', azulCard: '#EAF2F8', azulMarino: '#154360',
+                        azulSec: '#2E86C1', azulPrimario: '#2980B9', celeste: '#5DADE2', azulBorde: '#A9CCE3'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4"
+    style="background: linear-gradient(135deg, #1a5d8a 0%, #2980B9 55%, #5DADE2 100%);">
+
+    <div class="w-full max-w-md">
+
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <a href="/pages/home/">
+                <div class="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xl overflow-hidden bg-white p-2">
+                    <img src="/assets/icons/icon.svg" alt="COTOLAR" class="w-full h-full object-contain">
+                </div>
+                <h1 class="text-3xl font-bold text-white tracking-wide">COTOLAR</h1>
+                <p class="text-white/70 text-sm mt-1">Colegio de Terapia Ocupacional de La Rioja</p>
+            </a>
+        </div>
+
+        <!-- Card -->
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+
+            <!-- Tabs -->
+            <div class="flex border-b border-azulBorde">
+                <button class="flex-1 py-4 text-azulPrimario font-bold text-sm border-b-2 border-azulPrimario">
+                    Iniciar sesión
+                </button>
+                <button class="flex-1 py-4 text-azulSec font-semibold text-sm border-b-2 border-transparent hover:text-azulPrimario transition"
+                    onclick="window.location.href='/pages/register/'">
+                    Registrarse
+                </button>
+            </div>
+
+            <!-- Form -->
+            <div class="p-6 md:p-8">
+
+                <div id="loginError" class="hidden mb-5 bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm flex items-center gap-2">
+                    <span class="material-icons text-base flex-shrink-0">error_outline</span>
+                    <span id="loginErrorMsg"></span>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block text-azulMarino font-semibold mb-2 text-sm">Correo electrónico</label>
+                    <div class="relative">
+                        <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-azulSec select-none">email</span>
+                        <input type="email" id="loginEmail" placeholder="correo@ejemplo.com" autocomplete="email"
+                            class="w-full pl-11 pr-4 py-3 border border-azulBorde rounded-xl focus:outline-none focus:ring-2 focus:ring-azulPrimario bg-azulClaro/30 text-azulMarino">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-azulMarino font-semibold mb-2 text-sm">Contraseña</label>
+                    <div class="relative">
+                        <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-azulSec select-none">lock</span>
+                        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password"
+                            class="w-full pl-11 pr-12 py-3 border border-azulBorde rounded-xl focus:outline-none focus:ring-2 focus:ring-azulPrimario bg-azulClaro/30 text-azulMarino">
+                        <button type="button" id="togglePassword"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-azulSec hover:text-azulPrimario transition">
+                            <span class="material-icons">visibility</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button id="btnLogin"
+                    class="w-full bg-azulPrimario text-white py-3 rounded-xl font-bold hover:bg-azulPrimario/80 transition-all duration-300 shadow-md flex items-center justify-center gap-2">
+                    <span class="material-icons">login</span> Ingresar
+                </button>
+
+                <div class="mt-6 text-center">
+                    <p class="text-azulSec text-sm">¿No tenés cuenta?
+                        <a href="/pages/register/" class="text-azulPrimario font-bold hover:underline">Registrate aquí</a>
+                    </p>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-azulBorde text-center">
+                    <a href="/pages/home/" class="inline-flex items-center gap-1 text-azulSec text-sm hover:text-azulPrimario transition">
+                        <span class="material-icons text-base">arrow_back</span> Volver al inicio
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-white/40 text-xs text-center mt-6">© 2025 COTOLAR · Órgano oficial de regulación profesional</p>
+    </div>
+
+    <script src="/assets/js/db.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script>
+        // Redirigir si ya hay sesión activa
+        (function () {
+            const s = Auth.getSession();
+            if (s) Auth.redirectByRole(s);
+        })();
+
+        // Toggle contraseña
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const input = document.getElementById('loginPassword');
+            const icon = this.querySelector('.material-icons');
+            input.type = input.type === 'password' ? 'text' : 'password';
+            icon.textContent = input.type === 'password' ? 'visibility' : 'visibility_off';
+        });
+
+        // Login
+        document.getElementById('btnLogin').addEventListener('click', doLogin);
+        document.getElementById('loginPassword').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+        document.getElementById('loginEmail').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('loginPassword').focus(); });
+
+        function showError(msg) {
+            document.getElementById('loginErrorMsg').textContent = msg;
+            document.getElementById('loginError').classList.remove('hidden');
+        }
+
+        function doLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('btnLogin');
+
+            document.getElementById('loginError').classList.add('hidden');
+
+            if (!email || !password) { showError('Completá todos los campos.'); return; }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-icons text-sm" style="animation:spin 1s linear infinite">refresh</span>&nbsp;Verificando...';
+
+            setTimeout(() => {
+                const result = DB.login(email, password);
+                if (!result.ok) {
+                    showError(result.msg);
+                    btn.disabled = false;
+                    btn.innerHTML = '<span class="material-icons">login</span> Ingresar';
+                    return;
+                }
+                Auth.setSession(result.user);
+                Auth.redirectByRole(result.user);
+            }, 500);
+        }
+
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+    </script>
+    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+</body>
+</html>
